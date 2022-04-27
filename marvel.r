@@ -20,50 +20,48 @@ LoadMarvel <- function(filename) {
 
 	for (i in 1:15) {
 		for (s in levels(marvel$Scenario)) {
-		    standardWin <- if (i <= 12) "Yes" else "No"
-		    expertWin <- if (i <= 3) "Yes" else "No"
 			multiStandard <- data.frame(
 				Timestamp = Sys.time(),
-				First = "", FirstAspect = "", IsSecondHero = "Yes", FirstTwoAspects ="", IsSecondHero1 = "No", IsSecondHero2 = "No", 
+				First = "", FirstAspect = "", IsSecondHero = "Yes", FirstTwoAspects ="", IsSecondHero1 = "No", IsSecondHero2 = "No",
 				Second = "", SecondAspect = "", IsThirdHero = "No", SecondTwoAspects = "", IsThirdHero1 = "No", IsThirdHero2 = "No",
 				Third = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
 				Fourth = "", FourthAspect = "", FourthTwoAspects = "",
-				Scenario = s, 
-				Campaign = "No", ExpertCampaign = "No", Encounter = "", 
-				Win = standardWin, Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
+				Scenario = s,
+				Campaign = "No", ExpertCampaign = "No", Encounter = "",
+				Win = if (i <= 12) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
 				WinWC = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Standard"
 			)
 			multiExpert <- data.frame(
 				Timestamp = Sys.time(),
-				First = "", FirstAspect = "", IsSecondHero = "Yes", FirstTwoAspects ="", IsSecondHero1 = "No", IsSecondHero2 = "No", 
+				First = "", FirstAspect = "", IsSecondHero = "Yes", FirstTwoAspects ="", IsSecondHero1 = "No", IsSecondHero2 = "No",
 				Second = "", SecondAspect = "", IsThirdHero = "No", SecondTwoAspects = "", IsThirdHero1 = "No", IsThirdHero2 = "No",
 				Third = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
 				Fourth = "", FourthAspect = "", FourthTwoAspects = "",
-				Scenario = s, 
-				Campaign = "No", ExpertCampaign = "No", Encounter = "", 
-				Win = expertWin, Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
+				Scenario = s,
+				Campaign = "No", ExpertCampaign = "No", Encounter = "",
+				Win = if (i <= 7) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
 				WinWC = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Expert"
 			)
 			soloStandard <- data.frame(
 				Timestamp = Sys.time(),
-				First = "", FirstAspect = "", IsSecondHero = "No", FirstTwoAspects ="", IsSecondHero1 = "No", IsSecondHero2 = "No", 
+				First = "", FirstAspect = "", IsSecondHero = "No", FirstTwoAspects ="", IsSecondHero1 = "No", IsSecondHero2 = "No",
 				Second = "", SecondAspect = "", IsThirdHero = "No", SecondTwoAspects = "", IsThirdHero1 = "No", IsThirdHero2 = "No",
 				Third = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
 				Fourth = "", FourthAspect = "", FourthTwoAspects = "",
-				Scenario = s, 
-				Campaign = "No", ExpertCampaign = "No", Encounter = "", 
-				Win = standardWin, Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
+				Scenario = s,
+				Campaign = "No", ExpertCampaign = "No", Encounter = "",
+				Win = if (i <= 11) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
 				WinWC = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Standard"
 			)
 			soloExpert <- data.frame(
 				Timestamp = Sys.time(),
-				First = "", FirstAspect = "", IsSecondHero = "No", FirstTwoAspects ="", IsSecondHero1 = "No", IsSecondHero2 = "No", 
+				First = "", FirstAspect = "", IsSecondHero = "No", FirstTwoAspects ="", IsSecondHero1 = "No", IsSecondHero2 = "No",
 				Second = "", SecondAspect = "", IsThirdHero = "No", SecondTwoAspects = "", IsThirdHero1 = "No", IsThirdHero2 = "No",
 				Third = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
 				Fourth = "", FourthAspect = "", FourthTwoAspects = "",
-				Scenario = s, 
-				Campaign = "No", ExpertCampaign = "No", Encounter = "", 
-				Win = expertWin, Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
+				Scenario = s,
+				Campaign = "No", ExpertCampaign = "No", Encounter = "",
+				Win = if (i <= 6) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
 				WinWC = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Expert"
 			)
 			marvel <- rbind(marvel, multiStandard)
@@ -90,6 +88,8 @@ LoadMarvel <- function(filename) {
 
 	marvel$Heroic[is.na(marvel$Heroic)] <- 0
 	marvel$Heroic[marvel$Heroic > 3] <- 3
+	marvel$Skirmish[is.na(marvel$Skirmish)] <- 0
+	marvel$Skirmish = (marvel$Skirmish > 0)
 	marvel$Campaign <- (marvel$Campaign == "Yes")
 	marvel$CampaignAbsorbingMan <- (marvel$Campaign & marvel$Scenario == "Absorbing Man")
 	marvel$CampaignTaskmaster <- (marvel$Campaign & marvel$Scenario == "Taskmaster")
@@ -250,8 +250,7 @@ LoadMarvel <- function(filename) {
 
 MarvelGlm <- function(marvel) {
 	return(glm(formula = (Win == "No") ~ 
-		Scenario * DifficultyLevel * OneHero + 
-		Timestamp +
+		Scenario * DifficultyLevel * OneHero +
 		Undeclared +
     	BombScare + MastersOfEvil + UnderAttack + LegionsOfHydra + DoomsdayChair +
     	GoblinGimmicks + MessOfThings + PowerDrain + RunningInterference +
@@ -262,7 +261,7 @@ MarvelGlm <- function(marvel) {
 		BlackOrder + ArmiesOfTitan + ChildrenOfThanos + LegionsOfHel + FrostGiants + Enchantress + InfinityGauntlet +
 		BeastyBoys + BrothersGrimm + CrossfiresCrew + MisterHyde + RansackedArmory +
 		SinisterSyndicate + StateOfEmergency + StreetsOfMayhem + WreckingCrew +
-    	Heroic + Standard2 + Expert2 +
+    	Heroic + Skirmish + Standard2 + Expert2 +
 		CampaignAbsorbingMan + CampaignTaskmaster + CampaignZola + CampaignRedSkull +
 		CampaignBrotherhood + CampaignInfiltrateMuseum + CampaignEscapeMuseum + CampaignNebula + CampaignRonan +
 		CampaignEbonyMaw + CampaignTowerDefense + CampaignThanos + CampaignHela + CampaignLoki +
@@ -275,12 +274,12 @@ MarvelGlm <- function(marvel) {
 		RocketRaccoon + ScarletWitch + SheHulk + Spectrum + 
 		SpiderMan + SpiderWoman + StarLord +
 		Thor + Valkyrie + Vision + WarMachine + Wasp + Venom +
-		AdamWarlockSolo + AntManSolo + BlackPantherSolo + 
+		AdamWarlockSolo + AntManSolo + BlackPantherSolo +
 		BlackWidowSolo + CaptainAmericaSolo + CaptainMarvelSolo +
-		DoctorStrangeSolo + DraxSolo + GamoraSolo + GrootSolo + 
+		DoctorStrangeSolo + DraxSolo + GamoraSolo + GrootSolo +
 		HawkeyeSolo + HulkSolo + IronManSolo + NebulaSolo +
 		MsMarvelSolo + QuicksilverSolo +
-		RocketRaccoonSolo + ScarletWitchSolo + SheHulkSolo + SpectrumSolo + 
+		RocketRaccoonSolo + ScarletWitchSolo + SheHulkSolo + SpectrumSolo +
 		SpiderManSolo + SpiderWomanSolo + StarLordSolo +
 		ThorSolo + ValkyrieSolo + VisionSolo + WarMachineSolo + WaspSolo + VenomSolo
     	, family = binomial, data = marvel))
@@ -602,6 +601,7 @@ MarvelEncounterSets <- function(marvelGlm) {
 			"Wrecking Crew",
 			"",
 			"Heroic",
+			"Skirmish",
 			"Standard II",
 			"Expert II"
 		),
@@ -654,6 +654,7 @@ MarvelEncounterSets <- function(marvelGlm) {
 			sprintf("%+d", round(coefs["WreckingCrewTRUE"] * 10)),
 			"",
 			sprintf("%+d", round(coefs["Heroic"] * 10)),
+			sprintf("%+d", round(coefs["SkirmishTRUE"] * 10)),
 			sprintf("%+d", round(coefs["Standard2TRUE"] * 10)),
 			sprintf("%+d", round(coefs["Expert2TRUE"] * 10))
         )
@@ -734,7 +735,6 @@ MarvelStars <- function(marvelGlm, coefEasiestScenario) {
 		Scenario = "Rhino",
 		DifficultyLevel = "Standard",
 		OneHero = FALSE,
-		Timestamp = Sys.time(),
 		Undeclared = FALSE,
 		BombScare = TRUE, MastersOfEvil = FALSE, UnderAttack = FALSE, LegionsOfHydra = FALSE, DoomsdayChair = FALSE,
 		GoblinGimmicks = FALSE, MessOfThings = FALSE, PowerDrain = FALSE, RunningInterference = FALSE,
@@ -746,7 +746,7 @@ MarvelStars <- function(marvelGlm, coefEasiestScenario) {
 		BeastyBoys = FALSE, BrothersGrimm = FALSE, CrossfiresCrew = FALSE, MisterHyde = FALSE,
 		RansackedArmory = FALSE, SinisterSyndicate = FALSE, StateOfEmergency = FALSE,
 		StreetsOfMayhem = FALSE, WreckingCrew = FALSE,
-		Heroic = 0, Standard2 = FALSE, Expert2 = FALSE,
+		Heroic = 0, Skirmish = FALSE, Standard2 = FALSE, Expert2 = FALSE,
 		CampaignAbsorbingMan = FALSE, CampaignTaskmaster = FALSE, CampaignZola = FALSE, CampaignRedSkull = FALSE,
 		CampaignBrotherhood = FALSE, CampaignInfiltrateMuseum = FALSE, CampaignEscapeMuseum = FALSE, CampaignNebula = FALSE, CampaignRonan = FALSE,
 		CampaignEbonyMaw = FALSE, CampaignTowerDefense = FALSE, CampaignThanos = FALSE, CampaignHela = FALSE, CampaignLoki = FALSE,
@@ -772,7 +772,6 @@ MarvelStars <- function(marvelGlm, coefEasiestScenario) {
 		Scenario = "Ultron",
 		DifficultyLevel = "Expert",
 		OneHero = FALSE,
-		Timestamp = Sys.time(),
 		Undeclared = FALSE,
 		BombScare = FALSE, MastersOfEvil = FALSE, UnderAttack = FALSE, LegionsOfHydra = FALSE, DoomsdayChair = TRUE,
 		GoblinGimmicks = FALSE, MessOfThings = FALSE, PowerDrain = FALSE, RunningInterference = FALSE,
@@ -784,7 +783,7 @@ MarvelStars <- function(marvelGlm, coefEasiestScenario) {
 		BeastyBoys = FALSE, BrothersGrimm = FALSE, CrossfiresCrew = FALSE, MisterHyde = FALSE,
 		RansackedArmory = FALSE, SinisterSyndicate = FALSE, StateOfEmergency = FALSE,
 		StreetsOfMayhem = FALSE, WreckingCrew = FALSE,
-        Heroic = 1, Standard2 = FALSE, Expert2 = FALSE,
+        Heroic = 1, Skirmish = FALSE, Standard2 = FALSE, Expert2 = FALSE,
         CampaignAbsorbingMan = FALSE, CampaignTaskmaster = FALSE, CampaignZola = FALSE, CampaignRedSkull = FALSE,
         CampaignBrotherhood = FALSE, CampaignInfiltrateMuseum = FALSE, CampaignEscapeMuseum = FALSE, CampaignNebula = FALSE, CampaignRonan = FALSE,
         CampaignEbonyMaw = FALSE, CampaignTowerDefense = FALSE, CampaignThanos = FALSE, CampaignHela = FALSE, CampaignLoki = FALSE,
@@ -811,6 +810,7 @@ MarvelStars <- function(marvelGlm, coefEasiestScenario) {
 	# predRange <- 1.4 - -2.5
 	logits <- seq(predict.glm(marvelGlm, newdata=easiest), predict.glm(marvelGlm, newdata=hardest), predRange / 10)
 	# logits <- seq(-2.5, 1.4, predRange / 10)
+	# maybe this should be intercept?
 	logitMinusEasiest <- logits - coefEasiestScenario
 	# The BreakPoint means "any value higher than this is the next level of stars"
 	# I.e., 
