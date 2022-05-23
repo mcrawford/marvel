@@ -18,10 +18,11 @@ LoadMarvel <- function(filename) {
 	marvel$Win[marvel$Win == ""] <- marvel$WinWC[marvel$Win == ""]
 	marvel$Heroic[is.na(marvel$Heroic)] <- marvel$HeroicWC[is.na(marvel$Heroic)]
 
+    meanDate <- mean(marvel$Timestamp)
 	for (i in 1:15) {
 		for (s in levels(marvel$Scenario)) {
 			multiStandard <- data.frame(
-				Timestamp = Sys.time(),
+				Timestamp = meanDate,
 				First = "", FirstAspect = "", IsSecondHero = "Yes", FirstTwoAspects ="", IsSecondHero1 = "No", IsSecondHero2 = "No",
 				Second = "", SecondAspect = "", IsThirdHero = "No", SecondTwoAspects = "", IsThirdHero1 = "No", IsThirdHero2 = "No",
 				Third = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
@@ -32,7 +33,7 @@ LoadMarvel <- function(filename) {
 				WinWC = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Standard"
 			)
 			multiExpert <- data.frame(
-				Timestamp = Sys.time(),
+				Timestamp = meanDate,
 				First = "", FirstAspect = "", IsSecondHero = "Yes", FirstTwoAspects ="", IsSecondHero1 = "No", IsSecondHero2 = "No",
 				Second = "", SecondAspect = "", IsThirdHero = "No", SecondTwoAspects = "", IsThirdHero1 = "No", IsThirdHero2 = "No",
 				Third = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
@@ -43,7 +44,7 @@ LoadMarvel <- function(filename) {
 				WinWC = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Expert"
 			)
 			soloStandard <- data.frame(
-				Timestamp = Sys.time(),
+				Timestamp = meanDate,
 				First = "", FirstAspect = "", IsSecondHero = "No", FirstTwoAspects ="", IsSecondHero1 = "No", IsSecondHero2 = "No",
 				Second = "", SecondAspect = "", IsThirdHero = "No", SecondTwoAspects = "", IsThirdHero1 = "No", IsThirdHero2 = "No",
 				Third = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
@@ -54,7 +55,7 @@ LoadMarvel <- function(filename) {
 				WinWC = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Standard"
 			)
 			soloExpert <- data.frame(
-				Timestamp = Sys.time(),
+				Timestamp = meanDate,
 				First = "", FirstAspect = "", IsSecondHero = "No", FirstTwoAspects ="", IsSecondHero1 = "No", IsSecondHero2 = "No",
 				Second = "", SecondAspect = "", IsThirdHero = "No", SecondTwoAspects = "", IsThirdHero1 = "No", IsThirdHero2 = "No",
 				Third = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
@@ -105,6 +106,11 @@ LoadMarvel <- function(filename) {
 	marvel$CampaignThanos <- (marvel$Campaign & marvel$Scenario == "Thanos")
 	marvel$CampaignHela <- (marvel$Campaign & marvel$Scenario == "Hela")
 	marvel$CampaignLoki <- (marvel$Campaign & marvel$Scenario == "Loki")
+	marvel$CampaignSandman <- (marvel$Campaign & marvel$Scenario == "Sandman")
+	marvel$CampaignVenom <- (marvel$Campaign & marvel$Scenario == "Venom")
+	marvel$CampaignMysterio <- (marvel$Campaign & marvel$Scenario == "Mysterio")
+	marvel$CampaignSinisterSix <- (marvel$Campaign & marvel$Scenario == "The Sinister Six")
+	marvel$CampaignVenomGoblin <- (marvel$Campaign & marvel$Scenario == "VenomGoblin")
 
 	marvel$Undeclared <- marvel$Encounter == "" & marvel$Scenario != "Wrecking Crew"
 	marvel$BombScare <- grepl("Bomb Scare", marvel$Encounter, fixed=TRUE)
@@ -146,6 +152,17 @@ LoadMarvel <- function(filename) {
     marvel$StateOfEmergency <- grepl("State of Emergency", marvel$Encounter, fixed=TRUE)
     marvel$StreetsOfMayhem <- grepl("Streets of Mayhem", marvel$Encounter, fixed=TRUE)
     marvel$WreckingCrew <- grepl("Wrecking Crew", marvel$Encounter, fixed=TRUE)
+    marvel$CityInChaos <- grepl("City in Chaos", marvel$Encounter, fixed=TRUE)
+    marvel$DownToEarth <- grepl("Down to Earth", marvel$Encounter, fixed=TRUE)
+    marvel$SymbioticStrength <- grepl("Symbiotic Strength", marvel$Encounter, fixed=TRUE)
+    marvel$PersonalNightmare <- grepl("Personal Nightmare", marvel$Encounter, fixed=TRUE)
+    marvel$WhispersOfParanoia <- grepl("Whispers of Paranoia", marvel$Encounter, fixed=TRUE)
+    marvel$GuerrillaTactics <- grepl("Guerilla Tactics", marvel$Encounter, fixed=TRUE)
+    marvel$SinisterAssault <- grepl("Sinister Assault", marvel$Encounter, fixed=TRUE)
+    marvel$GoblinGear <- grepl("Goblin Gear", marvel$Encounter, fixed=TRUE)
+    marvel$OsbornTech <- grepl("Osborn Tech", marvel$Encounter, fixed=TRUE)
+    marvel$Armadillo <- grepl("Armadillo", marvel$Encounter, fixed=TRUE)
+    marvel$Zzzax <- grepl("Zzzax", marvel$Encounter, fixed=TRUE)
 
 	marvel$Aggression <- marvel$FirstAspect == "Aggression" | marvel$SecondAspect == "Aggression" | 
 						 marvel$ThirdAspect == "Aggression" | marvel$FourthAspect == "Aggression"
@@ -174,7 +191,9 @@ LoadMarvel <- function(filename) {
 						 marvel$Third == "Drax" | marvel$Fourth == "Drax"
 	marvel$Gamora <- marvel$First == "Gamora" | marvel$Second == "Gamora" | 
 						 marvel$Third == "Gamora" | marvel$Fourth == "Gamora"
-	marvel$Groot <- marvel$First == "Groot" | marvel$Second == "Groot" | 
+	marvel$GhostSpider <- marvel$First == "Ghost-Spider" | marvel$Second == "Ghost-Spider" |
+						 marvel$Third == "Ghost-Spider" | marvel$Fourth == "Ghost-Spider"
+	marvel$Groot <- marvel$First == "Groot" | marvel$Second == "Groot" |
 						 marvel$Third == "Groot" | marvel$Fourth == "Groot"
 	marvel$Hawkeye <- marvel$First == "Hawkeye" | marvel$Second == "Hawkeye" | 
 						 marvel$Third == "Hawkeye" | marvel$Fourth == "Hawkeye"
@@ -182,11 +201,15 @@ LoadMarvel <- function(filename) {
 						 marvel$Third == "Hulk" | marvel$Fourth == "Hulk"
 	marvel$IronMan <- marvel$First == "Iron Man" | marvel$Second == "Iron Man" | 
 						 marvel$Third == "Iron Man" | marvel$Fourth == "Iron Man"
-	marvel$Nebula <- marvel$First == "Nebula" | marvel$Second == "Nebula" |
-						 marvel$Third == "Nebula" | marvel$Fourth == "Nebula"
+	marvel$Ironheart <- marvel$First == "Ironheart" | marvel$Second == "Ironheart" |
+						 marvel$Third == "Ironheart" | marvel$Fourth == "Ironheart"
 	marvel$MsMarvel <- marvel$First == "Ms. Marvel" | marvel$Second == "Ms. Marvel" |
 						 marvel$Third == "Ms. Marvel" | marvel$Fourth == "Ms. Marvel"
-	marvel$Quicksilver <- marvel$First == "Quicksilver" | marvel$Second == "Quicksilver" | 
+	marvel$Nebula <- marvel$First == "Nebula" | marvel$Second == "Nebula" |
+						 marvel$Third == "Nebula" | marvel$Fourth == "Nebula"
+	marvel$Nova <- marvel$First == "Nova" | marvel$Second == "Nova" |
+						 marvel$Third == "Nova" | marvel$Fourth == "Nova"
+	marvel$Quicksilver <- marvel$First == "Quicksilver" | marvel$Second == "Quicksilver" |
 						 marvel$Third == "Quicksilver" | marvel$Fourth == "Quicksilver"
 	marvel$RocketRaccoon <- marvel$First == "Rocket Raccoon" | marvel$Second == "Rocket Raccoon" | 
 						 marvel$Third == "Rocket Raccoon" | marvel$Fourth == "Rocket Raccoon"
@@ -198,7 +221,9 @@ LoadMarvel <- function(filename) {
 						 marvel$Third == "Spectrum" | marvel$Fourth == "Spectrum"
 	marvel$SpiderMan <- marvel$First == "Spider-Man (Peter Parker)" | marvel$Second == "Spider-Man (Peter Parker)" | 
 						 marvel$Third == "Spider-Man (Peter Parker)" | marvel$Fourth == "Spider-Man (Peter Parker)"
-	marvel$SpiderWoman <- marvel$First == "Spider-Woman" | marvel$Second == "Spider-Woman" | 
+	marvel$SpiderManMilesMorales <- marvel$First == "Spider-Man (Miles Morales)" | marvel$Second == "Spider-Man (Miles Morales)" |
+						 marvel$Third == "Spider-Man (Miles Morales)" | marvel$Fourth == "Spider-Man (Miles Morales)"
+	marvel$SpiderWoman <- marvel$First == "Spider-Woman" | marvel$Second == "Spider-Woman" |
 						 marvel$Third == "Spider-Woman" | marvel$Fourth == "Spider-Woman"
 	marvel$StarLord <- marvel$First == "Star-Lord" | marvel$Second == "Star-Lord" | 
 						 marvel$Third == "Star-Lord" | marvel$Fourth == "Star-Lord"
@@ -224,18 +249,22 @@ LoadMarvel <- function(filename) {
 	marvel$DoctorStrangeSolo <- marvel$DoctorStrange & marvel$OneHero
 	marvel$DraxSolo <- marvel$Drax & marvel$OneHero
 	marvel$GamoraSolo <- marvel$Gamora & marvel$OneHero
+	marvel$GhostSpiderSolo <- marvel$GhostSpider & marvel$OneHero
 	marvel$GrootSolo <- marvel$Groot & marvel$OneHero
 	marvel$HawkeyeSolo <- marvel$Hawkeye & marvel$OneHero
 	marvel$HulkSolo <- marvel$Hulk & marvel$OneHero
 	marvel$IronManSolo <- marvel$IronMan & marvel$OneHero
-	marvel$NebulaSolo <- marvel$Nebula & marvel$OneHero
+	marvel$IronheartSolo <- marvel$Ironheart & marvel$OneHero
 	marvel$MsMarvelSolo <- marvel$MsMarvel & marvel$OneHero
+	marvel$NebulaSolo <- marvel$Nebula & marvel$OneHero
+	marvel$NovaSolo <- marvel$Nova & marvel$OneHero
 	marvel$QuicksilverSolo <- marvel$Quicksilver & marvel$OneHero
 	marvel$RocketRaccoonSolo <- marvel$RocketRaccoon & marvel$OneHero
 	marvel$ScarletWitchSolo <- marvel$ScarletWitch & marvel$OneHero
 	marvel$SheHulkSolo <- marvel$SheHulk & marvel$OneHero
 	marvel$SpectrumSolo <- marvel$Spectrum & marvel$OneHero
 	marvel$SpiderManSolo <- marvel$SpiderMan & marvel$OneHero
+	marvel$SpiderManMilesMoralesSolo <- marvel$SpiderManMilesMorales & marvel$OneHero
 	marvel$SpiderWomanSolo <- marvel$SpiderWoman & marvel$OneHero
 	marvel$StarLordSolo <- marvel$StarLord & marvel$OneHero
 	marvel$ThorSolo <- marvel$Thor & marvel$OneHero
@@ -251,7 +280,7 @@ LoadMarvel <- function(filename) {
 MarvelGlm <- function(marvel) {
 	return(glm(formula = (Win == "No") ~ 
 		Scenario * DifficultyLevel * OneHero +
-		Undeclared +
+		Undeclared + Timestamp +
     	BombScare + MastersOfEvil + UnderAttack + LegionsOfHydra + DoomsdayChair +
     	GoblinGimmicks + MessOfThings + PowerDrain + RunningInterference +
     	KreeFanatic +
@@ -261,26 +290,29 @@ MarvelGlm <- function(marvel) {
 		BlackOrder + ArmiesOfTitan + ChildrenOfThanos + LegionsOfHel + FrostGiants + Enchantress + InfinityGauntlet +
 		BeastyBoys + BrothersGrimm + CrossfiresCrew + MisterHyde + RansackedArmory +
 		SinisterSyndicate + StateOfEmergency + StreetsOfMayhem + WreckingCrew +
+		CityInChaos + DownToEarth + SymbioticStrength + PersonalNightmare + WhispersOfParanoia +
+		GuerrillaTactics + SinisterAssault + GoblinGear + OsbornTech + 
     	Heroic + Skirmish + Standard2 + Expert2 +
 		CampaignAbsorbingMan + CampaignTaskmaster + CampaignZola + CampaignRedSkull +
 		CampaignBrotherhood + CampaignInfiltrateMuseum + CampaignEscapeMuseum + CampaignNebula + CampaignRonan +
 		CampaignEbonyMaw + CampaignTowerDefense + CampaignThanos + CampaignHela + CampaignLoki +
+		CampaignSandman + CampaignVenom + CampaignMysterio + CampaignSinisterSix + CampaignVenomGoblin + 
 		Aggression + Justice + Leadership + Protection +
 		AdamWarlock + AntMan + BlackPanther + 
 		BlackWidow + CaptainAmerica + CaptainMarvel +
-		DoctorStrange + Drax + Gamora + Groot + 
-		Hawkeye + Hulk + IronMan + Nebula +
+		DoctorStrange + Drax + Gamora + GhostSpider + Groot +
+		Hawkeye + Hulk + IronMan + Ironheart + Nebula + Nova +
 		MsMarvel + Quicksilver +
 		RocketRaccoon + ScarletWitch + SheHulk + Spectrum + 
-		SpiderMan + SpiderWoman + StarLord +
+		SpiderMan + SpiderManMilesMorales + SpiderWoman + StarLord +
 		Thor + Valkyrie + Vision + WarMachine + Wasp + Venom +
 		AdamWarlockSolo + AntManSolo + BlackPantherSolo +
 		BlackWidowSolo + CaptainAmericaSolo + CaptainMarvelSolo +
-		DoctorStrangeSolo + DraxSolo + GamoraSolo + GrootSolo +
-		HawkeyeSolo + HulkSolo + IronManSolo + NebulaSolo +
+		DoctorStrangeSolo + DraxSolo + GamoraSolo + GhostSpiderSolo + GrootSolo +
+		HawkeyeSolo + HulkSolo + IronManSolo + IronheartSolo + NebulaSolo + NovaSolo +
 		MsMarvelSolo + QuicksilverSolo +
 		RocketRaccoonSolo + ScarletWitchSolo + SheHulkSolo + SpectrumSolo +
-		SpiderManSolo + SpiderWomanSolo + StarLordSolo +
+		SpiderManSolo + SpiderManMilesMoralesSolo + SpiderWomanSolo + StarLordSolo +
 		ThorSolo + ValkyrieSolo + VisionSolo + WarMachineSolo + WaspSolo + VenomSolo
     	, family = binomial, data = marvel))
 }
@@ -310,7 +342,12 @@ MarvelFactors <- function(extendedGlm) {
 			coefs["ScenarioThanos"],
 			coefs["ScenarioHela"],
 			coefs["ScenarioLoki"],
-			coefs["ScenarioThe Hood"]
+			coefs["ScenarioThe Hood"],
+			coefs["ScenarioSandman"],
+			coefs["ScenarioVenom"],
+			coefs["ScenarioMysterio"],
+			coefs["ScenarioThe Sinister Six"],
+			coefs["ScenarioVenom Goblin"]
 		)
 	expert = c(
 			0 + coefs["DifficultyLevelExpert"], # Rhino
@@ -335,7 +372,12 @@ MarvelFactors <- function(extendedGlm) {
 			coefs["ScenarioThanos"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioThanos:DifficultyLevelExpert"],
 			coefs["ScenarioHela"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioHela:DifficultyLevelExpert"],
 			coefs["ScenarioLoki"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioLoki:DifficultyLevelExpert"],
-			coefs["ScenarioThe Hood"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioThe Hood:DifficultyLevelExpert"]
+			coefs["ScenarioThe Hood"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioThe Hood:DifficultyLevelExpert"],
+			coefs["ScenarioSandman"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioSandman:DifficultyLevelExpert"],
+			coefs["ScenarioVenom"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioVenom:DifficultyLevelExpert"],
+			coefs["ScenarioMysterio"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioMysterio:DifficultyLevelExpert"],
+			coefs["ScenarioThe Sinister Six"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioThe Sinister Six:DifficultyLevelExpert"],
+			coefs["ScenarioVenom Goblin"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioVenom Goblin:DifficultyLevelExpert"]
 		)
 	standardOneHero = c(
 			0 + coefs["OneHeroTRUE"], # Rhino
@@ -360,7 +402,12 @@ MarvelFactors <- function(extendedGlm) {
 			coefs["ScenarioThanos"] + coefs["OneHeroTRUE"] + coefs["ScenarioThanos:OneHeroTRUE"],
 			coefs["ScenarioHela"] + coefs["OneHeroTRUE"] + coefs["ScenarioHela:OneHeroTRUE"],
 			coefs["ScenarioLoki"] + coefs["OneHeroTRUE"] + coefs["ScenarioLoki:OneHeroTRUE"],
-			coefs["ScenarioThe Hood"] + coefs["OneHeroTRUE"] + coefs["ScenarioThe Hood:OneHeroTRUE"]
+			coefs["ScenarioThe Hood"] + coefs["OneHeroTRUE"] + coefs["ScenarioThe Hood:OneHeroTRUE"],
+			coefs["ScenarioSandman"] + coefs["OneHeroTRUE"] + coefs["ScenarioSandman:OneHeroTRUE"],
+			coefs["ScenarioVenom"] + coefs["OneHeroTRUE"] + coefs["ScenarioVenom:OneHeroTRUE"],
+			coefs["ScenarioMysterio"] + coefs["OneHeroTRUE"] + coefs["ScenarioMysterio:OneHeroTRUE"],
+			coefs["ScenarioThe Sinister Six"] + coefs["OneHeroTRUE"] + coefs["ScenarioThe Sinister Six:OneHeroTRUE"],
+			coefs["ScenarioVenom Goblin"] + coefs["OneHeroTRUE"] + coefs["ScenarioVenom Goblin:OneHeroTRUE"]
 		)
 	expertOneHero = c(
 			0 + coefs["DifficultyLevelExpert"] + coefs["OneHeroTRUE"] +
@@ -436,6 +483,21 @@ MarvelFactors <- function(extendedGlm) {
 				coefs["DifficultyLevelExpert:OneHeroTRUE"],
 			coefs["ScenarioThe Hood"] + coefs["OneHeroTRUE"] + coefs["ScenarioThe Hood:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] +
 				coefs["ScenarioThe Hood:DifficultyLevelExpert"] + coefs["ScenarioThe Hood:DifficultyLevelExpert:OneHeroTRUE"] +
+				coefs["DifficultyLevelExpert:OneHeroTRUE"],
+			coefs["ScenarioSandman"] + coefs["OneHeroTRUE"] + coefs["ScenarioSandman:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
+				coefs["ScenarioSandman:DifficultyLevelExpert"] + coefs["ScenarioSandman:DifficultyLevelExpert:OneHeroTRUE"] +
+				coefs["DifficultyLevelExpert:OneHeroTRUE"],
+			coefs["ScenarioVenom"] + coefs["OneHeroTRUE"] + coefs["ScenarioVenom:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
+				coefs["ScenarioVenom:DifficultyLevelExpert"] + coefs["ScenarioVenom:DifficultyLevelExpert:OneHeroTRUE"] +
+				coefs["DifficultyLevelExpert:OneHeroTRUE"],
+			coefs["ScenarioMysterio"] + coefs["OneHeroTRUE"] + coefs["ScenarioMysterio:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
+				coefs["ScenarioMysterio:DifficultyLevelExpert"] + coefs["ScenarioMysterio:DifficultyLevelExpert:OneHeroTRUE"] +
+				coefs["DifficultyLevelExpert:OneHeroTRUE"],
+			coefs["ScenarioThe Sinister Six"] + coefs["OneHeroTRUE"] + coefs["ScenarioThe Sinister Six:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
+				coefs["ScenarioThe Sinister Six:DifficultyLevelExpert"] + coefs["ScenarioThe Sinister Six:DifficultyLevelExpert:OneHeroTRUE"] +
+				coefs["DifficultyLevelExpert:OneHeroTRUE"],
+			coefs["ScenarioVenom Goblin"] + coefs["OneHeroTRUE"] + coefs["ScenarioVenom Goblin:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
+				coefs["ScenarioVenom Goblin:DifficultyLevelExpert"] + coefs["ScenarioVenom Goblin:DifficultyLevelExpert:OneHeroTRUE"] +
 				coefs["DifficultyLevelExpert:OneHeroTRUE"]
 			)
 
@@ -464,7 +526,12 @@ MarvelFactors <- function(extendedGlm) {
 				"Thanos",
 				"Hela",
 				"Loki",
-				"The Hood"
+				"The Hood",
+				"Sandman",
+				"Venom",
+				"Mysterio",
+				"The Sinister Six",
+				"Venom Goblin"
 			),
 			Standard = round(standard * 10),
 			Expert = round(expert * 10),
@@ -599,6 +666,16 @@ MarvelEncounterSets <- function(marvelGlm) {
 			"State of Emergency",
 			"Streets of Mayhem",
 			"Wrecking Crew",
+			" - Spider-Verse - ",
+			"City in Chaos",
+			"Down to Earth",
+			"Goblin Gear",
+			"Guerrilla Tactics",
+			"Osborn Tech",
+			"Personal Nightmare",
+			"Sinister Assault",
+			"Symbiotic Strength",
+			"Whispers of Paranoia",
 			"",
 			"Heroic",
 			"Skirmish",
@@ -653,6 +730,16 @@ MarvelEncounterSets <- function(marvelGlm) {
 			sprintf("%+d", round(coefs["StreetsOfMayhemTRUE"] * 10)),
 			sprintf("%+d", round(coefs["WreckingCrewTRUE"] * 10)),
 			"",
+			sprintf("%+d", round(coefs["CityInChaosTRUE"] * 10)),
+			sprintf("%+d", round(coefs["DownToEarthTRUE"] * 10)),
+			sprintf("%+d", round(coefs["GoblinGearTRUE"] * 10)),
+			sprintf("%+d", round(coefs["GuerrillaTacticsTRUE"] * 10)),
+			sprintf("%+d", round(coefs["OsbornTechTRUE"] * 10)),
+			sprintf("%+d", round(coefs["PersonalNightmareTRUE"] * 10)),
+			sprintf("%+d", round(coefs["SinisterAssaultTRUE"] * 10)),
+			sprintf("%+d", round(coefs["SymbioticStrengthTRUE"] * 10)),
+			sprintf("%+d", round(coefs["WhispersOfParanoiaTRUE"] * 10)),
+            "",
 			sprintf("%+d", round(coefs["Heroic"] * 10)),
 			sprintf("%+d", round(coefs["SkirmishTRUE"] * 10)),
 			sprintf("%+d", round(coefs["Standard2TRUE"] * 10)),
@@ -674,18 +761,22 @@ MarvelHeroes <- function(marvelGlm) {
 			"Doctor Strange",
 			"Drax",
 			"Gamora",
+			"Ghost-Spider",
 			"Groot",
 			"Hawkeye",
 			"Hulk",
 			"Iron Man",
+			"Ironheart",
 			"Ms. Marvel",
 			"Nebula",
+			"Nova",
 			"Quicksilver",
 			"Rocket Raccoon",
 			"Scarlet Witch",
 			"She-Hulk",
 			"Spectrum",
 			"Spider-Man",
+			"Spider-Man (Miles Morales)",
 			"Spider-Woman",
 			"Star-Lord",
 			"Thor",
@@ -705,18 +796,22 @@ MarvelHeroes <- function(marvelGlm) {
 			sprintf("%+d", round(coefs["DoctorStrangeTRUE"] * 10)),
 			sprintf("%+d", round(coefs["DraxTRUE"] * 10)),
 			sprintf("%+d", round(coefs["GamoraTRUE"] * 10)),
+			sprintf("%+d", round(coefs["GhostSpiderTRUE"] * 10)),
 			sprintf("%+d", round(coefs["GrootTRUE"] * 10)),
 			sprintf("%+d", round(coefs["HawkeyeTRUE"] * 10)),
 			sprintf("%+d", round(coefs["HulkTRUE"] * 10)),
 			sprintf("%+d", round(coefs["IronManTRUE"] * 10)),
+			sprintf("%+d", round(coefs["IronheartTRUE"] * 10)),
 			sprintf("%+d", round(coefs["MsMarvelTRUE"] * 10)),
 			sprintf("%+d", round(coefs["NebulaTRUE"] * 10)),
+			sprintf("%+d", round(coefs["NovaTRUE"] * 10)),
 			sprintf("%+d", round(coefs["QuicksilverTRUE"] * 10)),
 			sprintf("%+d", round(coefs["RocketRaccoonTRUE"] * 10)),
 			sprintf("%+d", round(coefs["ScarletWitchTRUE"] * 10)),
 			sprintf("%+d", round(coefs["SheHulkTRUE"] * 10)),
 			sprintf("%+d", round(coefs["SpectrumTRUE"] * 10)),
 			sprintf("%+d", round(coefs["SpiderManTRUE"] * 10)),
+			sprintf("%+d", round(coefs["SpiderManMilesMoralesTRUE"] * 10)),
 			sprintf("%+d", round(coefs["SpiderWomanTRUE"] * 10)),
 			sprintf("%+d", round(coefs["StarLordTRUE"] * 10)),
 			sprintf("%+d", round(coefs["ThorTRUE"] * 10)),
@@ -732,6 +827,7 @@ MarvelHeroes <- function(marvelGlm) {
 MarvelStars <- function(marvelGlm, coefEasiestScenario) {
 	stars <- seq(0, 5, by=.5)
 	easiest <- data.frame(
+        Timestamp = Sys.time(),
 		Scenario = "Rhino",
 		DifficultyLevel = "Standard",
 		OneHero = FALSE,
@@ -746,29 +842,33 @@ MarvelStars <- function(marvelGlm, coefEasiestScenario) {
 		BeastyBoys = FALSE, BrothersGrimm = FALSE, CrossfiresCrew = FALSE, MisterHyde = FALSE,
 		RansackedArmory = FALSE, SinisterSyndicate = FALSE, StateOfEmergency = FALSE,
 		StreetsOfMayhem = FALSE, WreckingCrew = FALSE,
+		CityInChaos = FALSE, DownToEarth = FALSE, GoblinGear = FALSE, GuerrillaTactics = FALSE, OsbornTech = FALSE,
+		PersonalNightmare = FALSE, SinisterAssault = FALSE, SymbioticStrength = FALSE, WhispersOfParanoia = FALSE,
 		Heroic = 0, Skirmish = FALSE, Standard2 = FALSE, Expert2 = FALSE,
 		CampaignAbsorbingMan = FALSE, CampaignTaskmaster = FALSE, CampaignZola = FALSE, CampaignRedSkull = FALSE,
 		CampaignBrotherhood = FALSE, CampaignInfiltrateMuseum = FALSE, CampaignEscapeMuseum = FALSE, CampaignNebula = FALSE, CampaignRonan = FALSE,
 		CampaignEbonyMaw = FALSE, CampaignTowerDefense = FALSE, CampaignThanos = FALSE, CampaignHela = FALSE, CampaignLoki = FALSE,
+		CampaignSandman = FALSE, CampaignVenom = FALSE, CampaignMysterio = FALSE, CampaignSinisterSix = FALSE, CampaignVenomGoblin = FALSE,
 		Aggression = FALSE, Justice = FALSE, Leadership = FALSE, Protection = FALSE,
 		AdamWarlock = FALSE, AntMan = FALSE, BlackPanther = FALSE, BlackWidow = FALSE,
 		CaptainAmerica = FALSE, CaptainMarvel = FALSE,
-		DoctorStrange = FALSE, Drax = FALSE, Gamora = FALSE, Groot = FALSE,
-		Hawkeye = FALSE, Hulk = FALSE, IronMan = FALSE, Nebula = FALSE,
+		DoctorStrange = FALSE, Drax = FALSE, Gamora = FALSE, GhostSpider = FALSE, Groot = FALSE,
+		Hawkeye = FALSE, Hulk = FALSE, IronMan = FALSE, Ironheart = FALSE, Nebula = FALSE, Nova = FALSE,
 		MsMarvel = FALSE, Quicksilver = FALSE,
 		RocketRaccoon = FALSE, ScarletWitch = FALSE, SheHulk = FALSE,
-		Spectrum = FALSE, SpiderMan = FALSE, SpiderWoman = FALSE, StarLord = FALSE,
+		Spectrum = FALSE, SpiderMan = FALSE, SpiderManMilesMorales = FALSE, SpiderWoman = FALSE, StarLord = FALSE,
 		Thor = FALSE, Valkyrie = FALSE, Vision = FALSE, WarMachine = FALSE, Wasp = FALSE, Venom = FALSE,
 		AdamWarlockSolo = FALSE, AntManSolo = FALSE, BlackPantherSolo = FALSE, BlackWidowSolo = FALSE,
 		CaptainAmericaSolo = FALSE, CaptainMarvelSolo = FALSE,
-		DoctorStrangeSolo = FALSE, DraxSolo = FALSE, GamoraSolo = FALSE, GrootSolo = FALSE,
-		HawkeyeSolo = FALSE, HulkSolo = FALSE, IronManSolo = FALSE, NebulaSolo = FALSE,
+		DoctorStrangeSolo = FALSE, DraxSolo = FALSE, GamoraSolo = FALSE, GhostSpider = FALSE, GrootSolo = FALSE,
+		HawkeyeSolo = FALSE, HulkSolo = FALSE, IronManSolo = FALSE, IronheartSolo = FALSE, NebulaSolo = FALSE, NovaSolo = FALSE,
 		MsMarvelSolo = FALSE, QuicksilverSolo = FALSE,
 		RocketRaccoonSolo = FALSE, ScarletWitchSolo = FALSE, SheHulkSolo = FALSE,
-		SpectrumSolo = FALSE, SpiderManSolo = FALSE, SpiderWomanSolo = FALSE, StarLordSolo = FALSE,
+		SpectrumSolo = FALSE, SpiderManSolo = FALSE, SpiderManMilesMorales = FALSE, SpiderWomanSolo = FALSE, StarLordSolo = FALSE,
 		ThorSolo = FALSE, ValkyrieSolo = FALSE, VisionSolo = FALSE, WarMachineSolo = FALSE, WaspSolo = FALSE, VenomSolo = FALSE
 		)
 	hardest <- data.frame(
+        Timestamp = Sys.time(),
 		Scenario = "Ultron",
 		DifficultyLevel = "Expert",
 		OneHero = FALSE,
@@ -783,26 +883,29 @@ MarvelStars <- function(marvelGlm, coefEasiestScenario) {
 		BeastyBoys = FALSE, BrothersGrimm = FALSE, CrossfiresCrew = FALSE, MisterHyde = FALSE,
 		RansackedArmory = FALSE, SinisterSyndicate = FALSE, StateOfEmergency = FALSE,
 		StreetsOfMayhem = FALSE, WreckingCrew = FALSE,
-        Heroic = 1, Skirmish = FALSE, Standard2 = FALSE, Expert2 = FALSE,
-        CampaignAbsorbingMan = FALSE, CampaignTaskmaster = FALSE, CampaignZola = FALSE, CampaignRedSkull = FALSE,
-        CampaignBrotherhood = FALSE, CampaignInfiltrateMuseum = FALSE, CampaignEscapeMuseum = FALSE, CampaignNebula = FALSE, CampaignRonan = FALSE,
-        CampaignEbonyMaw = FALSE, CampaignTowerDefense = FALSE, CampaignThanos = FALSE, CampaignHela = FALSE, CampaignLoki = FALSE,
-        Aggression = FALSE, Justice = FALSE, Leadership = FALSE, Protection = FALSE,
-        AdamWarlock = FALSE, AntMan = FALSE, BlackPanther = FALSE, BlackWidow = FALSE,
-        CaptainAmerica = FALSE, CaptainMarvel = FALSE,
-        DoctorStrange = FALSE, Drax = FALSE, Gamora = FALSE, Groot = FALSE,
-		Hawkeye = FALSE, Hulk = FALSE, IronMan = FALSE, Nebula = FALSE,
+		CityInChaos = FALSE, DownToEarth = FALSE, GoblinGear = FALSE, GuerrillaTactics = FALSE, OsbornTech = FALSE,
+		PersonalNightmare = FALSE, SinisterAssault = FALSE, SymbioticStrength = FALSE, WhispersOfParanoia = FALSE,
+		Heroic = 0, Skirmish = FALSE, Standard2 = FALSE, Expert2 = FALSE,
+		CampaignAbsorbingMan = FALSE, CampaignTaskmaster = FALSE, CampaignZola = FALSE, CampaignRedSkull = FALSE,
+		CampaignBrotherhood = FALSE, CampaignInfiltrateMuseum = FALSE, CampaignEscapeMuseum = FALSE, CampaignNebula = FALSE, CampaignRonan = FALSE,
+		CampaignEbonyMaw = FALSE, CampaignTowerDefense = FALSE, CampaignThanos = FALSE, CampaignHela = FALSE, CampaignLoki = FALSE,
+		CampaignSandman = FALSE, CampaignVenom = FALSE, CampaignMysterio = FALSE, CampaignSinisterSix = FALSE, CampaignVenomGoblin = FALSE,
+		Aggression = FALSE, Justice = FALSE, Leadership = FALSE, Protection = FALSE,
+		AdamWarlock = FALSE, AntMan = FALSE, BlackPanther = FALSE, BlackWidow = FALSE,
+		CaptainAmerica = FALSE, CaptainMarvel = FALSE,
+		DoctorStrange = FALSE, Drax = FALSE, Gamora = FALSE, GhostSpider = FALSE, Groot = FALSE,
+		Hawkeye = FALSE, Hulk = FALSE, IronMan = FALSE, Ironheart = FALSE, Nebula = FALSE, Nova = FALSE,
 		MsMarvel = FALSE, Quicksilver = FALSE,
 		RocketRaccoon = FALSE, ScarletWitch = FALSE, SheHulk = FALSE,
-		Spectrum = FALSE, SpiderMan = FALSE, SpiderWoman = FALSE, StarLord = FALSE,
+		Spectrum = FALSE, SpiderMan = FALSE, SpiderManMilesMorales = FALSE, SpiderWoman = FALSE, StarLord = FALSE,
 		Thor = FALSE, Valkyrie = FALSE, Vision = FALSE, WarMachine = FALSE, Wasp = FALSE, Venom = FALSE,
 		AdamWarlockSolo = FALSE, AntManSolo = FALSE, BlackPantherSolo = FALSE, BlackWidowSolo = FALSE,
 		CaptainAmericaSolo = FALSE, CaptainMarvelSolo = FALSE,
-		DoctorStrangeSolo = FALSE, DraxSolo = FALSE, GamoraSolo = FALSE, GrootSolo = FALSE,
-		HawkeyeSolo = FALSE, HulkSolo = FALSE, IronManSolo = FALSE, NebulaSolo = FALSE,
+		DoctorStrangeSolo = FALSE, DraxSolo = FALSE, GamoraSolo = FALSE, GhostSpider = FALSE, GrootSolo = FALSE,
+		HawkeyeSolo = FALSE, HulkSolo = FALSE, IronManSolo = FALSE, IronheartSolo = FALSE, NebulaSolo = FALSE, NovaSolo = FALSE,
 		MsMarvelSolo = FALSE, QuicksilverSolo = FALSE,
 		RocketRaccoonSolo = FALSE, ScarletWitchSolo = FALSE, SheHulkSolo = FALSE,
-		SpectrumSolo = FALSE, SpiderManSolo = FALSE, SpiderWomanSolo = FALSE, StarLordSolo = FALSE,
+		SpectrumSolo = FALSE, SpiderManSolo = FALSE, SpiderManMilesMorales = FALSE, SpiderWomanSolo = FALSE, StarLordSolo = FALSE,
 		ThorSolo = FALSE, ValkyrieSolo = FALSE, VisionSolo = FALSE, WarMachineSolo = FALSE, WaspSolo = FALSE, VenomSolo = FALSE
 		)
 	predRange <- predict.glm(marvelGlm, newdata=hardest) - predict.glm(marvelGlm, newdata=easiest)
