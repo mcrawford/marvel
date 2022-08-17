@@ -19,7 +19,7 @@ LoadMarvel <- function(filename) {
 	marvel$Heroic[is.na(marvel$Heroic)] <- marvel$HeroicWC[is.na(marvel$Heroic)]
 
     meanDate <- mean(marvel$Timestamp)
-	for (i in 1:15) {
+	for (i in 1:20) {
 		for (s in levels(marvel$Scenario)) {
 			multiStandard <- data.frame(
 				Timestamp = meanDate,
@@ -29,7 +29,7 @@ LoadMarvel <- function(filename) {
 				Fourth = "", FourthAspect = "", FourthTwoAspects = "",
 				Scenario = s,
 				Campaign = "No", ExpertCampaign = "No", Encounter = "",
-				Win = if (i <= 12) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
+				Win = if (i <= 16) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
 				WinWC = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Standard"
 			)
 			multiExpert <- data.frame(
@@ -40,7 +40,7 @@ LoadMarvel <- function(filename) {
 				Fourth = "", FourthAspect = "", FourthTwoAspects = "",
 				Scenario = s,
 				Campaign = "No", ExpertCampaign = "No", Encounter = "",
-				Win = if (i <= 7) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
+				Win = if (i <= 9) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
 				WinWC = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Expert"
 			)
 			soloStandard <- data.frame(
@@ -51,7 +51,7 @@ LoadMarvel <- function(filename) {
 				Fourth = "", FourthAspect = "", FourthTwoAspects = "",
 				Scenario = s,
 				Campaign = "No", ExpertCampaign = "No", Encounter = "",
-				Win = if (i <= 11) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
+				Win = if (i <= 15) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
 				WinWC = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Standard"
 			)
 			soloExpert <- data.frame(
@@ -62,7 +62,7 @@ LoadMarvel <- function(filename) {
 				Fourth = "", FourthAspect = "", FourthTwoAspects = "",
 				Scenario = s,
 				Campaign = "No", ExpertCampaign = "No", Encounter = "",
-				Win = if (i <= 6) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
+				Win = if (i <= 8) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
 				WinWC = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Expert"
 			)
 			marvel <- rbind(marvel, multiStandard)
@@ -90,6 +90,7 @@ LoadMarvel <- function(filename) {
 	marvel$Heroic[is.na(marvel$Heroic)] <- 0
 	marvel$Heroic[marvel$Heroic > 3] <- 3
 	marvel$Skirmish[is.na(marvel$Skirmish)] <- 0
+	marvel$SkirmishLevel = marvel$Skirmish
 	marvel$Skirmish = (marvel$Skirmish > 0)
 	marvel$Campaign <- (marvel$Campaign == "Yes")
 	marvel$CampaignAbsorbingMan <- (marvel$Campaign & marvel$Scenario == "Absorbing Man")
@@ -135,6 +136,7 @@ LoadMarvel <- function(filename) {
 	marvel$GalacticArtifacts <- grepl("Galactic Artifacts", marvel$Encounter, fixed=TRUE)
 	marvel$SpacePirates <- grepl("Space Pirates", marvel$Encounter, fixed=TRUE)
 	marvel$KreeMilitants <- grepl("Kree Militants", marvel$Encounter, fixed=TRUE)
+	marvel$ShipCommand <- grepl("Ship Command", marvel$Encounter, fixed=TRUE)
 	marvel$BadoonHeadhunter <- grepl("Badoon Headhunter", marvel$Encounter, fixed=TRUE)
 	marvel$BlackOrder <- grepl("Black Order", marvel$Encounter, fixed=TRUE)
 	marvel$ArmiesOfTitan <- grepl("Armies of Titan", marvel$Encounter, fixed=TRUE)
@@ -157,12 +159,21 @@ LoadMarvel <- function(filename) {
     marvel$SymbioticStrength <- grepl("Symbiotic Strength", marvel$Encounter, fixed=TRUE)
     marvel$PersonalNightmare <- grepl("Personal Nightmare", marvel$Encounter, fixed=TRUE)
     marvel$WhispersOfParanoia <- grepl("Whispers of Paranoia", marvel$Encounter, fixed=TRUE)
-    marvel$GuerrillaTactics <- grepl("Guerilla Tactics", marvel$Encounter, fixed=TRUE)
+    marvel$GuerrillaTactics <- grepl("Guerrilla Tactics", marvel$Encounter, fixed=TRUE)
     marvel$SinisterAssault <- grepl("Sinister Assault", marvel$Encounter, fixed=TRUE)
     marvel$GoblinGear <- grepl("Goblin Gear", marvel$Encounter, fixed=TRUE)
     marvel$OsbornTech <- grepl("Osborn Tech", marvel$Encounter, fixed=TRUE)
     marvel$Armadillo <- grepl("Armadillo", marvel$Encounter, fixed=TRUE)
     marvel$Zzzax <- grepl("Zzzax", marvel$Encounter, fixed=TRUE)
+
+    marvel$HydraPatrol[marvel$Scenario == "Taskmaster"] <- TRUE
+    marvel$GalacticArtifacts[marvel$Scenario == "Infiltrate the Museum"] <- TRUE
+    marvel$GalacticArtifacts[marvel$Scenario == "Escape the Museum"] <- TRUE
+    marvel$ShipCommand[marvel$Scenario == "Brotherhood of Badoon"] <- TRUE
+    marvel$ShipCommand[marvel$Scenario == "Nebula"] <- TRUE
+    marvel$ShipCommand[marvel$Scenario == "Ronan the Accuser"] <- TRUE
+    marvel$InfinityGauntlet[marvel$Scenario == "Thanos"] <- TRUE
+    marvel$InfinityGauntlet[marvel$Scenario == "Loki"] <- TRUE
 
 	marvel$Aggression <- marvel$FirstAspect == "Aggression" | marvel$SecondAspect == "Aggression" | 
 						 marvel$ThirdAspect == "Aggression" | marvel$FourthAspect == "Aggression"
@@ -286,13 +297,14 @@ MarvelGlm <- function(marvel) {
     	KreeFanatic +
 		ExperimentalWeapons + HydraAssault + HydraPatrol + WeaponMaster +
 		Temporal + MasterOfTime + Anachronauts +
-		BandOfBadoon + MenagerieMedley + GalacticArtifacts + SpacePirates + KreeMilitants + BadoonHeadhunter +
+		BandOfBadoon + MenagerieMedley + GalacticArtifacts + SpacePirates + KreeMilitants +
+		ShipCommand + BadoonHeadhunter +
 		BlackOrder + ArmiesOfTitan + ChildrenOfThanos + LegionsOfHel + FrostGiants + Enchantress + InfinityGauntlet +
 		BeastyBoys + BrothersGrimm + CrossfiresCrew + MisterHyde + RansackedArmory +
 		SinisterSyndicate + StateOfEmergency + StreetsOfMayhem + WreckingCrew +
 		CityInChaos + DownToEarth + SymbioticStrength + PersonalNightmare + WhispersOfParanoia +
 		GuerrillaTactics + SinisterAssault + GoblinGear + OsbornTech + 
-    	Heroic + Skirmish + Standard2 + Expert2 +
+    	Heroic + factor(SkirmishLevel) + Standard2 + Expert2 +
 		CampaignAbsorbingMan + CampaignTaskmaster + CampaignZola + CampaignRedSkull +
 		CampaignBrotherhood + CampaignInfiltrateMuseum + CampaignEscapeMuseum + CampaignNebula + CampaignRonan +
 		CampaignEbonyMaw + CampaignTowerDefense + CampaignThanos + CampaignHela + CampaignLoki +
@@ -647,6 +659,7 @@ MarvelEncounterSets <- function(marvelGlm) {
 			"Galactic Artifacts",
 			"Space Pirates",
 			"Kree Militants",
+			"Ship Command",
 			"Badoon Headhunter",
 			" - Mad Titan's Shadow - ",
 			"Black Order",
@@ -666,14 +679,13 @@ MarvelEncounterSets <- function(marvelGlm) {
 			"State of Emergency",
 			"Streets of Mayhem",
 			"Wrecking Crew",
-			" - Spider-Verse - ",
+			" - Sinister Motives - ",
 			"City in Chaos",
 			"Down to Earth",
 			"Goblin Gear",
 			"Guerrilla Tactics",
 			"Osborn Tech",
 			"Personal Nightmare",
-			"Sinister Assault",
 			"Symbiotic Strength",
 			"Whispers of Paranoia",
 			"",
@@ -710,6 +722,7 @@ MarvelEncounterSets <- function(marvelGlm) {
 			sprintf("%+d", round(coefs["GalacticArtifactsTRUE"] * 10)),
 			sprintf("%+d", round(coefs["SpacePiratesTRUE"] * 10)),
 			sprintf("%+d", round(coefs["KreeMilitantsTRUE"] * 10)),
+			sprintf("%+d", round(coefs["ShipCommandTRUE"] * 10)),
 			sprintf("%+d", round(coefs["BadoonHeadhunterTRUE"] * 10)),
 			"",
 			sprintf("%+d", round(coefs["BlackOrderTRUE"] * 10)),
@@ -736,7 +749,6 @@ MarvelEncounterSets <- function(marvelGlm) {
 			sprintf("%+d", round(coefs["GuerrillaTacticsTRUE"] * 10)),
 			sprintf("%+d", round(coefs["OsbornTechTRUE"] * 10)),
 			sprintf("%+d", round(coefs["PersonalNightmareTRUE"] * 10)),
-			sprintf("%+d", round(coefs["SinisterAssaultTRUE"] * 10)),
 			sprintf("%+d", round(coefs["SymbioticStrengthTRUE"] * 10)),
 			sprintf("%+d", round(coefs["WhispersOfParanoiaTRUE"] * 10)),
             "",
@@ -837,7 +849,8 @@ MarvelStars <- function(marvelGlm, coefEasiestScenario) {
 		KreeFanatic = FALSE,
 		ExperimentalWeapons = FALSE, HydraAssault = FALSE, HydraPatrol = FALSE, WeaponMaster = FALSE,
 		Temporal = FALSE, MasterOfTime = FALSE, Anachronauts = FALSE,
-		BandOfBadoon = FALSE, MenagerieMedley = FALSE, GalacticArtifacts = FALSE, SpacePirates = FALSE, KreeMilitants = FALSE, BadoonHeadhunter = FALSE,
+		BandOfBadoon = FALSE, MenagerieMedley = FALSE, GalacticArtifacts = FALSE, SpacePirates = FALSE, KreeMilitants = FALSE,
+		BadoonHeadhunter = FALSE, ShipCommand = FALSE,
 		BlackOrder = FALSE, ArmiesOfTitan = FALSE, ChildrenOfThanos = FALSE, LegionsOfHel = FALSE, FrostGiants = FALSE, Enchantress = FALSE, InfinityGauntlet = FALSE,
 		BeastyBoys = FALSE, BrothersGrimm = FALSE, CrossfiresCrew = FALSE, MisterHyde = FALSE,
 		RansackedArmory = FALSE, SinisterSyndicate = FALSE, StateOfEmergency = FALSE,
@@ -878,7 +891,8 @@ MarvelStars <- function(marvelGlm, coefEasiestScenario) {
 		KreeFanatic = FALSE,
 		ExperimentalWeapons = FALSE, HydraAssault = FALSE, HydraPatrol = FALSE, WeaponMaster = FALSE,
 		Temporal = FALSE, MasterOfTime = FALSE, Anachronauts = FALSE,
-        BandOfBadoon = FALSE, MenagerieMedley = FALSE, GalacticArtifacts = FALSE, SpacePirates = FALSE, KreeMilitants = FALSE, BadoonHeadhunter = FALSE,
+		BandOfBadoon = FALSE, MenagerieMedley = FALSE, GalacticArtifacts = FALSE, SpacePirates = FALSE, KreeMilitants = FALSE,
+		BadoonHeadhunter = FALSE, ShipCommand = FALSE,
 		BlackOrder = FALSE, ArmiesOfTitan = FALSE, ChildrenOfThanos = FALSE, LegionsOfHel = FALSE, FrostGiants = FALSE, Enchantress = FALSE, InfinityGauntlet = FALSE,
 		BeastyBoys = FALSE, BrothersGrimm = FALSE, CrossfiresCrew = FALSE, MisterHyde = FALSE,
 		RansackedArmory = FALSE, SinisterSyndicate = FALSE, StateOfEmergency = FALSE,
