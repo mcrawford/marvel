@@ -1,5 +1,4 @@
 library(anytime)
-library(googlesheets4)
 
 LoadMarvel <- function(filename) {
 	marvel <- read.csv(filename)
@@ -156,13 +155,13 @@ LoadMarvel <- function(filename) {
     marvel$WreckingCrew <- grepl("Wrecking Crew", marvel$Encounter, fixed=TRUE)
     marvel$CityInChaos <- grepl("City in Chaos", marvel$Encounter, fixed=TRUE)
     marvel$DownToEarth <- grepl("Down to Earth", marvel$Encounter, fixed=TRUE)
-    marvel$SymbioticStrength <- grepl("Symbiotic Strength", marvel$Encounter, fixed=TRUE)
-    marvel$PersonalNightmare <- grepl("Personal Nightmare", marvel$Encounter, fixed=TRUE)
-    marvel$WhispersOfParanoia <- grepl("Whispers of Paranoia", marvel$Encounter, fixed=TRUE)
-    marvel$GuerrillaTactics <- grepl("Guerrilla Tactics", marvel$Encounter, fixed=TRUE)
-    marvel$SinisterAssault <- grepl("Sinister Assault", marvel$Encounter, fixed=TRUE)
     marvel$GoblinGear <- grepl("Goblin Gear", marvel$Encounter, fixed=TRUE)
+    marvel$GuerrillaTactics <- grepl("Guerrilla Tactics", marvel$Encounter, fixed=TRUE)
     marvel$OsbornTech <- grepl("Osborn Tech", marvel$Encounter, fixed=TRUE)
+    marvel$PersonalNightmare <- grepl("Personal Nightmare", marvel$Encounter, fixed=TRUE)
+    marvel$SinisterAssault <- grepl("Sinister Assault", marvel$Encounter, fixed=TRUE)
+    marvel$SymbioticStrength <- grepl("Symbiotic Strength", marvel$Encounter, fixed=TRUE)
+    marvel$WhispersOfParanoia <- grepl("Whispers of Paranoia", marvel$Encounter, fixed=TRUE)
     marvel$Armadillo <- grepl("Armadillo", marvel$Encounter, fixed=TRUE)
     marvel$Zzzax <- grepl("Zzzax", marvel$Encounter, fixed=TRUE)
 
@@ -174,6 +173,10 @@ LoadMarvel <- function(filename) {
     marvel$ShipCommand[marvel$Scenario == "Ronan the Accuser"] <- TRUE
     marvel$InfinityGauntlet[marvel$Scenario == "Thanos"] <- TRUE
     marvel$InfinityGauntlet[marvel$Scenario == "Loki"] <- TRUE
+    marvel$CityInChaos[marvel$Scenario == "Sandman"] <- TRUE
+    marvel$SymbioticStrength[marvel$Scenario == "Venom"] <- TRUE
+    marvel$PersonalNightmare[marvel$Scenario == "Mysterio"] <- TRUE
+    marvel$SymbioticStrength[marvel$Scenario == "Venom Goblin"] <- TRUE
 
 	marvel$Aggression <- marvel$FirstAspect == "Aggression" | marvel$SecondAspect == "Aggression" | 
 						 marvel$ThirdAspect == "Aggression" | marvel$FourthAspect == "Aggression"
@@ -553,80 +556,6 @@ MarvelFactors <- function(extendedGlm) {
 	)
 }
 
-UpdateGoogleSheet <- function(marvelGlm) {
-	coefs <- coef(marvelGlm)
-	marvelFactors <- MarvelFactors(marvelGlm)
-	range_write("1Ju_R8SD41r1dPjded__PnMauAdtkCsr388kGSbp80_w", marvelFactors[, 1:2], "Villains", "I3", F)
-	range_write("1Ju_R8SD41r1dPjded__PnMauAdtkCsr388kGSbp80_w", marvelFactors[, 3:4], "Villains", "D3", F)
-	range_write("1Ju_R8SD41r1dPjded__PnMauAdtkCsr388kGSbp80_w", data.frame(Heroic=round(coefs["Heroic"] * 10)), "Villains", "N1")
-	encounters <- data.frame(
-		row.names = c(
-			"Bomb Scare",
-			"Masters of Evil",
-			"Under Attack",
-			"Legions of Hydra",
-			"Doomsday Chair",
-			"Goblin Gimmicks",
-			"Mess of Things",
-			"Power Drain",
-			"Running Interference",
-			"Kree Fanatic",
-			"Experimental Weapons",
-			"Hydra Assault",
-			"Hydra Patrol",
-			"Weapon Master",
-			"Temporal",
-			"Master of Time",
-			"Anachronauts",
-			"Band of Badoon",
-			"Menagerie Medley",
-			"Galactic Artifacts",
-			"Space Pirates",
-			"Kree Militants",
-			"Badoon Headhunter",
-			"Black Order",
-			"Armies of Titan",
-			"Children of Thanos",
-			"Legions of Hel",
-			"Frost Giants",
-			"Enchantress",
-			"Infinity Gauntlet"
-		),
-		Rating = round(c(
-			coefs["BombScareTRUE"],
-			coefs["MastersOfEvilTRUE"],
-			coefs["UnderAttackTRUE"],
-			coefs["LegionsOfHydraTRUE"],
-			coefs["DoomsdayChairTRUE"],
-			coefs["GoblinGimmicksTRUE"],
-			coefs["MessOfThingsTRUE"],
-			coefs["PowerDrainTRUE"],
-			coefs["RunningInterferenceTRUE"],
-			coefs["KreeFanaticTRUE"],
-			coefs["ExperimentalWeaponsTRUE"],
-			coefs["HydraAssaultTRUE"],
-			coefs["HydraPatrolTRUE"],
-			coefs["WeaponMasterTRUE"],
-			coefs["TemporalTRUE"],
-			coefs["MasterOfTimeTRUE"],
-			coefs["AnachronautsTRUE"],
-			coefs["BandOfBadoonTRUE"],
-			coefs["MenagerieMedleyTRUE"],
-			coefs["GalacticArtifactsTRUE"],
-			coefs["SpacePiratesTRUE"],
-			coefs["KreeMilitantsTRUE"],
-			coefs["BadoonHeadhunterTRUE"],
-			coefs["BlackOrderTRUE"],
-			coefs["ArmiesOfTitanTRUE"],
-			coefs["ChildrenOfThanosTRUE"],
-			coefs["LegionsOfHelTRUE"],
-			coefs["FrostGiantsTRUE"],
-			coefs["EnchantressTRUE"],
-			coefs["InfinityGauntletTRUE"]
-		) * 10)
-	)
-	range_write("1Ju_R8SD41r1dPjded__PnMauAdtkCsr388kGSbp80_w", encounters, "Encounter Sets", "B1")
-}
 
 MarvelEncounterSets <- function(marvelGlm) {
 	coefs <- coef(marvelGlm)
@@ -857,7 +786,7 @@ MarvelStars <- function(marvelGlm, coefEasiestScenario) {
 		StreetsOfMayhem = FALSE, WreckingCrew = FALSE,
 		CityInChaos = FALSE, DownToEarth = FALSE, GoblinGear = FALSE, GuerrillaTactics = FALSE, OsbornTech = FALSE,
 		PersonalNightmare = FALSE, SinisterAssault = FALSE, SymbioticStrength = FALSE, WhispersOfParanoia = FALSE,
-		Heroic = 0, Skirmish = FALSE, Standard2 = FALSE, Expert2 = FALSE,
+		Heroic = 0, SkirmishLevel = 0, Standard2 = FALSE, Expert2 = FALSE,
 		CampaignAbsorbingMan = FALSE, CampaignTaskmaster = FALSE, CampaignZola = FALSE, CampaignRedSkull = FALSE,
 		CampaignBrotherhood = FALSE, CampaignInfiltrateMuseum = FALSE, CampaignEscapeMuseum = FALSE, CampaignNebula = FALSE, CampaignRonan = FALSE,
 		CampaignEbonyMaw = FALSE, CampaignTowerDefense = FALSE, CampaignThanos = FALSE, CampaignHela = FALSE, CampaignLoki = FALSE,
@@ -873,11 +802,11 @@ MarvelStars <- function(marvelGlm, coefEasiestScenario) {
 		Thor = FALSE, Valkyrie = FALSE, Vision = FALSE, WarMachine = FALSE, Wasp = FALSE, Venom = FALSE,
 		AdamWarlockSolo = FALSE, AntManSolo = FALSE, BlackPantherSolo = FALSE, BlackWidowSolo = FALSE,
 		CaptainAmericaSolo = FALSE, CaptainMarvelSolo = FALSE,
-		DoctorStrangeSolo = FALSE, DraxSolo = FALSE, GamoraSolo = FALSE, GhostSpider = FALSE, GrootSolo = FALSE,
+		DoctorStrangeSolo = FALSE, DraxSolo = FALSE, GamoraSolo = FALSE, GhostSpiderSolo = FALSE, GrootSolo = FALSE,
 		HawkeyeSolo = FALSE, HulkSolo = FALSE, IronManSolo = FALSE, IronheartSolo = FALSE, NebulaSolo = FALSE, NovaSolo = FALSE,
 		MsMarvelSolo = FALSE, QuicksilverSolo = FALSE,
 		RocketRaccoonSolo = FALSE, ScarletWitchSolo = FALSE, SheHulkSolo = FALSE,
-		SpectrumSolo = FALSE, SpiderManSolo = FALSE, SpiderManMilesMorales = FALSE, SpiderWomanSolo = FALSE, StarLordSolo = FALSE,
+		SpectrumSolo = FALSE, SpiderManSolo = FALSE, SpiderManMilesMoralesSolo = FALSE, SpiderWomanSolo = FALSE, StarLordSolo = FALSE,
 		ThorSolo = FALSE, ValkyrieSolo = FALSE, VisionSolo = FALSE, WarMachineSolo = FALSE, WaspSolo = FALSE, VenomSolo = FALSE
 		)
 	hardest <- data.frame(
@@ -899,7 +828,7 @@ MarvelStars <- function(marvelGlm, coefEasiestScenario) {
 		StreetsOfMayhem = FALSE, WreckingCrew = FALSE,
 		CityInChaos = FALSE, DownToEarth = FALSE, GoblinGear = FALSE, GuerrillaTactics = FALSE, OsbornTech = FALSE,
 		PersonalNightmare = FALSE, SinisterAssault = FALSE, SymbioticStrength = FALSE, WhispersOfParanoia = FALSE,
-		Heroic = 0, Skirmish = FALSE, Standard2 = FALSE, Expert2 = FALSE,
+		Heroic = 1, SkirmishLevel = 0, Standard2 = FALSE, Expert2 = FALSE,
 		CampaignAbsorbingMan = FALSE, CampaignTaskmaster = FALSE, CampaignZola = FALSE, CampaignRedSkull = FALSE,
 		CampaignBrotherhood = FALSE, CampaignInfiltrateMuseum = FALSE, CampaignEscapeMuseum = FALSE, CampaignNebula = FALSE, CampaignRonan = FALSE,
 		CampaignEbonyMaw = FALSE, CampaignTowerDefense = FALSE, CampaignThanos = FALSE, CampaignHela = FALSE, CampaignLoki = FALSE,
@@ -915,18 +844,18 @@ MarvelStars <- function(marvelGlm, coefEasiestScenario) {
 		Thor = FALSE, Valkyrie = FALSE, Vision = FALSE, WarMachine = FALSE, Wasp = FALSE, Venom = FALSE,
 		AdamWarlockSolo = FALSE, AntManSolo = FALSE, BlackPantherSolo = FALSE, BlackWidowSolo = FALSE,
 		CaptainAmericaSolo = FALSE, CaptainMarvelSolo = FALSE,
-		DoctorStrangeSolo = FALSE, DraxSolo = FALSE, GamoraSolo = FALSE, GhostSpider = FALSE, GrootSolo = FALSE,
+		DoctorStrangeSolo = FALSE, DraxSolo = FALSE, GamoraSolo = FALSE, GhostSpiderSolo = FALSE, GrootSolo = FALSE,
 		HawkeyeSolo = FALSE, HulkSolo = FALSE, IronManSolo = FALSE, IronheartSolo = FALSE, NebulaSolo = FALSE, NovaSolo = FALSE,
 		MsMarvelSolo = FALSE, QuicksilverSolo = FALSE,
 		RocketRaccoonSolo = FALSE, ScarletWitchSolo = FALSE, SheHulkSolo = FALSE,
-		SpectrumSolo = FALSE, SpiderManSolo = FALSE, SpiderManMilesMorales = FALSE, SpiderWomanSolo = FALSE, StarLordSolo = FALSE,
+		SpectrumSolo = FALSE, SpiderManSolo = FALSE, SpiderManMilesMoralesSolo = FALSE, SpiderWomanSolo = FALSE, StarLordSolo = FALSE,
 		ThorSolo = FALSE, ValkyrieSolo = FALSE, VisionSolo = FALSE, WarMachineSolo = FALSE, WaspSolo = FALSE, VenomSolo = FALSE
 		)
 	predRange <- predict.glm(marvelGlm, newdata=hardest) - predict.glm(marvelGlm, newdata=easiest)
-	# 1.4 is about 80% chance of losing, -2.5 is about 7% chance of losing
-	# predRange <- 1.4 - -2.5
+	# 1.4 is about 80% chance of losing, -2.0 is about 12% chance of losing
+	# predRange <- 1.4 - -2.0
 	logits <- seq(predict.glm(marvelGlm, newdata=easiest), predict.glm(marvelGlm, newdata=hardest), predRange / 10)
-	# logits <- seq(-2.5, 1.4, predRange / 10)
+	# logits <- seq(-2.0, 1.4, predRange / 10)
 	# maybe this should be intercept?
 	logitMinusEasiest <- logits - coefEasiestScenario
 	# The BreakPoint means "any value higher than this is the next level of stars"
