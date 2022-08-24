@@ -765,99 +765,12 @@ MarvelHeroes <- function(marvelGlm) {
 	))
 }
 
-MarvelStars <- function(marvelGlm, coefEasiestScenario) {
+MarvelStars <- function(marvelGlm) {
 	stars <- seq(0, 5, by=.5)
-	easiest <- data.frame(
-        Timestamp = Sys.time(),
-		Scenario = "Rhino",
-		DifficultyLevel = "Standard",
-		OneHero = FALSE,
-		Undeclared = FALSE,
-		BombScare = TRUE, MastersOfEvil = FALSE, UnderAttack = FALSE, LegionsOfHydra = FALSE, DoomsdayChair = FALSE,
-		GoblinGimmicks = FALSE, MessOfThings = FALSE, PowerDrain = FALSE, RunningInterference = FALSE,
-		KreeFanatic = FALSE,
-		ExperimentalWeapons = FALSE, HydraAssault = FALSE, HydraPatrol = FALSE, WeaponMaster = FALSE,
-		Temporal = FALSE, MasterOfTime = FALSE, Anachronauts = FALSE,
-		BandOfBadoon = FALSE, MenagerieMedley = FALSE, GalacticArtifacts = FALSE, SpacePirates = FALSE, KreeMilitants = FALSE,
-		BadoonHeadhunter = FALSE, ShipCommand = FALSE,
-		BlackOrder = FALSE, ArmiesOfTitan = FALSE, ChildrenOfThanos = FALSE, LegionsOfHel = FALSE, FrostGiants = FALSE, Enchantress = FALSE, InfinityGauntlet = FALSE,
-		BeastyBoys = FALSE, BrothersGrimm = FALSE, CrossfiresCrew = FALSE, MisterHyde = FALSE,
-		RansackedArmory = FALSE, SinisterSyndicate = FALSE, StateOfEmergency = FALSE,
-		StreetsOfMayhem = FALSE, WreckingCrew = FALSE,
-		CityInChaos = FALSE, DownToEarth = FALSE, GoblinGear = FALSE, GuerrillaTactics = FALSE, OsbornTech = FALSE,
-		PersonalNightmare = FALSE, SinisterAssault = FALSE, SymbioticStrength = FALSE, WhispersOfParanoia = FALSE,
-		Heroic = 0, SkirmishLevel = 0, Standard2 = FALSE, Expert2 = FALSE,
-		CampaignAbsorbingMan = FALSE, CampaignTaskmaster = FALSE, CampaignZola = FALSE, CampaignRedSkull = FALSE,
-		CampaignBrotherhood = FALSE, CampaignInfiltrateMuseum = FALSE, CampaignEscapeMuseum = FALSE, CampaignNebula = FALSE, CampaignRonan = FALSE,
-		CampaignEbonyMaw = FALSE, CampaignTowerDefense = FALSE, CampaignThanos = FALSE, CampaignHela = FALSE, CampaignLoki = FALSE,
-		CampaignSandman = FALSE, CampaignVenom = FALSE, CampaignMysterio = FALSE, CampaignSinisterSix = FALSE, CampaignVenomGoblin = FALSE,
-		Aggression = FALSE, Justice = FALSE, Leadership = FALSE, Protection = FALSE,
-		AdamWarlock = FALSE, AntMan = FALSE, BlackPanther = FALSE, BlackWidow = FALSE,
-		CaptainAmerica = FALSE, CaptainMarvel = FALSE,
-		DoctorStrange = FALSE, Drax = FALSE, Gamora = FALSE, GhostSpider = FALSE, Groot = FALSE,
-		Hawkeye = FALSE, Hulk = FALSE, IronMan = FALSE, Ironheart = FALSE, Nebula = FALSE, Nova = FALSE,
-		MsMarvel = FALSE, Quicksilver = FALSE,
-		RocketRaccoon = FALSE, ScarletWitch = FALSE, SheHulk = FALSE,
-		Spectrum = FALSE, SpiderMan = FALSE, SpiderManMilesMorales = FALSE, SpiderWoman = FALSE, StarLord = FALSE,
-		Thor = FALSE, Valkyrie = FALSE, Vision = FALSE, WarMachine = FALSE, Wasp = FALSE, Venom = FALSE,
-		AdamWarlockSolo = FALSE, AntManSolo = FALSE, BlackPantherSolo = FALSE, BlackWidowSolo = FALSE,
-		CaptainAmericaSolo = FALSE, CaptainMarvelSolo = FALSE,
-		DoctorStrangeSolo = FALSE, DraxSolo = FALSE, GamoraSolo = FALSE, GhostSpiderSolo = FALSE, GrootSolo = FALSE,
-		HawkeyeSolo = FALSE, HulkSolo = FALSE, IronManSolo = FALSE, IronheartSolo = FALSE, NebulaSolo = FALSE, NovaSolo = FALSE,
-		MsMarvelSolo = FALSE, QuicksilverSolo = FALSE,
-		RocketRaccoonSolo = FALSE, ScarletWitchSolo = FALSE, SheHulkSolo = FALSE,
-		SpectrumSolo = FALSE, SpiderManSolo = FALSE, SpiderManMilesMoralesSolo = FALSE, SpiderWomanSolo = FALSE, StarLordSolo = FALSE,
-		ThorSolo = FALSE, ValkyrieSolo = FALSE, VisionSolo = FALSE, WarMachineSolo = FALSE, WaspSolo = FALSE, VenomSolo = FALSE
-		)
-	hardest <- data.frame(
-        Timestamp = Sys.time(),
-		Scenario = "Ultron",
-		DifficultyLevel = "Expert",
-		OneHero = FALSE,
-		Undeclared = FALSE,
-		BombScare = FALSE, MastersOfEvil = FALSE, UnderAttack = FALSE, LegionsOfHydra = FALSE, DoomsdayChair = TRUE,
-		GoblinGimmicks = FALSE, MessOfThings = FALSE, PowerDrain = FALSE, RunningInterference = FALSE,
-		KreeFanatic = FALSE,
-		ExperimentalWeapons = FALSE, HydraAssault = FALSE, HydraPatrol = FALSE, WeaponMaster = FALSE,
-		Temporal = FALSE, MasterOfTime = FALSE, Anachronauts = FALSE,
-		BandOfBadoon = FALSE, MenagerieMedley = FALSE, GalacticArtifacts = FALSE, SpacePirates = FALSE, KreeMilitants = FALSE,
-		BadoonHeadhunter = FALSE, ShipCommand = FALSE,
-		BlackOrder = FALSE, ArmiesOfTitan = FALSE, ChildrenOfThanos = FALSE, LegionsOfHel = FALSE, FrostGiants = FALSE, Enchantress = FALSE, InfinityGauntlet = FALSE,
-		BeastyBoys = FALSE, BrothersGrimm = FALSE, CrossfiresCrew = FALSE, MisterHyde = FALSE,
-		RansackedArmory = FALSE, SinisterSyndicate = FALSE, StateOfEmergency = FALSE,
-		StreetsOfMayhem = FALSE, WreckingCrew = FALSE,
-		CityInChaos = FALSE, DownToEarth = FALSE, GoblinGear = FALSE, GuerrillaTactics = FALSE, OsbornTech = FALSE,
-		PersonalNightmare = FALSE, SinisterAssault = FALSE, SymbioticStrength = FALSE, WhispersOfParanoia = FALSE,
-		Heroic = 1, SkirmishLevel = 0, Standard2 = FALSE, Expert2 = FALSE,
-		CampaignAbsorbingMan = FALSE, CampaignTaskmaster = FALSE, CampaignZola = FALSE, CampaignRedSkull = FALSE,
-		CampaignBrotherhood = FALSE, CampaignInfiltrateMuseum = FALSE, CampaignEscapeMuseum = FALSE, CampaignNebula = FALSE, CampaignRonan = FALSE,
-		CampaignEbonyMaw = FALSE, CampaignTowerDefense = FALSE, CampaignThanos = FALSE, CampaignHela = FALSE, CampaignLoki = FALSE,
-		CampaignSandman = FALSE, CampaignVenom = FALSE, CampaignMysterio = FALSE, CampaignSinisterSix = FALSE, CampaignVenomGoblin = FALSE,
-		Aggression = FALSE, Justice = FALSE, Leadership = FALSE, Protection = FALSE,
-		AdamWarlock = FALSE, AntMan = FALSE, BlackPanther = FALSE, BlackWidow = FALSE,
-		CaptainAmerica = FALSE, CaptainMarvel = FALSE,
-		DoctorStrange = FALSE, Drax = FALSE, Gamora = FALSE, GhostSpider = FALSE, Groot = FALSE,
-		Hawkeye = FALSE, Hulk = FALSE, IronMan = FALSE, Ironheart = FALSE, Nebula = FALSE, Nova = FALSE,
-		MsMarvel = FALSE, Quicksilver = FALSE,
-		RocketRaccoon = FALSE, ScarletWitch = FALSE, SheHulk = FALSE,
-		Spectrum = FALSE, SpiderMan = FALSE, SpiderManMilesMorales = FALSE, SpiderWoman = FALSE, StarLord = FALSE,
-		Thor = FALSE, Valkyrie = FALSE, Vision = FALSE, WarMachine = FALSE, Wasp = FALSE, Venom = FALSE,
-		AdamWarlockSolo = FALSE, AntManSolo = FALSE, BlackPantherSolo = FALSE, BlackWidowSolo = FALSE,
-		CaptainAmericaSolo = FALSE, CaptainMarvelSolo = FALSE,
-		DoctorStrangeSolo = FALSE, DraxSolo = FALSE, GamoraSolo = FALSE, GhostSpiderSolo = FALSE, GrootSolo = FALSE,
-		HawkeyeSolo = FALSE, HulkSolo = FALSE, IronManSolo = FALSE, IronheartSolo = FALSE, NebulaSolo = FALSE, NovaSolo = FALSE,
-		MsMarvelSolo = FALSE, QuicksilverSolo = FALSE,
-		RocketRaccoonSolo = FALSE, ScarletWitchSolo = FALSE, SheHulkSolo = FALSE,
-		SpectrumSolo = FALSE, SpiderManSolo = FALSE, SpiderManMilesMoralesSolo = FALSE, SpiderWomanSolo = FALSE, StarLordSolo = FALSE,
-		ThorSolo = FALSE, ValkyrieSolo = FALSE, VisionSolo = FALSE, WarMachineSolo = FALSE, WaspSolo = FALSE, VenomSolo = FALSE
-		)
-	predRange <- predict.glm(marvelGlm, newdata=hardest) - predict.glm(marvelGlm, newdata=easiest)
-	# 1.4 is about 80% chance of losing, -2.0 is about 12% chance of losing
-	# predRange <- 1.4 - -2.0
-	logits <- seq(predict.glm(marvelGlm, newdata=easiest), predict.glm(marvelGlm, newdata=hardest), predRange / 10)
-	# logits <- seq(-2.0, 1.4, predRange / 10)
-	# maybe this should be intercept?
-	logitMinusEasiest <- logits - coefEasiestScenario
+	# 1.0 is about 73% chance of losing, -2.0 is about 12% chance of losing
+	predRange <- 1.0 - -2.0
+	logits <- seq(-2.0, 1.0, predRange / 10)
+	logitMinusEasiest <- logits - coef(marvelGlm)["(Intercept)"] - (as.numeric(Sys.time()) * coef(marvelGlm)["Timestamp"])
 	# The BreakPoint means "any value higher than this is the next level of stars"
 	# I.e., 
 	#    Stars BreakPoint
