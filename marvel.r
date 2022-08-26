@@ -18,7 +18,7 @@ LoadMarvel <- function(filename) {
 	marvel$Heroic[is.na(marvel$Heroic)] <- marvel$HeroicWC[is.na(marvel$Heroic)]
 
     meanDate <- mean(marvel$Timestamp)
-	for (i in 1:20) {
+	for (i in 1:10) {
 		for (s in levels(marvel$Scenario)) {
 			multiStandard <- data.frame(
 				Timestamp = meanDate,
@@ -28,7 +28,7 @@ LoadMarvel <- function(filename) {
 				Fourth = "", FourthAspect = "", FourthTwoAspects = "",
 				Scenario = s,
 				Campaign = "No", ExpertCampaign = "No", Encounter = "",
-				Win = if (i <= 16) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
+				Win = if (i <= 8) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
 				WinWC = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Standard"
 			)
 			multiExpert <- data.frame(
@@ -39,7 +39,7 @@ LoadMarvel <- function(filename) {
 				Fourth = "", FourthAspect = "", FourthTwoAspects = "",
 				Scenario = s,
 				Campaign = "No", ExpertCampaign = "No", Encounter = "",
-				Win = if (i <= 9) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
+				Win = if (i <= 6) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
 				WinWC = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Expert"
 			)
 			soloStandard <- data.frame(
@@ -50,7 +50,7 @@ LoadMarvel <- function(filename) {
 				Fourth = "", FourthAspect = "", FourthTwoAspects = "",
 				Scenario = s,
 				Campaign = "No", ExpertCampaign = "No", Encounter = "",
-				Win = if (i <= 15) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
+				Win = if (i <= 7) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
 				WinWC = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Standard"
 			)
 			soloExpert <- data.frame(
@@ -61,7 +61,7 @@ LoadMarvel <- function(filename) {
 				Fourth = "", FourthAspect = "", FourthTwoAspects = "",
 				Scenario = s,
 				Campaign = "No", ExpertCampaign = "No", Encounter = "",
-				Win = if (i <= 8) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
+				Win = if (i <= 6) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
 				WinWC = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Expert"
 			)
 			marvel <- rbind(marvel, multiStandard)
@@ -89,7 +89,8 @@ LoadMarvel <- function(filename) {
 	marvel$Heroic[is.na(marvel$Heroic)] <- 0
 	marvel$Heroic[marvel$Heroic > 3] <- 3
 	marvel$Skirmish[is.na(marvel$Skirmish)] <- 0
-	marvel$SkirmishLevel = marvel$Skirmish
+	marvel$Skirmish[marvel$Skirmish > 3] <- 3
+	marvel$SkirmishLevel = factor(marvel$Skirmish)
 	marvel$Skirmish = (marvel$Skirmish > 0)
 	marvel$Campaign <- (marvel$Campaign == "Yes")
 	marvel$CampaignAbsorbingMan <- (marvel$Campaign & marvel$Scenario == "Absorbing Man")
@@ -110,7 +111,7 @@ LoadMarvel <- function(filename) {
 	marvel$CampaignVenom <- (marvel$Campaign & marvel$Scenario == "Venom")
 	marvel$CampaignMysterio <- (marvel$Campaign & marvel$Scenario == "Mysterio")
 	marvel$CampaignSinisterSix <- (marvel$Campaign & marvel$Scenario == "The Sinister Six")
-	marvel$CampaignVenomGoblin <- (marvel$Campaign & marvel$Scenario == "VenomGoblin")
+	marvel$CampaignVenomGoblin <- (marvel$Campaign & marvel$Scenario == "Venom Goblin")
 
 	marvel$Undeclared <- marvel$Encounter == "" & marvel$Scenario != "Wrecking Crew"
 	marvel$BombScare <- grepl("Bomb Scare", marvel$Encounter, fixed=TRUE)
@@ -293,7 +294,7 @@ LoadMarvel <- function(filename) {
 
 MarvelGlm <- function(marvel) {
 	return(glm(formula = (Win == "No") ~ 
-		Scenario * DifficultyLevel * OneHero +
+		Scenario * OneHero + DifficultyLevel +
 		Undeclared + Timestamp +
     	BombScare + MastersOfEvil + UnderAttack + LegionsOfHydra + DoomsdayChair +
     	GoblinGimmicks + MessOfThings + PowerDrain + RunningInterference +
@@ -307,7 +308,7 @@ MarvelGlm <- function(marvel) {
 		SinisterSyndicate + StateOfEmergency + StreetsOfMayhem + WreckingCrew +
 		CityInChaos + DownToEarth + SymbioticStrength + PersonalNightmare + WhispersOfParanoia +
 		GuerrillaTactics + SinisterAssault + GoblinGear + OsbornTech + 
-    	Heroic + factor(SkirmishLevel) + Standard2 + Expert2 +
+    	Heroic + SkirmishLevel + Standard2 + Expert2 +
 		CampaignAbsorbingMan + CampaignTaskmaster + CampaignZola + CampaignRedSkull +
 		CampaignBrotherhood + CampaignInfiltrateMuseum + CampaignEscapeMuseum + CampaignNebula + CampaignRonan +
 		CampaignEbonyMaw + CampaignTowerDefense + CampaignThanos + CampaignHela + CampaignLoki +
@@ -334,7 +335,7 @@ MarvelGlm <- function(marvel) {
 
 MarvelFactors <- function(extendedGlm) {
 	coefs <- coef(extendedGlm)
-	standard = c(
+	multiplayer = c(
 			0, # Rhino
 			coefs["ScenarioKlaw"],
 			coefs["ScenarioUltron"],
@@ -364,37 +365,7 @@ MarvelFactors <- function(extendedGlm) {
 			coefs["ScenarioThe Sinister Six"],
 			coefs["ScenarioVenom Goblin"]
 		)
-	expert = c(
-			0 + coefs["DifficultyLevelExpert"], # Rhino
-			coefs["ScenarioKlaw"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioKlaw:DifficultyLevelExpert"],
-			coefs["ScenarioUltron"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioUltron:DifficultyLevelExpert"],
-			coefs["ScenarioWrecking Crew"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioWrecking Crew:DifficultyLevelExpert"],
-			coefs["ScenarioRisky Business"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioRisky Business:DifficultyLevelExpert"],
-			coefs["ScenarioMutagen Formula"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioMutagen Formula:DifficultyLevelExpert"],
-			coefs["ScenarioCrossbones"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioCrossbones:DifficultyLevelExpert"],
-			coefs["ScenarioAbsorbing Man"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioAbsorbing Man:DifficultyLevelExpert"],
-			coefs["ScenarioTaskmaster"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioTaskmaster:DifficultyLevelExpert"],
-			coefs["ScenarioZola"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioZola:DifficultyLevelExpert"],
-			coefs["ScenarioRed Skull"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioRed Skull:DifficultyLevelExpert"],
-			coefs["ScenarioKang"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioKang:DifficultyLevelExpert"],
-			coefs["ScenarioBrotherhood of Badoon"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioBrotherhood of Badoon:DifficultyLevelExpert"],
-			coefs["ScenarioInfiltrate the Museum"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioInfiltrate the Museum:DifficultyLevelExpert"],
-			coefs["ScenarioEscape the Museum"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioEscape the Museum:DifficultyLevelExpert"],
-			coefs["ScenarioNebula"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioNebula:DifficultyLevelExpert"],
-			coefs["ScenarioRonan the Accuser"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioRonan the Accuser:DifficultyLevelExpert"],
-			coefs["ScenarioEbony Maw"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioEbony Maw:DifficultyLevelExpert"],
-			coefs["ScenarioTower Defense"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioTower Defense:DifficultyLevelExpert"],
-			coefs["ScenarioThanos"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioThanos:DifficultyLevelExpert"],
-			coefs["ScenarioHela"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioHela:DifficultyLevelExpert"],
-			coefs["ScenarioLoki"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioLoki:DifficultyLevelExpert"],
-			coefs["ScenarioThe Hood"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioThe Hood:DifficultyLevelExpert"],
-			coefs["ScenarioSandman"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioSandman:DifficultyLevelExpert"],
-			coefs["ScenarioVenom"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioVenom:DifficultyLevelExpert"],
-			coefs["ScenarioMysterio"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioMysterio:DifficultyLevelExpert"],
-			coefs["ScenarioThe Sinister Six"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioThe Sinister Six:DifficultyLevelExpert"],
-			coefs["ScenarioVenom Goblin"] + coefs["DifficultyLevelExpert"] + coefs["ScenarioVenom Goblin:DifficultyLevelExpert"]
-		)
-	standardOneHero = c(
+	oneHero = c(
 			0 + coefs["OneHeroTRUE"], # Rhino
 			coefs["ScenarioKlaw"] + coefs["OneHeroTRUE"] + coefs["ScenarioKlaw:OneHeroTRUE"],
 			coefs["ScenarioUltron"] + coefs["OneHeroTRUE"] + coefs["ScenarioUltron:OneHeroTRUE"],
@@ -424,97 +395,6 @@ MarvelFactors <- function(extendedGlm) {
 			coefs["ScenarioThe Sinister Six"] + coefs["OneHeroTRUE"] + coefs["ScenarioThe Sinister Six:OneHeroTRUE"],
 			coefs["ScenarioVenom Goblin"] + coefs["OneHeroTRUE"] + coefs["ScenarioVenom Goblin:OneHeroTRUE"]
 		)
-	expertOneHero = c(
-			0 + coefs["DifficultyLevelExpert"] + coefs["OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"], # Rhino
-			coefs["ScenarioKlaw"] + coefs["OneHeroTRUE"] + coefs["ScenarioKlaw:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioKlaw:DifficultyLevelExpert"] + coefs["ScenarioKlaw:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioUltron"] + coefs["OneHeroTRUE"] + coefs["ScenarioUltron:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] +
-				coefs["ScenarioUltron:DifficultyLevelExpert"] + coefs["ScenarioUltron:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioWrecking Crew"] + coefs["OneHeroTRUE"] + coefs["ScenarioWrecking Crew:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioWrecking Crew:DifficultyLevelExpert"] + coefs["ScenarioWrecking Crew:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioRisky Business"] + coefs["OneHeroTRUE"] + 
-				coefs["ScenarioRisky Business:OneHeroTRUE"] + 
-				coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioRisky Business:DifficultyLevelExpert"] + 
-				coefs["ScenarioRisky Business:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioMutagen Formula"] + coefs["OneHeroTRUE"] + 
-				coefs["ScenarioMutagen Formula:OneHeroTRUE"] + 
-				coefs["DifficultyLevelExpert"] +
-				coefs["ScenarioMutagen Formula:DifficultyLevelExpert"] + 
-				coefs["ScenarioMutagen Formula:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioCrossbones"] + coefs["OneHeroTRUE"] + coefs["ScenarioCrossbones:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioCrossbones:DifficultyLevelExpert"] + coefs["ScenarioCrossbones:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioAbsorbing Man"] + coefs["OneHeroTRUE"] + coefs["ScenarioAbsorbing Man:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioAbsorbing Man:DifficultyLevelExpert"] + coefs["ScenarioAbsorbing Man:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioTaskmaster"] + coefs["OneHeroTRUE"] + coefs["ScenarioTaskmaster:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioTaskmaster:DifficultyLevelExpert"] + coefs["ScenarioTaskmaster:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioZola"] + coefs["OneHeroTRUE"] + coefs["ScenarioZola:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioZola:DifficultyLevelExpert"] + coefs["ScenarioZola:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioRed Skull"] + coefs["OneHeroTRUE"] + coefs["ScenarioRed Skull:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioRed Skull:DifficultyLevelExpert"] + coefs["ScenarioRed Skull:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioKang"] + coefs["OneHeroTRUE"] + coefs["ScenarioKang:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioKang:DifficultyLevelExpert"] + coefs["ScenarioKang:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioBrotherhood of Badoon"] + coefs["OneHeroTRUE"] + coefs["ScenarioBrotherhood of Badoon:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioBrotherhood of Badoon:DifficultyLevelExpert"] + coefs["ScenarioBrotherhood of Badoon:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioInfiltrate the Museum"] + coefs["OneHeroTRUE"] + coefs["ScenarioInfiltrate the Museum:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioInfiltrate the Museum:DifficultyLevelExpert"] + coefs["ScenarioInfiltrate the Museum:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioEscape the Museum"] + coefs["OneHeroTRUE"] + coefs["ScenarioEscape the Museum:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioEscape the Museum:DifficultyLevelExpert"] + coefs["ScenarioEscape the Museum:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioNebula"] + coefs["OneHeroTRUE"] + coefs["ScenarioNebula:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioNebula:DifficultyLevelExpert"] + coefs["ScenarioNebula:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioRonan the Accuser"] + coefs["OneHeroTRUE"] + coefs["ScenarioRonan the Accuser:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioRonan the Accuser:DifficultyLevelExpert"] + coefs["ScenarioRonan the Accuser:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioEbony Maw"] + coefs["OneHeroTRUE"] + coefs["ScenarioEbony Maw:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioEbony Maw:DifficultyLevelExpert"] + coefs["ScenarioEbony Maw:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioTower Defense"] + coefs["OneHeroTRUE"] + coefs["ScenarioTower Defense:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioTower Defense:DifficultyLevelExpert"] + coefs["ScenarioTower Defense:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioThanos"] + coefs["OneHeroTRUE"] + coefs["ScenarioThanos:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioThanos:DifficultyLevelExpert"] + coefs["ScenarioThanos:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioHela"] + coefs["OneHeroTRUE"] + coefs["ScenarioHela:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioHela:DifficultyLevelExpert"] + coefs["ScenarioHela:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioLoki"] + coefs["OneHeroTRUE"] + coefs["ScenarioLoki:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioLoki:DifficultyLevelExpert"] + coefs["ScenarioLoki:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioThe Hood"] + coefs["OneHeroTRUE"] + coefs["ScenarioThe Hood:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] +
-				coefs["ScenarioThe Hood:DifficultyLevelExpert"] + coefs["ScenarioThe Hood:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioSandman"] + coefs["OneHeroTRUE"] + coefs["ScenarioSandman:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioSandman:DifficultyLevelExpert"] + coefs["ScenarioSandman:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioVenom"] + coefs["OneHeroTRUE"] + coefs["ScenarioVenom:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioVenom:DifficultyLevelExpert"] + coefs["ScenarioVenom:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioMysterio"] + coefs["OneHeroTRUE"] + coefs["ScenarioMysterio:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioMysterio:DifficultyLevelExpert"] + coefs["ScenarioMysterio:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioThe Sinister Six"] + coefs["OneHeroTRUE"] + coefs["ScenarioThe Sinister Six:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioThe Sinister Six:DifficultyLevelExpert"] + coefs["ScenarioThe Sinister Six:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"],
-			coefs["ScenarioVenom Goblin"] + coefs["OneHeroTRUE"] + coefs["ScenarioVenom Goblin:OneHeroTRUE"] + coefs["DifficultyLevelExpert"] + 
-				coefs["ScenarioVenom Goblin:DifficultyLevelExpert"] + coefs["ScenarioVenom Goblin:DifficultyLevelExpert:OneHeroTRUE"] +
-				coefs["DifficultyLevelExpert:OneHeroTRUE"]
-			)
 
 	return(
 		data.frame(
@@ -548,10 +428,8 @@ MarvelFactors <- function(extendedGlm) {
 				"The Sinister Six",
 				"Venom Goblin"
 			),
-			Standard = round(standard * 10),
-			Expert = round(expert * 10),
-			Standard_One = round(standardOneHero * 10),
-			Expert_One = round(expertOneHero * 10)
+			Multiplayer = round(multiplayer * 10),
+			OneHero = round(oneHero * 10)
 		)
 	)
 }
@@ -618,8 +496,10 @@ MarvelEncounterSets <- function(marvelGlm) {
 			"Symbiotic Strength",
 			"Whispers of Paranoia",
 			"",
+			"Expert",
 			"Heroic",
-			"Skirmish",
+			"Skirmish Level 1",
+			"Skirmish Level 2",
 			"Standard II",
 			"Expert II"
 		),
@@ -680,9 +560,11 @@ MarvelEncounterSets <- function(marvelGlm) {
 			sprintf("%+d", round(coefs["PersonalNightmareTRUE"] * 10)),
 			sprintf("%+d", round(coefs["SymbioticStrengthTRUE"] * 10)),
 			sprintf("%+d", round(coefs["WhispersOfParanoiaTRUE"] * 10)),
-            "",
+      "",
+      sprintf("%+d", round(coefs["DifficultyLevelExpert"] * 10)),
 			sprintf("%+d", round(coefs["Heroic"] * 10)),
-			sprintf("%+d", round(coefs["SkirmishTRUE"] * 10)),
+			sprintf("%+d", round(coefs["SkirmishLevel1"] * 10)),
+			sprintf("%+d", round(coefs["SkirmishLevel2"] * 10)),
 			sprintf("%+d", round(coefs["Standard2TRUE"] * 10)),
 			sprintf("%+d", round(coefs["Expert2TRUE"] * 10))
         )
@@ -767,9 +649,9 @@ MarvelHeroes <- function(marvelGlm) {
 
 MarvelStars <- function(marvelGlm) {
 	stars <- seq(0, 5, by=.5)
-	# 1.0 is about 73% chance of losing, -2.0 is about 12% chance of losing
-	predRange <- 1.0 - -2.0
-	logits <- seq(-2.0, 1.0, predRange / 10)
+	# 1.0 is about 73% chance of losing, -2.2 is about 10% chance of losing
+	predRange <- 1.0 - -2.2
+	logits <- seq(-2.2, 1.0, predRange / 10)
 	logitMinusEasiest <- logits - coef(marvelGlm)["(Intercept)"] - (as.numeric(Sys.time()) * coef(marvelGlm)["Timestamp"])
 	# The BreakPoint means "any value higher than this is the next level of stars"
 	# I.e., 
