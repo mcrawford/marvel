@@ -71,13 +71,13 @@ LoadMarvel <- function(filename) {
     }
   }
 
-  marvel$DifficultyLevel                                                       <- "Standard"
+  marvel$DifficultyLevel <- "Standard"
   marvel$DifficultyLevel[grepl("Standard", marvel$Standard, fixed = TRUE)]     <- "Standard"
   marvel$DifficultyLevel[grepl("Expert", marvel$Expert, fixed = TRUE)]         <- "Expert"
   marvel$DifficultyLevel[grepl("Standard", marvel$DifficultyWC, fixed = TRUE)] <- "Standard"
   marvel$DifficultyLevel[grepl("Expert", marvel$DifficultyWC, fixed = TRUE)]   <- "Expert"
   marvel$DifficultyLevel[grepl("Extreme", marvel$DifficultyWC, fixed = TRUE)]  <- "Expert"
-  marvel$DifficultyLevel                                                       <- relevel(factor(marvel$DifficultyLevel), ref = "Standard")
+  marvel$DifficultyLevel <- relevel(factor(marvel$DifficultyLevel), ref = "Standard")
 
   marvel$Standard2 <- (marvel$Standard == "Standard II (The Hood scenario pack)")
   marvel$Expert2   <- (marvel$Expert == "Expert II (The Hood scenario pack)")
@@ -138,6 +138,7 @@ LoadMarvel <- function(filename) {
   marvel$KreeMilitants       <- grepl("Kree Militants", marvel$Encounter, fixed = TRUE)
   marvel$ShipCommand         <- grepl("Ship Command", marvel$Encounter, fixed = TRUE)
   marvel$BadoonHeadhunter    <- grepl("Badoon Headhunter", marvel$Encounter, fixed = TRUE)
+  marvel$PowerStone          <- grepl("Power Stone", marvel$Encounter, fixed = TRUE)
   marvel$BlackOrder          <- grepl("Black Order", marvel$Encounter, fixed = TRUE)
   marvel$ArmiesOfTitan       <- grepl("Armies of Titan", marvel$Encounter, fixed = TRUE)
   marvel$ChildrenOfThanos    <- grepl("Children of Thanos", marvel$Encounter, fixed = TRUE)
@@ -172,6 +173,8 @@ LoadMarvel <- function(filename) {
   marvel$ShipCommand[marvel$Scenario == "Brotherhood of Badoon"]       <- TRUE
   marvel$ShipCommand[marvel$Scenario == "Nebula"]                      <- TRUE
   marvel$ShipCommand[marvel$Scenario == "Ronan the Accuser"]           <- TRUE
+  marvel$PowerStone[marvel$Scenario == "Nebula"]                       <- TRUE
+  marvel$PowerStone[marvel$Scenario == "Ronan the Accuser"]            <- TRUE
   marvel$InfinityGauntlet[marvel$Scenario == "Thanos"]                 <- TRUE
   marvel$InfinityGauntlet[marvel$Scenario == "Loki"]                   <- TRUE
   marvel$CityInChaos[marvel$Scenario == "Sandman"]                     <- TRUE
@@ -376,12 +379,13 @@ MarvelGlm <- function(marvel) {
     ExperimentalWeapons + HydraAssault + HydraPatrol + WeaponMaster +
     Temporal + MasterOfTime + Anachronauts +
     BandOfBadoon + MenagerieMedley + GalacticArtifacts + SpacePirates + KreeMilitants +
-    ShipCommand + BadoonHeadhunter +
+    ShipCommand + BadoonHeadhunter + PowerStone +
     BlackOrder + ArmiesOfTitan + ChildrenOfThanos + LegionsOfHel + FrostGiants + Enchantress + InfinityGauntlet +
     BeastyBoys + BrothersGrimm + CrossfiresCrew + MisterHyde + RansackedArmory +
     SinisterSyndicate + StateOfEmergency + StreetsOfMayhem + WreckingCrew +
     CityInChaos + DownToEarth + SymbioticStrength + PersonalNightmare + WhispersOfParanoia +
     GuerrillaTactics + SinisterAssault + GoblinGear + OsbornTech +
+    Armadillo + Zzzax +
     Heroic + SkirmishLevel + Standard2 + Expert2 +
     CampaignAbsorbingMan + CampaignTaskmaster + CampaignZola + CampaignRedSkull +
     CampaignBrotherhood + CampaignInfiltrateMuseum + CampaignEscapeMuseum + CampaignNebula + CampaignRonan +
@@ -543,6 +547,7 @@ MarvelEncounterSets <- function(marvelGlm) {
       "Kree Militants",
       "Ship Command",
       "Badoon Headhunter",
+      "Power Stone",
       " - Mad Titan's Shadow - ",
       "Black Order",
       "Armies of Titan",
@@ -570,6 +575,9 @@ MarvelEncounterSets <- function(marvelGlm) {
       "Personal Nightmare",
       "Symbiotic Strength",
       "Whispers of Paranoia",
+      " - Hero Packs - ",
+      "Armadillo",
+      "Zzzax",
       "",
       "Expert",
       "Heroic",
@@ -608,6 +616,7 @@ MarvelEncounterSets <- function(marvelGlm) {
       sprintf("%+d", round(coefs["KreeMilitantsTRUE"] * 10)),
       sprintf("%+d", round(coefs["ShipCommandTRUE"] * 10)),
       sprintf("%+d", round(coefs["BadoonHeadhunterTRUE"] * 10)),
+      sprintf("%+d", round(coefs["PowerStoneTRUE"] * 10)),
       "",
       sprintf("%+d", round(coefs["BlackOrderTRUE"] * 10)),
       sprintf("%+d", round(coefs["ArmiesOfTitanTRUE"] * 10)),
@@ -635,6 +644,9 @@ MarvelEncounterSets <- function(marvelGlm) {
       sprintf("%+d", round(coefs["PersonalNightmareTRUE"] * 10)),
       sprintf("%+d", round(coefs["SymbioticStrengthTRUE"] * 10)),
       sprintf("%+d", round(coefs["WhispersOfParanoiaTRUE"] * 10)),
+      "",
+      sprintf("%+d", round(coefs["ArmadilloTRUE"] * 10)),
+      sprintf("%+d", round(coefs["ZzzaxTRUE"] * 10)),
       "",
       sprintf("%+d", round(coefs["DifficultyLevelExpert"] * 10)),
       sprintf("%+d", round(coefs["Heroic"] * 10)),
