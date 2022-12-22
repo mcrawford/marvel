@@ -18,7 +18,8 @@ LoadMarvel <- function(filename) {
   marvel$Heroic[is.na(marvel$Heroic)] <- marvel$HeroicWC[is.na(marvel$Heroic)]
 
   meanDate <- mean(marvel$Timestamp)
-  for (i in 1:10) {
+  encounterSetsString <- paste(GetEncounterSets(), collapse = " ")
+  for (i in 1:4) {
     for (s in levels(marvel$Scenario)) {
       multiStandard <- data.frame(
         Timestamp = meanDate,
@@ -27,8 +28,8 @@ LoadMarvel <- function(filename) {
         Third     = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
         Fourth    = "", FourthAspect = "", FourthTwoAspects = "",
         Scenario  = s,
-        Campaign  = "No", ExpertCampaign = "No", Encounter = "",
-        Win       = if (i <= 8) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
+        Campaign  = "No", ExpertCampaign = "No", Encounter = if (i %% 2 == 0) encounterSetsString else "",
+        Win       = if (i <= 3) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
         WinWC     = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Standard"
       )
       multiExpert   <- data.frame(
@@ -38,8 +39,8 @@ LoadMarvel <- function(filename) {
         Third     = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
         Fourth    = "", FourthAspect = "", FourthTwoAspects = "",
         Scenario  = s,
-        Campaign  = "No", ExpertCampaign = "No", Encounter = "",
-        Win       = if (i <= 6) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
+        Campaign  = "No", ExpertCampaign = "No", Encounter = if (i %% 2 == 0) encounterSetsString else "",
+        Win       = if (i <= 2) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
         WinWC     = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Expert"
       )
       soloStandard  <- data.frame(
@@ -49,8 +50,8 @@ LoadMarvel <- function(filename) {
         Third     = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
         Fourth    = "", FourthAspect = "", FourthTwoAspects = "",
         Scenario  = s,
-        Campaign  = "No", ExpertCampaign = "No", Encounter = "",
-        Win       = if (i <= 7) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
+        Campaign  = "No", ExpertCampaign = "No", Encounter = if (i %% 2 == 0) encounterSetsString else "",
+        Win       = if (i <= 3) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
         WinWC     = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Standard"
       )
       soloExpert    <- data.frame(
@@ -60,8 +61,8 @@ LoadMarvel <- function(filename) {
         Third     = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
         Fourth    = "", FourthAspect = "", FourthTwoAspects = "",
         Scenario  = s,
-        Campaign  = "No", ExpertCampaign = "No", Encounter = "",
-        Win       = if (i <= 6) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
+        Campaign  = "No", ExpertCampaign = "No", Encounter = if (i %% 2 == 0) encounterSetsString else "",
+        Win       = if (i <= 2) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
         WinWC     = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Expert"
       )
       marvel        <- rbind(marvel, multiStandard)
@@ -411,4 +412,87 @@ LoadMarvel <- function(filename) {
   marvel$VenomSolo                 <- marvel$Venom & marvel$OneHero
 
   return(marvel)
+}
+
+GetEncounterSets <- function() {
+  c(
+    "Acolytes",
+    "Anachronauts",
+    "Armadillo",
+    "Armies of Titan",
+
+    "Band of Badoon",
+    "Beasty Boys",
+    "Black Order",
+    "Bomb Scare",
+
+    "Brotherhood",
+    "Brothers Grimm",
+    "Children of Thanos",
+    "City in Chaos",
+
+    # "Crime",
+    "Crossfire's Crew",
+    # "Deathstrike",
+    "The Doomsday Chair",
+
+    "Down to Earth",
+    "Enchantress",
+    # "Fantasy",
+    "Frost Giants",
+
+    # "Future Past",
+    "Goblin Gear",
+    "Goblin Gimmicks",
+    "Guerrilla Tactics",
+
+    "Hydra Assault",
+    "Hydra Patrol",
+    "The Inheritors",
+    "Iron Spider's Sinister Six",
+
+    "Kree Fanatic",
+    "Kree Militants",
+    "Legions of Hel",
+    "Legions of Hydra",
+
+    "Master of Time",
+    "Masters of Evil",
+    "Menagerie Medley",
+    "A Mess of Things",
+
+    "Mister Hyde",
+    "Mystique",
+    "Osborn Tech",
+    "Personal Nightmare",
+
+    "Power Drain",
+    "Ransacked Armory",
+    "Running Interference",
+    "Sentinels",
+
+    "Sinister Syndicate",
+    "Space Pirates",
+    "State of Emergency",
+    "Streets of Mayhem",
+    "Symbiotic Strength",
+
+    "Temporal",
+    "Under Attack",
+    "Weapon Master",
+
+    "Whispers of Paranoia",
+    "Wrecking Crew",
+    "Zero Tolerance",
+    "Zzzax",
+
+    "Badoon Headhunter",
+    "Experimental Weapons",
+    "Galactic Artifacts",
+    "Infinity Gauntlet",
+
+    "Power Stone",
+    "Ship Command",
+    "Sinister Assault"
+  )
 }
