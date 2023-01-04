@@ -3,8 +3,7 @@ MarvelGlm <- function(marvel) {
     Scenario * OneHero + DifficultyLevel +
       Undeclared + Timestamp +
       BombScare + MastersOfEvil + UnderAttack + LegionsOfHydra + DoomsdayChair +
-      GoblinGimmicks + MessOfThings + PowerDrain + RunningInterference +
-      KreeFanatic +
+      GoblinGimmicks + MessOfThings + PowerDrain + RunningInterference + KreeFanatic +
       ExperimentalWeapons + HydraAssault + HydraPatrol + WeaponMaster +
       Temporal + MasterOfTime + Anachronauts +
       BandOfBadoon + MenagerieMedley + GalacticArtifacts + SpacePirates + KreeMilitants +
@@ -14,8 +13,9 @@ MarvelGlm <- function(marvel) {
       SinisterSyndicate + StateOfEmergency + StreetsOfMayhem + WreckingCrew +
       CityInChaos + DownToEarth + SymbioticStrength + PersonalNightmare + WhispersOfParanoia +
       GuerrillaTactics + SinisterAssault + GoblinGear + OsbornTech +
-      Armadillo + Zzzax +
+      Armadillo + Zzzax + Inheritors + ISSinisterSix + Deathstrike + ShadowKing +
       Acolytes + Brotherhood + Mystique + Sentinels + ZeroTolerance +
+      Crime + Fantasy + Horror + SciFi + Sitcom + Western + Longshot +
       Heroic + SkirmishLevel + Standard2 + Expert2 +
       CampaignAbsorbingMan + CampaignTaskmaster + CampaignZola + CampaignRedSkull +
       CampaignBrotherhood + CampaignInfiltrateMuseum + CampaignEscapeMuseum + CampaignNebula + CampaignRonan +

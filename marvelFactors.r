@@ -33,7 +33,10 @@ MarvelFactors <- function(extendedGlm) {
     coefs["ScenarioProject Wideawake"],
     coefs["ScenarioMaster Mold"],
     coefs["ScenarioMansion Attack"],
-    coefs["ScenarioMagneto"]
+    coefs["ScenarioMagneto"],
+    coefs["ScenarioMaGog"],
+    coefs["ScenarioSpiral"],
+    coefs["ScenarioMojo"]
   )
   oneHero <- c(
     0 + coefs["OneHeroTRUE"], # Rhino
@@ -68,7 +71,10 @@ MarvelFactors <- function(extendedGlm) {
     coefs["ScenarioProject Wideawake"] + coefs["OneHeroTRUE"] + coefs["ScenarioProject Wideawake:OneHeroTRUE"],
     coefs["ScenarioMaster Mold"] + coefs["OneHeroTRUE"] + coefs["ScenarioMaster Mold:OneHeroTRUE"],
     coefs["ScenarioMansion Attack"] + coefs["OneHeroTRUE"] + coefs["ScenarioMansion Attack:OneHeroTRUE"],
-    coefs["ScenarioMagneto"] + coefs["OneHeroTRUE"] + coefs["ScenarioMagneto:OneHeroTRUE"]
+    coefs["ScenarioMagneto"] + coefs["OneHeroTRUE"] + coefs["ScenarioMagneto:OneHeroTRUE"],
+    coefs["ScenarioMaGog"] + coefs["OneHeroTRUE"] + coefs["ScenarioMaGog:OneHeroTRUE"],
+    coefs["ScenarioSpiral"] + coefs["OneHeroTRUE"] + coefs["ScenarioSpiral:OneHeroTRUE"],
+    coefs["ScenarioMojo"] + coefs["OneHeroTRUE"] + coefs["ScenarioMojo:OneHeroTRUE"]
   )
 
   return(
@@ -106,7 +112,10 @@ MarvelFactors <- function(extendedGlm) {
         "Project Wideawake",
         "Master Mold",
         "Mansion Attack",
-        "Magneto"
+        "Magneto",
+        "MaGog",
+        "Spiral",
+        "Mojo"
       ),
       Multiplayer = round(multiplayer * 10),
       OneHero = round(oneHero * 10)

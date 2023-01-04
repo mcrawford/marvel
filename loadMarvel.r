@@ -18,7 +18,6 @@ LoadMarvel <- function(filename) {
   marvel$Heroic[is.na(marvel$Heroic)] <- marvel$HeroicWC[is.na(marvel$Heroic)]
 
   meanDate <- mean(marvel$Timestamp)
-  encounterSetsString <- paste(GetEncounterSets(), collapse = " ")
   for (i in 1:4) {
     for (s in levels(marvel$Scenario)) {
       multiStandard <- data.frame(
@@ -28,7 +27,7 @@ LoadMarvel <- function(filename) {
         Third     = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
         Fourth    = "", FourthAspect = "", FourthTwoAspects = "",
         Scenario  = s,
-        Campaign  = "No", ExpertCampaign = "No", Encounter = if (i %% 2 == 0) encounterSetsString else "",
+        Campaign  = "No", ExpertCampaign = "No", Encounter = "",
         Win       = if (i <= 3) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
         WinWC     = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Standard"
       )
@@ -39,7 +38,7 @@ LoadMarvel <- function(filename) {
         Third     = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
         Fourth    = "", FourthAspect = "", FourthTwoAspects = "",
         Scenario  = s,
-        Campaign  = "No", ExpertCampaign = "No", Encounter = if (i %% 2 == 0) encounterSetsString else "",
+        Campaign  = "No", ExpertCampaign = "No", Encounter = "",
         Win       = if (i <= 2) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
         WinWC     = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Expert"
       )
@@ -50,7 +49,7 @@ LoadMarvel <- function(filename) {
         Third     = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
         Fourth    = "", FourthAspect = "", FourthTwoAspects = "",
         Scenario  = s,
-        Campaign  = "No", ExpertCampaign = "No", Encounter = if (i %% 2 == 0) encounterSetsString else "",
+        Campaign  = "No", ExpertCampaign = "No", Encounter = "",
         Win       = if (i <= 3) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
         WinWC     = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Standard"
       )
@@ -61,14 +60,30 @@ LoadMarvel <- function(filename) {
         Third     = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
         Fourth    = "", FourthAspect = "", FourthTwoAspects = "",
         Scenario  = s,
-        Campaign  = "No", ExpertCampaign = "No", Encounter = if (i %% 2 == 0) encounterSetsString else "",
+        Campaign  = "No", ExpertCampaign = "No", Encounter = "",
         Win       = if (i <= 2) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "Expert (Core Set)", Heroic = 0, Skirmish = 0,
         WinWC     = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Expert"
       )
-      marvel        <- rbind(marvel, multiStandard)
-      marvel        <- rbind(marvel, multiExpert)
-      marvel        <- rbind(marvel, soloStandard)
-      marvel        <- rbind(marvel, soloExpert)
+      marvel <- rbind(marvel, multiStandard)
+      marvel <- rbind(marvel, multiExpert)
+      marvel <- rbind(marvel, soloStandard)
+      marvel <- rbind(marvel, soloExpert)
+    }
+  }
+  for (i in 1:3) {
+    for (es in GetEncounterSets()) {
+      dummyEncounterSet <- data.frame(
+        Timestamp = meanDate,
+        First     = "", FirstAspect = "", IsSecondHero = "Yes", FirstTwoAspects = "", IsSecondHero1 = "No", IsSecondHero2 = "No",
+        Second    = "", SecondAspect = "", IsThirdHero = "No", SecondTwoAspects = "", IsThirdHero1 = "No", IsThirdHero2 = "No",
+        Third     = "", ThirdAspect = "", IsFourthHero = "No", ThirdTwoAspects = "", IsFourthHero1 = "No", IsFourthHero2 = "No",
+        Fourth    = "", FourthAspect = "", FourthTwoAspects = "",
+        Scenario  = "",
+        Campaign  = "No", ExpertCampaign = "No", Encounter = es,
+        Win       = if (i <= 2) "Yes" else "No", Standard = "Standard (Core Set)", Expert = "", Heroic = 0, Skirmish = 0,
+        WinWC     = "", DifficultyWC = "", HeroicWC = 0, Difficulty = "Standard"
+      )
+      marvel <- rbind(marvel, dummyEncounterSet)
     }
   }
 
@@ -173,11 +188,23 @@ LoadMarvel <- function(filename) {
   marvel$WhispersOfParanoia  <- grepl("Whispers of Paranoia", marvel$Encounter, fixed = TRUE)
   marvel$Armadillo           <- grepl("Armadillo", marvel$Encounter, fixed = TRUE)
   marvel$Zzzax               <- grepl("Zzzax", marvel$Encounter, fixed = TRUE)
+  marvel$Inheritors          <- grepl("The Inheritors", marvel$Encounter, fixed = TRUE)
+  marvel$ISSinisterSix       <- grepl("Iron Spider's Sinister Six", marvel$Encounter, fixed = TRUE)
+  marvel$Deathstrike         <- grepl("Deathstrike", marvel$Encounter, fixed = TRUE)
+  marvel$ShadowKing          <- grepl("Shadow King", marvel$Encounter, fixed = TRUE)
   marvel$Mystique            <- grepl("Mystique", marvel$Encounter, fixed = TRUE)
   marvel$Brotherhood         <- grepl("Brotherhood", marvel$Encounter, fixed = TRUE)
   marvel$ZeroTolerance       <- grepl("Zero Tolerance", marvel$Encounter, fixed = TRUE)
   marvel$Sentinels           <- grepl("Sentinels", marvel$Encounter, fixed = TRUE)
   marvel$Acolytes            <- grepl("Acolytes", marvel$Encounter, fixed = TRUE)
+  marvel$Crime               <- grepl("Crime", marvel$Encounter, fixed = TRUE)
+  marvel$Fantasy             <- grepl("Fantasy", marvel$Encounter, fixed = TRUE)
+  marvel$Horror              <- grepl("Horror", marvel$Encounter, fixed = TRUE)
+  marvel$SciFi               <- grepl("Sci-Fi", marvel$Encounter, fixed = TRUE)
+  marvel$Sitcom              <- grepl("Sitcom", marvel$Encounter, fixed = TRUE)
+  marvel$Western             <- grepl("Western", marvel$Encounter, fixed = TRUE)
+  marvel$Longshot            <- grepl("Longshot", marvel$Encounter, fixed = TRUE)
+  marvel$Stupid            <- grepl("Stupid", marvel$Encounter, fixed = TRUE)
 
   marvel$HydraPatrol[marvel$Scenario == "Taskmaster"]                  <- TRUE
   marvel$GalacticArtifacts[marvel$Scenario == "Infiltrate the Museum"] <- TRUE
@@ -346,6 +373,10 @@ LoadMarvel <- function(filename) {
     marvel$Second == "Star-Lord" |
     marvel$Third == "Star-Lord" |
     marvel$Fourth == "Star-Lord"
+  marvel$Storm <- marvel$First == "Storm" |
+    marvel$Second == "Storm" |
+    marvel$Third == "Storm" |
+    marvel$Fourth == "Storm"
   marvel$Thor <- marvel$First == "Thor" |
     marvel$Second == "Thor" |
     marvel$Third == "Thor" |
@@ -370,6 +401,10 @@ LoadMarvel <- function(filename) {
     marvel$Second == "Wasp" |
     marvel$Third == "Wasp" |
     marvel$Fourth == "Wasp"
+  marvel$Wolverine <- marvel$First == "Wolverine" |
+    marvel$Second == "Wolverine" |
+    marvel$Third == "Wolverine" |
+    marvel$Fourth == "Wolverine"
 
   marvel$AdamWarlockSolo           <- marvel$AdamWarlock & marvel$OneHero
   marvel$AntManSolo                <- marvel$AntMan & marvel$OneHero
@@ -404,12 +439,14 @@ LoadMarvel <- function(filename) {
   marvel$SpiderManMilesMoralesSolo <- marvel$SpiderManMilesMorales & marvel$OneHero
   marvel$SpiderWomanSolo           <- marvel$SpiderWoman & marvel$OneHero
   marvel$StarLordSolo              <- marvel$StarLord & marvel$OneHero
+  marvel$StormSolo                 <- marvel$Storm & marvel$OneHero
   marvel$ThorSolo                  <- marvel$Thor & marvel$OneHero
   marvel$ValkyrieSolo              <- marvel$Valkyrie & marvel$OneHero
+  marvel$VenomSolo                 <- marvel$Venom & marvel$OneHero
   marvel$VisionSolo                <- marvel$Vision & marvel$OneHero
   marvel$WarMachineSolo            <- marvel$WarMachine & marvel$OneHero
   marvel$WaspSolo                  <- marvel$Wasp & marvel$OneHero
-  marvel$VenomSolo                 <- marvel$Venom & marvel$OneHero
+  marvel$WolverineSolo             <- marvel$Wolverine & marvel$OneHero
 
   return(marvel)
 }
@@ -431,57 +468,66 @@ GetEncounterSets <- function() {
     "Children of Thanos",
     "City in Chaos",
 
-    # "Crime",
+    "Crime",
     "Crossfire's Crew",
-    # "Deathstrike",
+    "Deathstrike",
     "The Doomsday Chair",
 
     "Down to Earth",
     "Enchantress",
-    # "Fantasy",
-    "Frost Giants",
+#     "Exodus",
+    "Fantasy",
 
-    # "Future Past",
+    "Frost Giants",
+#     "Future Past",
     "Goblin Gear",
     "Goblin Gimmicks",
-    "Guerrilla Tactics",
 
+    "Guerrilla Tactics",
+    "Horror",
     "Hydra Assault",
     "Hydra Patrol",
+
     "The Inheritors",
     "Iron Spider's Sinister Six",
-
     "Kree Fanatic",
     "Kree Militants",
+
     "Legions of Hel",
     "Legions of Hydra",
-
     "Master of Time",
     "Masters of Evil",
     "Menagerie Medley",
-    "A Mess of Things",
 
+    "A Mess of Things",
     "Mister Hyde",
     "Mystique",
+
     "Osborn Tech",
     "Personal Nightmare",
-
     "Power Drain",
     "Ransacked Armory",
+
+#     "Reavers",
     "Running Interference",
+    "Sci-Fi",
     "Sentinels",
 
+    "Shadow King",
     "Sinister Syndicate",
+    "Sitcom",
     "Space Pirates",
+
     "State of Emergency",
     "Streets of Mayhem",
     "Symbiotic Strength",
-
     "Temporal",
+
     "Under Attack",
     "Weapon Master",
-
+    "Western",
     "Whispers of Paranoia",
+
     "Wrecking Crew",
     "Zero Tolerance",
     "Zzzax",
@@ -491,6 +537,7 @@ GetEncounterSets <- function() {
     "Galactic Artifacts",
     "Infinity Gauntlet",
 
+    "Longshot",
     "Power Stone",
     "Ship Command",
     "Sinister Assault"
