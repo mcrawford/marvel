@@ -197,6 +197,7 @@ LoadMarvel <- function(filename) {
   marvel$ZeroTolerance       <- grepl("Zero Tolerance", marvel$Encounter, fixed = TRUE)
   marvel$Sentinels           <- grepl("Sentinels", marvel$Encounter, fixed = TRUE)
   marvel$Acolytes            <- grepl("Acolytes", marvel$Encounter, fixed = TRUE)
+  marvel$FuturePast          <- grepl("Future Past", marvel$Encounter, fixed = TRUE)
   marvel$Crime               <- grepl("Crime", marvel$Encounter, fixed = TRUE)
   marvel$Fantasy             <- grepl("Fantasy", marvel$Encounter, fixed = TRUE)
   marvel$Horror              <- grepl("Horror", marvel$Encounter, fixed = TRUE)
@@ -204,7 +205,6 @@ LoadMarvel <- function(filename) {
   marvel$Sitcom              <- grepl("Sitcom", marvel$Encounter, fixed = TRUE)
   marvel$Western             <- grepl("Western", marvel$Encounter, fixed = TRUE)
   marvel$Longshot            <- grepl("Longshot", marvel$Encounter, fixed = TRUE)
-  marvel$Stupid            <- grepl("Stupid", marvel$Encounter, fixed = TRUE)
 
   marvel$HydraPatrol[marvel$Scenario == "Taskmaster"]                  <- TRUE
   marvel$GalacticArtifacts[marvel$Scenario == "Infiltrate the Museum"] <- TRUE
@@ -281,6 +281,10 @@ LoadMarvel <- function(filename) {
     marvel$Second == "Drax" |
     marvel$Third == "Drax" |
     marvel$Fourth == "Drax"
+  marvel$Gambit <- marvel$First == "Gambit" |
+    marvel$Second == "Gambit" |
+    marvel$Third == "Gambit" |
+    marvel$Fourth == "Gambit"
   marvel$Gamora <- marvel$First == "Gamora" |
     marvel$Second == "Gamora" |
     marvel$Third == "Gamora" |
@@ -333,6 +337,10 @@ LoadMarvel <- function(filename) {
     marvel$Second == "Rocket Raccoon" |
     marvel$Third == "Rocket Raccoon" |
     marvel$Fourth == "Rocket Raccoon"
+  marvel$Rogue <- marvel$First == "Rogue" |
+    marvel$Second == "Rogue" |
+    marvel$Third == "Rogue" |
+    marvel$Fourth == "Rogue"
   marvel$ScarletWitch <- marvel$First == "Scarlet Witch" |
     marvel$Second == "Scarlet Witch" |
     marvel$Third == "Scarlet Witch" |
@@ -416,6 +424,7 @@ LoadMarvel <- function(filename) {
   marvel$CyclopsSolo               <- marvel$Cyclops & marvel$OneHero
   marvel$DoctorStrangeSolo         <- marvel$DoctorStrange & marvel$OneHero
   marvel$DraxSolo                  <- marvel$Drax & marvel$OneHero
+  marvel$GambitSolo                <- marvel$Gambit & marvel$OneHero
   marvel$GamoraSolo                <- marvel$Gamora & marvel$OneHero
   marvel$GhostSpiderSolo           <- marvel$GhostSpider & marvel$OneHero
   marvel$GrootSolo                 <- marvel$Groot & marvel$OneHero
@@ -427,6 +436,7 @@ LoadMarvel <- function(filename) {
   marvel$NebulaSolo                <- marvel$Nebula & marvel$OneHero
   marvel$NovaSolo                  <- marvel$Nova & marvel$OneHero
   marvel$PhoenixSolo               <- marvel$Phoenix & marvel$OneHero
+  marvel$RogueSolo                 <- marvel$Rogue & marvel$OneHero
   marvel$QuicksilverSolo           <- marvel$Quicksilver & marvel$OneHero
   marvel$RocketRaccoonSolo         <- marvel$RocketRaccoon & marvel$OneHero
   marvel$ScarletWitchSolo          <- marvel$ScarletWitch & marvel$OneHero
@@ -479,7 +489,7 @@ GetEncounterSets <- function() {
     "Fantasy",
 
     "Frost Giants",
-#     "Future Past",
+    "Future Past",
     "Goblin Gear",
     "Goblin Gimmicks",
 

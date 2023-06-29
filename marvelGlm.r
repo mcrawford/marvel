@@ -14,7 +14,7 @@ MarvelGlm <- function(marvel) {
       CityInChaos + DownToEarth + SymbioticStrength + PersonalNightmare + WhispersOfParanoia +
       GuerrillaTactics + SinisterAssault + GoblinGear + OsbornTech +
       Armadillo + Zzzax + Inheritors + ISSinisterSix + Deathstrike + ShadowKing +
-      Acolytes + Brotherhood + Mystique + Sentinels + ZeroTolerance +
+      Acolytes + Brotherhood + FuturePast + Mystique + Sentinels + ZeroTolerance +
       Crime + Fantasy + Horror + SciFi + Sitcom + Western + Longshot +
       Heroic + SkirmishLevel + Standard2 + Expert2 +
       CampaignAbsorbingMan + CampaignTaskmaster + CampaignZola + CampaignRedSkull +
