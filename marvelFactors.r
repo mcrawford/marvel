@@ -36,7 +36,12 @@ MarvelFactors <- function(extendedGlm) {
     coefs["ScenarioMagneto"],
     coefs["ScenarioMaGog"],
     coefs["ScenarioSpiral"],
-    coefs["ScenarioMojo"]
+    coefs["ScenarioMojo"],
+    coefs["ScenarioMorlock Siege"],
+    coefs["ScenarioOn the Run"],
+    coefs["ScenarioJuggernaut"],
+    coefs["ScenarioMister Sinister"],
+    coefs["ScenarioStryfe"]
   )
   oneHero <- c(
     0 + coefs["OneHeroTRUE"], # Rhino
@@ -74,7 +79,12 @@ MarvelFactors <- function(extendedGlm) {
     coefs["ScenarioMagneto"] + coefs["OneHeroTRUE"] + coefs["ScenarioMagneto:OneHeroTRUE"],
     coefs["ScenarioMaGog"] + coefs["OneHeroTRUE"] + coefs["ScenarioMaGog:OneHeroTRUE"],
     coefs["ScenarioSpiral"] + coefs["OneHeroTRUE"] + coefs["ScenarioSpiral:OneHeroTRUE"],
-    coefs["ScenarioMojo"] + coefs["OneHeroTRUE"] + coefs["ScenarioMojo:OneHeroTRUE"]
+    coefs["ScenarioMojo"] + coefs["OneHeroTRUE"] + coefs["ScenarioMojo:OneHeroTRUE"],
+    coefs["ScenarioMorlock Siege"] + coefs["OneHeroTRUE"] + coefs["ScenarioMorlock Siege:OneHeroTRUE"],
+    coefs["ScenarioOn the Run"] + coefs["OneHeroTRUE"] + coefs["ScenarioOn the Run:OneHeroTRUE"],
+    coefs["ScenarioJuggernaut"] + coefs["OneHeroTRUE"] + coefs["ScenarioJuggernaut:OneHeroTRUE"],
+    coefs["ScenarioMister Sinister"] + coefs["OneHeroTRUE"] + coefs["ScenarioMister Sinister:OneHeroTRUE"],
+    coefs["ScenarioStryfe"] + coefs["OneHeroTRUE"] + coefs["ScenarioStryfe:OneHeroTRUE"]
   )
 
   return(
@@ -115,7 +125,12 @@ MarvelFactors <- function(extendedGlm) {
         "Magneto",
         "MaGog",
         "Spiral",
-        "Mojo"
+        "Mojo",
+        "Morlock Siege",
+        "On the Run",
+        "Juggernaut",
+        "Mister Sinister",
+        "Stryfe"
       ),
       Multiplayer = round(multiplayer * 10),
       OneHero = round(oneHero * 10)

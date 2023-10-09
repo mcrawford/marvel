@@ -16,29 +16,32 @@ MarvelGlm <- function(marvel) {
       Armadillo + Zzzax + Inheritors + ISSinisterSix + Deathstrike + ShadowKing +
       Acolytes + Brotherhood + FuturePast + Mystique + Sentinels + ZeroTolerance +
       Crime + Fantasy + Horror + SciFi + Sitcom + Western + Longshot +
+      BlackTomCassidy + Exodus + ExtremeMeasures + Flight + MilitaryGrade + MutantInsurrection +
+      MutantSlayers + NastyBoys + Reavers + SuperStrength + Telepathy + HopeSummers + Marauders +
       Heroic + SkirmishLevel + Standard2 + Expert2 +
       CampaignAbsorbingMan + CampaignTaskmaster + CampaignZola + CampaignRedSkull +
       CampaignBrotherhood + CampaignInfiltrateMuseum + CampaignEscapeMuseum + CampaignNebula + CampaignRonan +
       CampaignEbonyMaw + CampaignTowerDefense + CampaignThanos + CampaignHela + CampaignLoki +
       CampaignSandman + CampaignVenom + CampaignMysterio + CampaignSinisterSix + CampaignVenomGoblin +
       CampaignSabretooth + CampaignProjectWideawake + CampaignMasterMold + CampaignMansionAttack + CampaignMagneto +
+      CampaignMorlockSiege + CampaignOnTheRun + CampaignJuggernaut + CampaignMisterSinister + CampaignStryfe +
       Aggression + Justice + Leadership + Protection +
       AdamWarlock + AntMan + BlackPanther +
-      BlackWidow + CaptainAmerica + CaptainMarvel + Colossus + Cyclops +
-      DoctorStrange + Drax + Gamora + GhostSpider + Groot +
+      BlackWidow +  CaptainAmerica + CaptainMarvel + Colossus + Cyclops +
+      DoctorStrange +  Drax + Gambit + Gamora + GhostSpider + Groot +
       Hawkeye + Hulk + IronMan + Ironheart +
-      MsMarvel + Nebula + Nova + Phoenix + Quicksilver +
+      MsMarvel + Nebula + Nova + Phoenix + Quicksilver + Rogue +
       RocketRaccoon + ScarletWitch + Shadowcat + SheHulk + Spdr + Spectrum +
-      SpiderHam + SpiderMan + SpiderManMilesMorales + SpiderWoman + StarLord +
-      Thor + Valkyrie + Vision + WarMachine + Wasp + Venom +
+      SpiderHam + SpiderMan + SpiderManMilesMorales + SpiderWoman + StarLord + Storm +
+      Thor + Valkyrie + Venom + Vision + WarMachine + Wasp + Wolverine +
       AdamWarlockSolo + AntManSolo + BlackPantherSolo +
-      BlackWidowSolo + CaptainAmericaSolo + CaptainMarvelSolo +
-      DoctorStrangeSolo + DraxSolo + GamoraSolo + GhostSpiderSolo + GrootSolo +
-      HawkeyeSolo + HulkSolo + IronManSolo + IronheartSolo + NebulaSolo + NovaSolo +
-      MsMarvelSolo + QuicksilverSolo +
-      RocketRaccoonSolo + ScarletWitchSolo + SheHulkSolo + SpectrumSolo +
-      SpiderManSolo + SpiderManMilesMoralesSolo + SpiderWomanSolo + StarLordSolo +
-      ThorSolo + ValkyrieSolo + VisionSolo + WarMachineSolo + WaspSolo + VenomSolo
+      BlackWidowSolo +  CaptainAmericaSolo + CaptainMarvelSolo + ColossusSolo + CyclopsSolo +
+      DoctorStrangeSolo +  DraxSolo + GambitSolo + GamoraSolo + GhostSpiderSolo + GrootSolo +
+      HawkeyeSolo + HulkSolo + IronManSolo + IronheartSolo +
+      MsMarvelSolo + NebulaSolo + NovaSolo + PhoenixSolo + QuicksilverSolo + RogueSolo +
+      RocketRaccoonSolo + ScarletWitchSolo + ShadowcatSolo + SheHulkSolo + SpdrSolo + SpectrumSolo +
+      SpiderHamSolo + SpiderManSolo + SpiderManMilesMoralesSolo + SpiderWomanSolo + StarLordSolo + StormSolo +
+      ThorSolo + ValkyrieSolo + VenomSolo + VisionSolo + WarMachineSolo + WaspSolo + WolverineSolo
     , family = binomial, data = marvel)
   )
 }

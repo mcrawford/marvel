@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 import {format} from '@fast-csv/format'
 import fs from 'fs'
 
-const decks = await loadDecks('Okoye')
+const decks = await loadDecks('Patriot')
 
 const deckLists = []
 const cardNames = new Set()
@@ -85,12 +85,18 @@ async function loadDecks(cardName) {
                 'Referrer-Policy': 'strict-origin-when-cross-origin'
             },
         })
-        const data = await resp.json()
-        // console.log(data)
-        console.log(`...got ${data?.length} decks for ${cardName}...`)
-        if (data?.length) {
-            decks.push(...data)
-        } else {
+        const text = await resp.text()
+        try {
+            const data = JSON.parse(text)
+            // console.log(data)
+            console.log(`...got ${data?.length} decks for ${cardName}...`)
+            if (data?.length) {
+                decks.push(...data)
+            } else {
+                break
+            }
+        } catch(err) {
+            // probably wasn't JSON
             break
         }
     }

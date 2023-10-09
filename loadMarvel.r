@@ -134,6 +134,11 @@ LoadMarvel <- function(filename) {
   marvel$CampaignMasterMold       <- (marvel$Campaign & marvel$Scenario == "Master Mold")
   marvel$CampaignMansionAttack    <- (marvel$Campaign & marvel$Scenario == "Mansion Attack")
   marvel$CampaignMagneto          <- (marvel$Campaign & marvel$Scenario == "Magneto")
+  marvel$CampaignMorlockSiege     <- (marvel$Campaign & marvel$Scenario == "Morlock Siege")
+  marvel$CampaignOnTheRun         <- (marvel$Campaign & marvel$Scenario == "On the Run")
+  marvel$CampaignJuggernaut       <- (marvel$Campaign & marvel$Scenario == "Juggernaut")
+  marvel$CampaignMisterSinister   <- (marvel$Campaign & marvel$Scenario == "Mister Sinister")
+  marvel$CampaignStryfe           <- (marvel$Campaign & marvel$Scenario == "Stryfe")
 
   marvel$Undeclared          <- marvel$Encounter == "" & marvel$Scenario != "Wrecking Crew"
   marvel$BombScare           <- grepl("Bomb Scare", marvel$Encounter, fixed = TRUE)
@@ -205,6 +210,19 @@ LoadMarvel <- function(filename) {
   marvel$Sitcom              <- grepl("Sitcom", marvel$Encounter, fixed = TRUE)
   marvel$Western             <- grepl("Western", marvel$Encounter, fixed = TRUE)
   marvel$Longshot            <- grepl("Longshot", marvel$Encounter, fixed = TRUE)
+  marvel$BlackTomCassidy     <- grepl("Black Tom Cassidy", marvel$Encounter, fixed = TRUE)
+  marvel$Exodus              <- grepl("Exodus", marvel$Encounter, fixed = TRUE)
+  marvel$ExtremeMeasures     <- grepl("Extreme Measures", marvel$Encounter, fixed = TRUE)
+  marvel$Flight              <- grepl("Flight", marvel$Encounter, fixed = TRUE)
+  marvel$MilitaryGrade       <- grepl("Military Grade", marvel$Encounter, fixed = TRUE)
+  marvel$MutantInsurrection  <- grepl("Mutant Insurrection", marvel$Encounter, fixed = TRUE)
+  marvel$MutantSlayers       <- grepl("Mutant Slayers", marvel$Encounter, fixed = TRUE)
+  marvel$NastyBoys           <- grepl("Nasty Boys", marvel$Encounter, fixed = TRUE)
+  marvel$Reavers             <- grepl("Reavers", marvel$Encounter, fixed = TRUE)
+  marvel$SuperStrength       <- grepl("Super Strength", marvel$Encounter, fixed = TRUE)
+  marvel$Telepathy           <- grepl("Telepathy", marvel$Encounter, fixed = TRUE)
+  marvel$HopeSummers         <- grepl("Hope Summers", marvel$Encounter, fixed = TRUE)
+  marvel$Marauders           <- grepl("Marauders", marvel$Encounter, fixed = TRUE)
 
   marvel$HydraPatrol[marvel$Scenario == "Taskmaster"]                  <- TRUE
   marvel$GalacticArtifacts[marvel$Scenario == "Infiltrate the Museum"] <- TRUE
@@ -223,6 +241,13 @@ LoadMarvel <- function(filename) {
   marvel$ZeroTolerance[marvel$Scenario == "Project Wideawake"]         <- TRUE
   marvel$Sentinels[marvel$Scenario == "Master Mold"]                   <- TRUE
   marvel$Brotherhood[marvel$Scenario == "Mansion Attack"]              <- TRUE
+  marvel$MutantSlayers[marvel$Scenario == "On the Run"]                <- TRUE
+  marvel$HopeSummers[marvel$Scenario == "Juggernaut"]                  <- TRUE
+  marvel$Flight[marvel$Scenario == "Mister Sinister"]                  <- TRUE
+  marvel$SuperStrength[marvel$Scenario == "Mister Sinister"]           <- TRUE
+  marvel$Telepathy[marvel$Scenario == "Mister Sinister"]               <- TRUE
+  marvel$HopeSummers[marvel$Scenario == "Mister Sinister"]             <- TRUE
+  marvel$HopeSummers[marvel$Scenario == "Stryfe"]                      <- TRUE
 
   marvel$Aggression <- marvel$FirstAspect == "Aggression" |
     marvel$SecondAspect == "Aggression" |
@@ -257,6 +282,10 @@ LoadMarvel <- function(filename) {
     marvel$Second == "Black Widow" |
     marvel$Third == "Black Widow" |
     marvel$Fourth == "Black Widow"
+  marvel$Cable <- marvel$First == "Cable" |
+    marvel$Second == "Cable" |
+    marvel$Third == "Cable" |
+    marvel$Fourth == "Cable"
   marvel$CaptainAmerica <- marvel$First == "Captain America" |
     marvel$Second == "Captain America" |
     marvel$Third == "Captain America" |
@@ -277,6 +306,10 @@ LoadMarvel <- function(filename) {
     marvel$Second == "Doctor Strange" |
     marvel$Third == "Doctor Strange" |
     marvel$Fourth == "Doctor Strange"
+  marvel$Domino <- marvel$First == "Domino" |
+    marvel$Second == "Domino" |
+    marvel$Third == "Domino" |
+    marvel$Fourth == "Domino"
   marvel$Drax <- marvel$First == "Drax" |
     marvel$Second == "Drax" |
     marvel$Third == "Drax" |
@@ -418,11 +451,13 @@ LoadMarvel <- function(filename) {
   marvel$AntManSolo                <- marvel$AntMan & marvel$OneHero
   marvel$BlackPantherSolo          <- marvel$BlackPanther & marvel$OneHero
   marvel$BlackWidowSolo            <- marvel$BlackWidow & marvel$OneHero
+  marvel$CableSolo                 <- marvel$Cable & marvel$OneHero
   marvel$CaptainAmericaSolo        <- marvel$CaptainAmerica & marvel$OneHero
   marvel$CaptainMarvelSolo         <- marvel$CaptainMarvel & marvel$OneHero
   marvel$ColossusSolo              <- marvel$Colossus & marvel$OneHero
   marvel$CyclopsSolo               <- marvel$Cyclops & marvel$OneHero
   marvel$DoctorStrangeSolo         <- marvel$DoctorStrange & marvel$OneHero
+  marvel$DominoSolo                <- marvel$Domino & marvel$OneHero
   marvel$DraxSolo                  <- marvel$Drax & marvel$OneHero
   marvel$GambitSolo                <- marvel$Gambit & marvel$OneHero
   marvel$GamoraSolo                <- marvel$Gamora & marvel$OneHero
@@ -471,73 +506,84 @@ GetEncounterSets <- function() {
     "Band of Badoon",
     "Beasty Boys",
     "Black Order",
-    "Bomb Scare",
+    "Black Tom Cassidy",
 
+    "Bomb Scare",
     "Brotherhood",
     "Brothers Grimm",
     "Children of Thanos",
-    "City in Chaos",
 
+    "City in Chaos",
     "Crime",
     "Crossfire's Crew",
     "Deathstrike",
-    "The Doomsday Chair",
 
+    "The Doomsday Chair",
     "Down to Earth",
     "Enchantress",
-#     "Exodus",
-    "Fantasy",
+    "Exodus",
 
+    "Extreme Measures",
+    "Fantasy",
+    "Flight",
     "Frost Giants",
+
     "Future Past",
     "Goblin Gear",
     "Goblin Gimmicks",
-
     "Guerrilla Tactics",
+
     "Horror",
     "Hydra Assault",
     "Hydra Patrol",
-
     "The Inheritors",
+
     "Iron Spider's Sinister Six",
     "Kree Fanatic",
     "Kree Militants",
-
     "Legions of Hel",
+
     "Legions of Hydra",
     "Master of Time",
     "Masters of Evil",
     "Menagerie Medley",
 
     "A Mess of Things",
+    "Military Grade",
     "Mister Hyde",
-    "Mystique",
+    "Mutant Insurrection",
 
+    "Mutant Slayers",
+    "Mystique",
+    "Nasty Boys",
     "Osborn Tech",
+
     "Personal Nightmare",
     "Power Drain",
     "Ransacked Armory",
+    "Reavers",
 
-#     "Reavers",
     "Running Interference",
     "Sci-Fi",
     "Sentinels",
-
     "Shadow King",
+
     "Sinister Syndicate",
     "Sitcom",
     "Space Pirates",
-
     "State of Emergency",
-    "Streets of Mayhem",
-    "Symbiotic Strength",
-    "Temporal",
 
+    "Streets of Mayhem",
+    "Super Strength",
+    "Symbiotic Strength",
+    "Telepathy",
+
+    "Temporal",
     "Under Attack",
     "Weapon Master",
     "Western",
-    "Whispers of Paranoia",
 
+    "Whispers of Paranoia",
     "Wrecking Crew",
     "Zero Tolerance",
     "Zzzax",
@@ -545,10 +591,13 @@ GetEncounterSets <- function() {
     "Badoon Headhunter",
     "Experimental Weapons",
     "Galactic Artifacts",
-    "Infinity Gauntlet",
+    "Hope Summers",
 
+    "Infinity Gauntlet",
     "Longshot",
+    "Marauders",
     "Power Stone",
+
     "Ship Command",
     "Sinister Assault"
   )
