@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 import {format} from '@fast-csv/format'
 import fs from 'fs'
 
-const decks = await loadDecks('Patriot')
+const decks = await loadDecks('NegasonicTeenageWarhead')
 
 const deckLists = []
 const cardNames = new Set()
@@ -96,9 +96,11 @@ async function loadDecks(cardName) {
                 break
             }
         } catch(err) {
-            // probably wasn't JSON
+            console.log(err)
+            console.log(text)
             break
         }
+        await new Promise(r => setTimeout(r, 3000));
     }
 
     return decks

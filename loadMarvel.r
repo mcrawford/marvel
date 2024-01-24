@@ -222,7 +222,6 @@ LoadMarvel <- function(filename) {
   marvel$SuperStrength       <- grepl("Super Strength", marvel$Encounter, fixed = TRUE)
   marvel$Telepathy           <- grepl("Telepathy", marvel$Encounter, fixed = TRUE)
   marvel$HopeSummers         <- grepl("Hope Summers", marvel$Encounter, fixed = TRUE)
-  marvel$Marauders           <- grepl("Marauders", marvel$Encounter, fixed = TRUE)
 
   marvel$HydraPatrol[marvel$Scenario == "Taskmaster"]                  <- TRUE
   marvel$GalacticArtifacts[marvel$Scenario == "Infiltrate the Museum"] <- TRUE
@@ -243,9 +242,6 @@ LoadMarvel <- function(filename) {
   marvel$Brotherhood[marvel$Scenario == "Mansion Attack"]              <- TRUE
   marvel$MutantSlayers[marvel$Scenario == "On the Run"]                <- TRUE
   marvel$HopeSummers[marvel$Scenario == "Juggernaut"]                  <- TRUE
-  marvel$Flight[marvel$Scenario == "Mister Sinister"]                  <- TRUE
-  marvel$SuperStrength[marvel$Scenario == "Mister Sinister"]           <- TRUE
-  marvel$Telepathy[marvel$Scenario == "Mister Sinister"]               <- TRUE
   marvel$HopeSummers[marvel$Scenario == "Mister Sinister"]             <- TRUE
   marvel$HopeSummers[marvel$Scenario == "Stryfe"]                      <- TRUE
 
@@ -595,7 +591,6 @@ GetEncounterSets <- function() {
 
     "Infinity Gauntlet",
     "Longshot",
-    "Marauders",
     "Power Stone",
 
     "Ship Command",
