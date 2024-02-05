@@ -1,6 +1,7 @@
 MarvelHeroes <- function(marvelGlm) {
   coefs <- coef(marvelGlm)
   ratings <- c(
+       sprintf("%+d", round(coefs["AngelTRUE"] * 10)),
        sprintf("%+d", round(coefs["AdamWarlockTRUE"] * 10)),
        sprintf("%+d", round(coefs["AntManTRUE"] * 10)),
        sprintf("%+d", round(coefs["BlackPantherTRUE"] * 10)),
@@ -10,6 +11,7 @@ MarvelHeroes <- function(marvelGlm) {
        sprintf("%+d", round(coefs["CaptainMarvelTRUE"] * 10)),
        sprintf("%+d", round(coefs["ColossusTRUE"] * 10)),
        sprintf("%+d", round(coefs["CyclopsTRUE"] * 10)),
+       sprintf("%+d", round(coefs["DeadpoolTRUE"] * 10)),
        sprintf("%+d", round(coefs["DoctorStrangeTRUE"] * 10)),
        sprintf("%+d", round(coefs["DominoTRUE"] * 10)),
        sprintf("%+d", round(coefs["DraxTRUE"] * 10)),
@@ -25,6 +27,7 @@ MarvelHeroes <- function(marvelGlm) {
        sprintf("%+d", round(coefs["NebulaTRUE"] * 10)),
        sprintf("%+d", round(coefs["NovaTRUE"] * 10)),
        sprintf("%+d", round(coefs["PhoenixTRUE"] * 10)),
+       sprintf("%+d", round(coefs["PsylockeTRUE"] * 10)),
        sprintf("%+d", round(coefs["RogueTRUE"] * 10)),
        sprintf("%+d", round(coefs["QuicksilverTRUE"] * 10)),
        sprintf("%+d", round(coefs["RocketRaccoonTRUE"] * 10)),
@@ -45,9 +48,11 @@ MarvelHeroes <- function(marvelGlm) {
        sprintf("%+d", round(coefs["VisionTRUE"] * 10)),
        sprintf("%+d", round(coefs["WarMachineTRUE"] * 10)),
        sprintf("%+d", round(coefs["WaspTRUE"] * 10)),
-       sprintf("%+d", round(coefs["WolverineTRUE"] * 10))
+       sprintf("%+d", round(coefs["WolverineTRUE"] * 10)),
+       sprintf("%+d", round(coefs["X23TRUE"] * 10))
      )
   soloRatings = c(
+      sprintf("%+d", round((coefs["AngelTRUE"] + coefs["AngelSoloTRUE"]) * 10)),
       sprintf("%+d", round((coefs["AdamWarlockTRUE"] + coefs["AdamWarlockSoloTRUE"]) * 10)),
       sprintf("%+d", round((coefs["AntManTRUE"] + coefs["AntManSoloTRUE"]) * 10)),
       sprintf("%+d", round((coefs["BlackPantherTRUE"] + coefs["BlackPantherSoloTRUE"]) * 10)),
@@ -57,6 +62,7 @@ MarvelHeroes <- function(marvelGlm) {
       sprintf("%+d", round((coefs["CaptainMarvelTRUE"] + coefs["CaptainMarvelSoloTRUE"]) * 10)),
       sprintf("%+d", round((coefs["ColossusTRUE"] + coefs["ColossusSoloTRUE"]) * 10)),
       sprintf("%+d", round((coefs["CyclopsTRUE"] + coefs["CyclopsSoloTRUE"]) * 10)),
+      sprintf("%+d", round((coefs["DeadpoolTRUE"] + coefs["DeadpoolSoloTRUE"]) * 10)),
       sprintf("%+d", round((coefs["DoctorStrangeTRUE"] + coefs["DoctorStrangeSoloTRUE"]) * 10)),
       sprintf("%+d", round((coefs["DominoTRUE"] + coefs["DominoSoloTRUE"]) * 10)),
       sprintf("%+d", round((coefs["DraxTRUE"] + coefs["DraxSoloTRUE"]) * 10)),
@@ -72,6 +78,7 @@ MarvelHeroes <- function(marvelGlm) {
       sprintf("%+d", round((coefs["NebulaTRUE"] + coefs["NebulaSoloTRUE"]) * 10)),
       sprintf("%+d", round((coefs["NovaTRUE"] + coefs["NovaSoloTRUE"]) * 10)),
       sprintf("%+d", round((coefs["PhoenixTRUE"] + coefs["PhoenixSoloTRUE"]) * 10)),
+      sprintf("%+d", round((coefs["PsylockeTRUE"] + coefs["PsylockeSoloTRUE"]) * 10)),
       sprintf("%+d", round((coefs["RogueTRUE"] + coefs["RogueSoloTRUE"]) * 10)),
       sprintf("%+d", round((coefs["QuicksilverTRUE"] + coefs["QuicksilverSoloTRUE"]) * 10)),
       sprintf("%+d", round((coefs["RocketRaccoonTRUE"] + coefs["RocketRaccoonSoloTRUE"]) * 10)),
@@ -92,10 +99,12 @@ MarvelHeroes <- function(marvelGlm) {
       sprintf("%+d", round((coefs["VisionTRUE"] + coefs["VisionSoloTRUE"]) * 10)),
       sprintf("%+d", round((coefs["WarMachineTRUE"] + coefs["WarMachineSoloTRUE"]) * 10)),
       sprintf("%+d", round((coefs["WaspTRUE"] + coefs["WaspSoloTRUE"]) * 10)),
-      sprintf("%+d", round((coefs["WolverineTRUE"] + coefs["WolverineSoloTRUE"]) * 10))
+      sprintf("%+d", round((coefs["WolverineTRUE"] + coefs["WolverineSoloTRUE"]) * 10)),
+      sprintf("%+d", round((coefs["X23TRUE"] + coefs["X23SoloTRUE"]) * 10))
     )
   return(data.frame(
     row.names = c(
+      "Angel",
       "Adam Warlock",
       "Ant-Man",
       "Black Panther",
@@ -105,6 +114,7 @@ MarvelHeroes <- function(marvelGlm) {
       "Captain Marvel",
       "Colossus",
       "Cyclops",
+      "Deadpool",
       "Doctor Strange",
       "Domino",
       "Drax",
@@ -120,13 +130,14 @@ MarvelHeroes <- function(marvelGlm) {
       "Nebula",
       "Nova",
       "Phoenix",
+      "Psylocke",
       "Rogue",
       "Quicksilver",
       "Rocket Raccoon",
       "Scarlet Witch",
       "Shadowcat",
       "She-Hulk",
-      "Spdr",
+      "SP//dr",
       "Spectrum",
       "Spider-Ham",
       "Spider-Man",
@@ -140,7 +151,8 @@ MarvelHeroes <- function(marvelGlm) {
       "Vision",
       "War Machine",
       "Wasp",
-      "Wolverine"
+      "Wolverine",
+      "X-23"
     ),
     Ratings = ratings,
     Solo = soloRatings

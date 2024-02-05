@@ -25,23 +25,23 @@ MarvelGlm <- function(marvel) {
       CampaignSandman + CampaignVenom + CampaignMysterio + CampaignSinisterSix + CampaignVenomGoblin +
       CampaignSabretooth + CampaignProjectWideawake + CampaignMasterMold + CampaignMansionAttack + CampaignMagneto +
       CampaignMorlockSiege + CampaignOnTheRun + CampaignJuggernaut + CampaignMisterSinister + CampaignStryfe +
-      Aggression + Justice + Leadership + Protection +
-      AdamWarlock + AntMan + BlackPanther +
+      Aggression + Justice + Leadership + Protection + Pool +
+      Angel + AdamWarlock + AntMan + BlackPanther +
       BlackWidow +  Cable + CaptainAmerica + CaptainMarvel + Colossus + Cyclops +
-      DoctorStrange + Domino + Drax + Gambit + Gamora + GhostSpider + Groot +
+      Deadpool + DoctorStrange + Domino + Drax + Gambit + Gamora + GhostSpider + Groot +
       Hawkeye + Hulk + IronMan + Ironheart +
-      MsMarvel + Nebula + Nova + Phoenix + Quicksilver + Rogue +
+      MsMarvel + Nebula + Nova + Phoenix + Psylocke + Quicksilver + Rogue +
       RocketRaccoon + ScarletWitch + Shadowcat + SheHulk + Spdr + Spectrum +
       SpiderHam + SpiderMan + SpiderManMilesMorales + SpiderWoman + StarLord + Storm +
-      Thor + Valkyrie + Venom + Vision + WarMachine + Wasp + Wolverine +
-      AdamWarlockSolo + AntManSolo + BlackPantherSolo +
+      Thor + Valkyrie + Venom + Vision + WarMachine + Wasp + Wolverine + X23 +
+      AngelSolo + AdamWarlockSolo + AntManSolo + BlackPantherSolo +
       BlackWidowSolo +  CableSolo + CaptainAmericaSolo + CaptainMarvelSolo + ColossusSolo + CyclopsSolo +
-      DoctorStrangeSolo + DominoSolo + DraxSolo + GambitSolo + GamoraSolo + GhostSpiderSolo + GrootSolo +
+      DeadpoolSolo + DoctorStrangeSolo + DominoSolo + DraxSolo + GambitSolo + GamoraSolo + GhostSpiderSolo + GrootSolo +
       HawkeyeSolo + HulkSolo + IronManSolo + IronheartSolo +
-      MsMarvelSolo + NebulaSolo + NovaSolo + PhoenixSolo + QuicksilverSolo + RogueSolo +
+      MsMarvelSolo + NebulaSolo + NovaSolo + PhoenixSolo + PsylockeSolo + QuicksilverSolo + RogueSolo +
       RocketRaccoonSolo + ScarletWitchSolo + ShadowcatSolo + SheHulkSolo + SpdrSolo + SpectrumSolo +
       SpiderHamSolo + SpiderManSolo + SpiderManMilesMoralesSolo + SpiderWomanSolo + StarLordSolo + StormSolo +
-      ThorSolo + ValkyrieSolo + VenomSolo + VisionSolo + WarMachineSolo + WaspSolo + WolverineSolo
+      ThorSolo + ValkyrieSolo + VenomSolo + VisionSolo + WarMachineSolo + WaspSolo + WolverineSolo + X23Solo
     , family = binomial, data = marvel)
   )
 }

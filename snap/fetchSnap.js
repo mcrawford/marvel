@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 import {format} from '@fast-csv/format'
 import fs from 'fs'
 
-const decks = await loadDecks('NegasonicTeenageWarhead')
+const decks = await loadDecks('X23')
 
 const deckLists = []
 const cardNames = new Set()

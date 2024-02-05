@@ -261,11 +261,19 @@ LoadMarvel <- function(filename) {
     marvel$SecondAspect == "Protection" |
     marvel$ThirdAspect == "Protection" |
     marvel$FourthAspect == "Protection"
+  marvel$Pool <- marvel$FirstAspect == "Pool" |
+    marvel$SecondAspect == "Pool" |
+    marvel$ThirdAspect == "Pool" |
+    marvel$FourthAspect == "Pool"
 
   marvel$AdamWarlock <- marvel$First == "Adam Warlock" |
     marvel$Second == "Adam Warlock" |
     marvel$Third == "Adam Warlock" |
     marvel$Fourth == "Adam Warlock"
+  marvel$Angel <- marvel$First == "Angel" |
+    marvel$Second == "Angel" |
+    marvel$Third == "Angel" |
+    marvel$Fourth == "Angel"
   marvel$AntMan <- marvel$First == "Ant-Man" |
     marvel$Second == "Ant-Man" |
     marvel$Third == "Ant-Man" |
@@ -298,6 +306,10 @@ LoadMarvel <- function(filename) {
     marvel$Second == "Cyclops" |
     marvel$Third == "Cyclops" |
     marvel$Fourth == "Cyclops"
+  marvel$Deadpool <- marvel$First == "Deadpool" |
+    marvel$Second == "Deadpool" |
+    marvel$Third == "Deadpool" |
+    marvel$Fourth == "Deadpool"
   marvel$DoctorStrange <- marvel$First == "Doctor Strange" |
     marvel$Second == "Doctor Strange" |
     marvel$Third == "Doctor Strange" |
@@ -358,6 +370,10 @@ LoadMarvel <- function(filename) {
     marvel$Second == "Phoenix" |
     marvel$Third == "Phoenix" |
     marvel$Fourth == "Phoenix"
+  marvel$Psylocke <- marvel$First == "Psylocke" |
+    marvel$Second == "Psylocke" |
+    marvel$Third == "Psylocke" |
+    marvel$Fourth == "Psylocke"
   marvel$Quicksilver <- marvel$First == "Quicksilver" |
     marvel$Second == "Quicksilver" |
     marvel$Third == "Quicksilver" |
@@ -442,7 +458,12 @@ LoadMarvel <- function(filename) {
     marvel$Second == "Wolverine" |
     marvel$Third == "Wolverine" |
     marvel$Fourth == "Wolverine"
+  marvel$X23 <- marvel$First == "X-23" |
+    marvel$Second == "X-23" |
+    marvel$Third == "X-23" |
+    marvel$Fourth == "X-23"
 
+  marvel$AngelSolo                 <- marvel$Angel & marvel$OneHero
   marvel$AdamWarlockSolo           <- marvel$AdamWarlock & marvel$OneHero
   marvel$AntManSolo                <- marvel$AntMan & marvel$OneHero
   marvel$BlackPantherSolo          <- marvel$BlackPanther & marvel$OneHero
@@ -452,6 +473,7 @@ LoadMarvel <- function(filename) {
   marvel$CaptainMarvelSolo         <- marvel$CaptainMarvel & marvel$OneHero
   marvel$ColossusSolo              <- marvel$Colossus & marvel$OneHero
   marvel$CyclopsSolo               <- marvel$Cyclops & marvel$OneHero
+  marvel$DeadpoolSolo              <- marvel$Deadpool & marvel$OneHero
   marvel$DoctorStrangeSolo         <- marvel$DoctorStrange & marvel$OneHero
   marvel$DominoSolo                <- marvel$Domino & marvel$OneHero
   marvel$DraxSolo                  <- marvel$Drax & marvel$OneHero
@@ -467,6 +489,7 @@ LoadMarvel <- function(filename) {
   marvel$NebulaSolo                <- marvel$Nebula & marvel$OneHero
   marvel$NovaSolo                  <- marvel$Nova & marvel$OneHero
   marvel$PhoenixSolo               <- marvel$Phoenix & marvel$OneHero
+  marvel$PsylockeSolo              <- marvel$Psylocke & marvel$OneHero
   marvel$RogueSolo                 <- marvel$Rogue & marvel$OneHero
   marvel$QuicksilverSolo           <- marvel$Quicksilver & marvel$OneHero
   marvel$RocketRaccoonSolo         <- marvel$RocketRaccoon & marvel$OneHero
@@ -488,6 +511,7 @@ LoadMarvel <- function(filename) {
   marvel$WarMachineSolo            <- marvel$WarMachine & marvel$OneHero
   marvel$WaspSolo                  <- marvel$Wasp & marvel$OneHero
   marvel$WolverineSolo             <- marvel$Wolverine & marvel$OneHero
+  marvel$X23Solo                   <- marvel$X23 & marvel$OneHero
 
   return(marvel)
 }
