@@ -18,26 +18,29 @@ MarvelGlm <- function(marvel) {
       Crime + Fantasy + Horror + SciFi + Sitcom + Western + Longshot +
       BlackTomCassidy + Exodus + ExtremeMeasures + Flight + MilitaryGrade + MutantInsurrection +
       MutantSlayers + NastyBoys + Reavers + SuperStrength + Telepathy + HopeSummers +
-      Heroic + SkirmishLevel + Standard2 + Expert2 +
+      Infinites + DystopianNightmare + Hounds + DarkRiders + SavageLand +
+      Genosha + BlueMoon + CelestialTech + ClanAkkaba + AgeOfApocalypse +
+      Heroic + SkirmishLevel + Standard2 + Expert2 + Standard3 +
       CampaignAbsorbingMan + CampaignTaskmaster + CampaignZola + CampaignRedSkull +
       CampaignBrotherhood + CampaignInfiltrateMuseum + CampaignEscapeMuseum + CampaignNebula + CampaignRonan +
       CampaignEbonyMaw + CampaignTowerDefense + CampaignThanos + CampaignHela + CampaignLoki +
       CampaignSandman + CampaignVenom + CampaignMysterio + CampaignSinisterSix + CampaignVenomGoblin +
       CampaignSabretooth + CampaignProjectWideawake + CampaignMasterMold + CampaignMansionAttack + CampaignMagneto +
       CampaignMorlockSiege + CampaignOnTheRun + CampaignJuggernaut + CampaignMisterSinister + CampaignStryfe +
+      CampaignUnus + CampaignFourHorsemen + CampaignApocalypse + CampaignDarkBeast + CampaignEnSabahNur +
       Aggression + Justice + Leadership + Protection + Pool +
-      Angel + AdamWarlock + AntMan + BlackPanther +
-      BlackWidow +  Cable + CaptainAmerica + CaptainMarvel + Colossus + Cyclops +
+      Angel + AdamWarlock + AntMan + Bishop + BlackPanther +
+      BlackWidow + Cable + CaptainAmerica + CaptainMarvel + Colossus + Cyclops +
       Deadpool + DoctorStrange + Domino + Drax + Gambit + Gamora + GhostSpider + Groot +
-      Hawkeye + Hulk + IronMan + Ironheart +
+      Hawkeye + Hulk + IronMan + Ironheart + Magik +
       MsMarvel + Nebula + Nova + Phoenix + Psylocke + Quicksilver + Rogue +
       RocketRaccoon + ScarletWitch + Shadowcat + SheHulk + Spdr + Spectrum +
       SpiderHam + SpiderMan + SpiderManMilesMorales + SpiderWoman + StarLord + Storm +
       Thor + Valkyrie + Venom + Vision + WarMachine + Wasp + Wolverine + X23 +
-      AngelSolo + AdamWarlockSolo + AntManSolo + BlackPantherSolo +
+      AngelSolo + AdamWarlockSolo + AntManSolo + BishopSolo + BlackPantherSolo +
       BlackWidowSolo +  CableSolo + CaptainAmericaSolo + CaptainMarvelSolo + ColossusSolo + CyclopsSolo +
       DeadpoolSolo + DoctorStrangeSolo + DominoSolo + DraxSolo + GambitSolo + GamoraSolo + GhostSpiderSolo + GrootSolo +
-      HawkeyeSolo + HulkSolo + IronManSolo + IronheartSolo +
+      HawkeyeSolo + HulkSolo + IronManSolo + IronheartSolo + MagikSolo +
       MsMarvelSolo + NebulaSolo + NovaSolo + PhoenixSolo + PsylockeSolo + QuicksilverSolo + RogueSolo +
       RocketRaccoonSolo + ScarletWitchSolo + ShadowcatSolo + SheHulkSolo + SpdrSolo + SpectrumSolo +
       SpiderHamSolo + SpiderManSolo + SpiderManMilesMoralesSolo + SpiderWomanSolo + StarLordSolo + StormSolo +

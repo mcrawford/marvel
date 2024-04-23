@@ -94,13 +94,25 @@ MarvelEncounterSets <- function(marvelGlm) {
       "Super Strength",
       "Telepathy",
       "Hope Summers",
+      " - Age of Apocalypse - ",
+      "Infinites",
+      "Dystopian Nightmare",
+      "Hounds",
+      "Dark Riders",
+      "Savage Land",
+      "Genosha",
+      "Blue Moon",
+      "Celestial Tech",
+      "Clan Akkaba",
+      "Age of Apocalypse",
       "",
       "Expert",
       "Heroic",
       "Skirmish Level 1",
       "Skirmish Level 2",
       "Standard II",
-      "Expert II"
+      "Expert II",
+      "Standard III"
     ),
     Ratings = c(
       "",
@@ -196,12 +208,24 @@ MarvelEncounterSets <- function(marvelGlm) {
       sprintf("%+d", round(coefs["TelepathyTRUE"] * 10)),
       sprintf("%+d", round(coefs["HopeSummersTRUE"] * 10)),
       "",
+      sprintf("%+d", round(coefs["InfinitesTRUE"] * 10)),
+      sprintf("%+d", round(coefs["DystopianNightmareTRUE"] * 10)),
+      sprintf("%+d", round(coefs["HoundsTRUE"] * 10)),
+      sprintf("%+d", round(coefs["DarkRidersTRUE"] * 10)),
+      sprintf("%+d", round(coefs["SavageLandTRUE"] * 10)),
+      sprintf("%+d", round(coefs["GenoshaTRUE"] * 10)),
+      sprintf("%+d", round(coefs["BlueMoonTRUE"] * 10)),
+      sprintf("%+d", round(coefs["CeletialTechTRUE"] * 10)),
+      sprintf("%+d", round(coefs["ClanAkkabaTRUE"] * 10)),
+      sprintf("%+d", round(coefs["AgeOfApocalypseTRUE"] * 10)),
+      "",
       sprintf("%+d", round(coefs["DifficultyLevelExpert"] * 10)),
       sprintf("%+d", round(coefs["Heroic"] * 10)),
       sprintf("%+d", round(coefs["SkirmishLevel1"] * 10)),
       sprintf("%+d", round(coefs["SkirmishLevel2"] * 10)),
       sprintf("%+d", round(coefs["Standard2TRUE"] * 10)),
-      sprintf("%+d", round(coefs["Expert2TRUE"] * 10))
+      sprintf("%+d", round(coefs["Expert2TRUE"] * 10)),
+      sprintf("%+d", round(coefs["Standard3TRUE"] * 10))
     )
   ))
 }
