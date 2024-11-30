@@ -17,7 +17,7 @@ MarvelGlm <- function(marvel) {
       Acolytes + Brotherhood + FuturePast + Mystique + Sentinels + ZeroTolerance +
       Crime + Fantasy + Horror + SciFi + Sitcom + Western + Longshot +
       BlackTomCassidy + Exodus + ExtremeMeasures + Flight + MilitaryGrade + MutantInsurrection +
-      MutantSlayers + NastyBoys + Reavers + SuperStrength + Telepathy + HopeSummers +
+      MutantSlayers + NastyBoys + Reavers + Sauron + Arcade + SuperStrength + Telepathy + HopeSummers +
       Infinites + DystopianNightmare + Hounds + DarkRiders + SavageLand +
       Genosha + BlueMoon + CelestialTech + ClanAkkaba + AgeOfApocalypse +
       Heroic + SkirmishLevel + Standard2 + Expert2 + Standard3 +
@@ -32,7 +32,7 @@ MarvelGlm <- function(marvel) {
       Angel + AdamWarlock + AntMan + Bishop + BlackPanther +
       BlackWidow + Cable + CaptainAmerica + CaptainMarvel + Colossus + Cyclops +
       Deadpool + DoctorStrange + Domino + Drax + Gambit + Gamora + GhostSpider + Groot +
-      Hawkeye + Hulk + IronMan + Ironheart + Magik +
+      Hawkeye + Hulk + Iceman + IronMan + Ironheart + Magik +
       MsMarvel + Nebula + Nova + Phoenix + Psylocke + Quicksilver + Rogue +
       RocketRaccoon + ScarletWitch + Shadowcat + SheHulk + Spdr + Spectrum +
       SpiderHam + SpiderMan + SpiderManMilesMorales + SpiderWoman + StarLord + Storm +
@@ -40,7 +40,7 @@ MarvelGlm <- function(marvel) {
       AngelSolo + AdamWarlockSolo + AntManSolo + BishopSolo + BlackPantherSolo +
       BlackWidowSolo +  CableSolo + CaptainAmericaSolo + CaptainMarvelSolo + ColossusSolo + CyclopsSolo +
       DeadpoolSolo + DoctorStrangeSolo + DominoSolo + DraxSolo + GambitSolo + GamoraSolo + GhostSpiderSolo + GrootSolo +
-      HawkeyeSolo + HulkSolo + IronManSolo + IronheartSolo + MagikSolo +
+      HawkeyeSolo + HulkSolo + IcemanSolo + IronManSolo + IronheartSolo + MagikSolo +
       MsMarvelSolo + NebulaSolo + NovaSolo + PhoenixSolo + PsylockeSolo + QuicksilverSolo + RogueSolo +
       RocketRaccoonSolo + ScarletWitchSolo + ShadowcatSolo + SheHulkSolo + SpdrSolo + SpectrumSolo +
       SpiderHamSolo + SpiderManSolo + SpiderManMilesMoralesSolo + SpiderWomanSolo + StarLordSolo + StormSolo +

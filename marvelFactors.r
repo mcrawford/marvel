@@ -43,10 +43,10 @@ MarvelFactors <- function(extendedGlm) {
     coefs["ScenarioMister Sinister"],
     coefs["ScenarioStryfe"],
     coefs["ScenarioUnus"],
-    coefs["ScenarioFourHorsemen"],
+    coefs["ScenarioFour Horsemen"],
     coefs["ScenarioApocalypse"],
-    coefs["ScenarioDarkBeast"],
-    coefs["ScenarioEnSabahNur"]
+    coefs["ScenarioDark Beast"],
+    coefs["ScenarioEn Sabah Nur"]
   )
   oneHero <- c(
     0 + coefs["OneHeroTRUE"], # Rhino
@@ -91,10 +91,10 @@ MarvelFactors <- function(extendedGlm) {
     coefs["ScenarioMister Sinister"] + coefs["OneHeroTRUE"] + coefs["ScenarioMister Sinister:OneHeroTRUE"],
     coefs["ScenarioStryfe"] + coefs["OneHeroTRUE"] + coefs["ScenarioStryfe:OneHeroTRUE"],
     coefs["ScenarioUnus"] + coefs["OneHeroTRUE"] + coefs["ScenarioUnus:OneHeroTRUE"],
-    coefs["ScenarioFourHorsemen"] + coefs["OneHeroTRUE"] + coefs["ScenarioFourHorsemen:OneHeroTRUE"],
+    coefs["ScenarioFour Horsemen"] + coefs["OneHeroTRUE"] + coefs["ScenarioFour Horsemen:OneHeroTRUE"],
     coefs["ScenarioApocalypse"] + coefs["OneHeroTRUE"] + coefs["ScenarioApocalypse:OneHeroTRUE"],
-    coefs["ScenarioDarkBeast"] + coefs["OneHeroTRUE"] + coefs["ScenarioDarkBeast:OneHeroTRUE"],
-    coefs["ScenarioEnSabahNur"] + coefs["OneHeroTRUE"] + coefs["ScenarioEnSabahNur:OneHeroTRUE"]
+    coefs["ScenarioDark Beast"] + coefs["OneHeroTRUE"] + coefs["ScenarioDark Beast:OneHeroTRUE"],
+    coefs["ScenarioEn Sabah Nur"] + coefs["OneHeroTRUE"] + coefs["ScenarioEn Sabah Nur:OneHeroTRUE"]
   )
 
   return(

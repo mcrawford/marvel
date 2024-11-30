@@ -238,6 +238,8 @@ LoadMarvel <- function(filename) {
   marvel$CelestialTech       <- grepl("Celestial Tech", marvel$Encounter, fixed = TRUE)
   marvel$ClanAkkaba          <- grepl("Clan Akkaba", marvel$Encounter, fixed = TRUE)
   marvel$AgeOfApocalypse     <- grepl("Age of Apocalypse", marvel$Encounter, fixed = TRUE)
+  marvel$Sauron              <- grepl("Sauron", marvel$Encounter, fixed = TRUE)
+  marvel$Arcade              <- grepl("Arcade", marvel$Encounter, fixed = TRUE)
 
   marvel$HydraPatrol[marvel$Scenario == "Taskmaster"]                  <- TRUE
   marvel$GalacticArtifacts[marvel$Scenario == "Infiltrate the Museum"] <- TRUE
@@ -367,6 +369,10 @@ LoadMarvel <- function(filename) {
     marvel$Second == "Hulk" |
     marvel$Third == "Hulk" |
     marvel$Fourth == "Hulk"
+  marvel$Iceman <- marvel$First == "Iceman" |
+    marvel$Second == "Iceman" |
+    marvel$Third == "Iceman" |
+    marvel$Fourth == "Iceman"
   marvel$IronMan <- marvel$First == "Iron Man" |
     marvel$Second == "Iron Man" |
     marvel$Third == "Iron Man" |
@@ -509,6 +515,7 @@ LoadMarvel <- function(filename) {
   marvel$GrootSolo                 <- marvel$Groot & marvel$OneHero
   marvel$HawkeyeSolo               <- marvel$Hawkeye & marvel$OneHero
   marvel$HulkSolo                  <- marvel$Hulk & marvel$OneHero
+  marvel$IcemanSolo                <- marvel$Iceman & marvel$OneHero
   marvel$IronManSolo               <- marvel$IronMan & marvel$OneHero
   marvel$IronheartSolo             <- marvel$Ironheart & marvel$OneHero
   marvel$MagikSolo                 <- marvel$Magik & marvel$OneHero
