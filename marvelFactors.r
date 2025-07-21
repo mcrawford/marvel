@@ -46,7 +46,12 @@ MarvelFactors <- function(extendedGlm) {
     coefs["ScenarioFour Horsemen"],
     coefs["ScenarioApocalypse"],
     coefs["ScenarioDark Beast"],
-    coefs["ScenarioEn Sabah Nur"]
+    coefs["ScenarioEn Sabah Nur"],
+    coefs["ScenarioBlack Widow"],
+    coefs["ScenarioBatroc"],
+    coefs["ScenarioM.O.D.O.K."],
+    coefs["ScenarioThunderbolts"],
+    coefs["ScenarioBaron Zemo"]
   )
   oneHero <- c(
     0 + coefs["OneHeroTRUE"], # Rhino
@@ -94,7 +99,12 @@ MarvelFactors <- function(extendedGlm) {
     coefs["ScenarioFour Horsemen"] + coefs["OneHeroTRUE"] + coefs["ScenarioFour Horsemen:OneHeroTRUE"],
     coefs["ScenarioApocalypse"] + coefs["OneHeroTRUE"] + coefs["ScenarioApocalypse:OneHeroTRUE"],
     coefs["ScenarioDark Beast"] + coefs["OneHeroTRUE"] + coefs["ScenarioDark Beast:OneHeroTRUE"],
-    coefs["ScenarioEn Sabah Nur"] + coefs["OneHeroTRUE"] + coefs["ScenarioEn Sabah Nur:OneHeroTRUE"]
+    coefs["ScenarioEn Sabah Nur"] + coefs["OneHeroTRUE"] + coefs["ScenarioEn Sabah Nur:OneHeroTRUE"],
+    coefs["ScenarioBlack Widow"] + coefs["OneHeroTRUE"] + coefs["ScenarioBlack Widow:OneHeroTRUE"],
+    coefs["ScenarioBatroc"] + coefs["OneHeroTRUE"] + coefs["ScenarioBatroc:OneHeroTRUE"],
+    coefs["ScenarioM.O.D.O.K."] + coefs["OneHeroTRUE"] + coefs["ScenarioM.O.D.O.K.:OneHeroTRUE"],
+    coefs["ScenarioThunderbolts"] + coefs["OneHeroTRUE"] + coefs["ScenarioThunderbolts:OneHeroTRUE"],
+    coefs["ScenarioBaron Zemo"] + coefs["OneHeroTRUE"] + coefs["ScenarioBaron Zemo:OneHeroTRUE"]
   )
 
   return(
@@ -145,7 +155,12 @@ MarvelFactors <- function(extendedGlm) {
         "Four Horsemen",
         "Apocalypse",
         "Dark Beast",
-        "En Sabah Nur"
+        "En Sabah Nur",
+        "Black Widow",
+        "Batroc",
+        "M.O.D.O.K.",
+        "Thunderbolts",
+        "Baron Zemo"
       ),
       Multiplayer = round(multiplayer * 10),
       OneHero = round(oneHero * 10)

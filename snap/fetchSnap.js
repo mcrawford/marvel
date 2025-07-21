@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 import {format} from '@fast-csv/format'
 import fs from 'fs'
 
-const decks = await loadDecks('X23')
+const decks = await loadDecks('BetaRayBill')
 
 const deckLists = []
 const cardNames = new Set()
@@ -30,7 +30,7 @@ const matrix = deckLists.map(dl => {
 console.log(`Got ${matrix.length} decks`)
 // console.log(matrix)
 
-const ws = fs.createWriteStream('snap/snapdecks.csv')
+const ws = fs.createWriteStream('snapdecks.csv')
 const csvStream = format({headers: ['name', 'views', ...cardNames.values()]})
 csvStream.pipe(ws).on('end', () => process.exit())
 matrix.forEach(row => {
@@ -82,7 +82,8 @@ async function loadDecks(cardName) {
                 'sec-fetch-site': 'same-origin',
                 'sec-gpc': '1',
                 'Referer': 'https://marvelsnapzone.com/decks/',
-                'Referrer-Policy': 'strict-origin-when-cross-origin'
+                'Referrer-Policy': 'strict-origin-when-cross-origin',
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0'
             },
         })
         const text = await resp.text()

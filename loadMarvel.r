@@ -145,6 +145,11 @@ LoadMarvel <- function(filename) {
   marvel$CampaignApocalypse       <- (marvel$Campaign & marvel$Scenario == "Apocalypse")
   marvel$CampaignDarkBeast        <- (marvel$Campaign & marvel$Scenario == "Dark Beast")
   marvel$CampaignEnSabahNur       <- (marvel$Campaign & marvel$Scenario == "En Sabah Nur")
+  marvel$CampaignBlackWidow       <- (marvel$Campaign & marvel$Scenario == "Black Widow")
+  marvel$CampaignBatroc           <- (marvel$Campaign & marvel$Scenario == "Batroc")
+  marvel$CampaignMODOK            <- (marvel$Campaign & marvel$Scenario == "M.O.D.O.K.")
+  marvel$CampaignThunderbolts     <- (marvel$Campaign & marvel$Scenario == "Thunderbolts")
+  marvel$CampaignBaronZemo        <- (marvel$Campaign & marvel$Scenario == "Baron Zemo")
 
   marvel$Undeclared          <- marvel$Encounter == "" & marvel$Scenario != "Wrecking Crew"
   marvel$BombScare           <- grepl("Bomb Scare", marvel$Encounter, fixed = TRUE)
@@ -225,6 +230,7 @@ LoadMarvel <- function(filename) {
   marvel$MutantSlayers       <- grepl("Mutant Slayers", marvel$Encounter, fixed = TRUE)
   marvel$NastyBoys           <- grepl("Nasty Boys", marvel$Encounter, fixed = TRUE)
   marvel$Reavers             <- grepl("Reavers", marvel$Encounter, fixed = TRUE)
+  marvel$Dreadpool           <- grepl("Dreadpool", marvel$Encounter, fixed = TRUE)
   marvel$SuperStrength       <- grepl("Super Strength", marvel$Encounter, fixed = TRUE)
   marvel$Telepathy           <- grepl("Telepathy", marvel$Encounter, fixed = TRUE)
   marvel$HopeSummers         <- grepl("Hope Summers", marvel$Encounter, fixed = TRUE)
@@ -240,6 +246,19 @@ LoadMarvel <- function(filename) {
   marvel$AgeOfApocalypse     <- grepl("Age of Apocalypse", marvel$Encounter, fixed = TRUE)
   marvel$Sauron              <- grepl("Sauron", marvel$Encounter, fixed = TRUE)
   marvel$Arcade              <- grepl("Arcade", marvel$Encounter, fixed = TRUE)
+  marvel$CrazyGang           <- grepl("Crazy Gang", marvel$Encounter, fixed = TRUE)
+  marvel$Hellfire            <- grepl("Hellfire", marvel$Encounter, fixed = TRUE)
+  marvel$AIMAbduction        <- grepl("A.I.M. Abduction", marvel$Encounter, fixed = TRUE)
+  marvel$AIMScience          <- grepl("A.I.M. Science", marvel$Encounter, fixed = TRUE)
+  marvel$BatrocsBrigade      <- grepl("Batroc's Brigade", marvel$Encounter, fixed = TRUE)
+  marvel$ScientistSupreme    <- grepl("Scientist Supreme", marvel$Encounter, fixed = TRUE)
+  marvel$GravitationalPull   <- grepl("Gravitational Pull", marvel$Encounter, fixed = TRUE)
+  marvel$HardSound           <- grepl("Hard Sound", marvel$Encounter, fixed = TRUE)
+  marvel$PaleLittleSpider    <- grepl("Pale Little Spider", marvel$Encounter, fixed = TRUE)
+  marvel$PowerOfTheAtom      <- grepl("Power of the Atom", marvel$Encounter, fixed = TRUE)
+  marvel$Supersonic          <- grepl("Supersonic", marvel$Encounter, fixed = TRUE)
+  marvel$TheLeaper           <- grepl("The Leaper", marvel$Encounter, fixed = TRUE)
+  marvel$SHIELD              <- grepl("S.H.I.E.L.D.", marvel$Encounter, fixed = TRUE)
 
   marvel$HydraPatrol[marvel$Scenario == "Taskmaster"]                  <- TRUE
   marvel$GalacticArtifacts[marvel$Scenario == "Infiltrate the Museum"] <- TRUE
@@ -301,10 +320,10 @@ LoadMarvel <- function(filename) {
     marvel$Second == "Bishop" |
     marvel$Third == "Bishop" |
     marvel$Fourth == "Bishop"
-  marvel$BlackPanther <- marvel$First == "Black Panther" |
-    marvel$Second == "Black Panther" |
-    marvel$Third == "Black Panther" |
-    marvel$Fourth == "Black Panther"
+  marvel$BlackPanther <- marvel$First == "Black Panther (T'Challa)" |
+    marvel$Second == "Black Panther (T'Challa)" |
+    marvel$Third == "Black Panther (T'Challa)" |
+    marvel$Fourth == "Black Panther (T'Challa)"
   marvel$BlackWidow <- marvel$First == "Black Widow" |
     marvel$Second == "Black Widow" |
     marvel$Third == "Black Widow" |
@@ -385,6 +404,14 @@ LoadMarvel <- function(filename) {
     marvel$Second == "Magik" |
     marvel$Third == "Magik" |
     marvel$Fourth == "Magik"
+  marvel$Magneto <- marvel$First == "Magneto" |
+    marvel$Second == "Magneto" |
+    marvel$Third == "Magneto" |
+    marvel$Fourth == "Magneto"
+  marvel$MariaHill <- marvel$First == "Maria Hill" |
+    marvel$Second == "Maria Hill" |
+    marvel$Third == "Maria Hill" |
+    marvel$Fourth == "Maria Hill"
   marvel$MsMarvel <- marvel$First == "Ms. Marvel" |
     marvel$Second == "Ms. Marvel" |
     marvel$Third == "Ms. Marvel" |
@@ -393,6 +420,14 @@ LoadMarvel <- function(filename) {
     marvel$Second == "Nebula" |
     marvel$Third == "Nebula" |
     marvel$Fourth == "Nebula"
+  marvel$NickFury <- marvel$First == "Nick Fury" |
+    marvel$Second == "Nick Fury" |
+    marvel$Third == "Nick Fury" |
+    marvel$Fourth == "Nick Fury"
+  marvel$Nightcrawler <- marvel$First == "Nightcrawler" |
+    marvel$Second == "Nightcrawler" |
+    marvel$Third == "Nightcrawler" |
+    marvel$Fourth == "Nightcrawler"
   marvel$Nova <- marvel$First == "Nova" |
     marvel$Second == "Nova" |
     marvel$Third == "Nova" |
@@ -519,8 +554,12 @@ LoadMarvel <- function(filename) {
   marvel$IronManSolo               <- marvel$IronMan & marvel$OneHero
   marvel$IronheartSolo             <- marvel$Ironheart & marvel$OneHero
   marvel$MagikSolo                 <- marvel$Magik & marvel$OneHero
+  marvel$MagnetoSolo               <- marvel$Magneto & marvel$OneHero
+  marvel$MariaHillSolo             <- marvel$MariaHill & marvel$OneHero
   marvel$MsMarvelSolo              <- marvel$MsMarvel & marvel$OneHero
   marvel$NebulaSolo                <- marvel$Nebula & marvel$OneHero
+  marvel$NickFurySolo              <- marvel$NickFury & marvel$OneHero
+  marvel$NightcrawlerSolo          <- marvel$Nightcrawler & marvel$OneHero
   marvel$NovaSolo                  <- marvel$Nova & marvel$OneHero
   marvel$PhoenixSolo               <- marvel$Phoenix & marvel$OneHero
   marvel$PsylockeSolo              <- marvel$Psylocke & marvel$OneHero
@@ -654,6 +693,8 @@ GetEncounterSets <- function() {
     "Ship Command",
     "Sinister Assault",
 
+    "Dreadpool",
+
     "Infinites",
     "Dystopian Nightmare",
     "Hounds",
@@ -663,6 +704,23 @@ GetEncounterSets <- function() {
     "Blue Moon",
     "Celestial Tech",
     "Clan Akkaba",
-    "Age of Apocalypse"
+    "Age of Apocalypse",
+
+    "Sauron",
+    "Arcade",
+    "Crazy Gang",
+    "Hellfire",
+
+    "A.I.M. Abduction",
+    "A.I.M. Science",
+    "Batroc's Brigade",
+    "Scientist Supreme",
+    "Gravitational Pull",
+    "Hard Sound",
+    "Pale Little Spider",
+    "Power of the Atom",
+    "Supersonic",
+    "The Leaper",
+    "S.H.I.E.L.D."
   )
 }
