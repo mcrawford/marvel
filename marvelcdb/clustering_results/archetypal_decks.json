@@ -1,0 +1,1538 @@
+[
+  {
+    "cluster_id": 0,
+    "cluster_size": 8,
+    "name": "Archetype 1: Aggression 32030a",
+    "aspect": "Aggression",
+    "hero": "32030a",
+    "description": "Generated from 8 decks in cluster 1",
+    "avg_deck_size": 42.75,
+    "avg_unique_cards": 26.375,
+    "cards": [
+      {
+        "code": "32037",
+        "quantity": 3,
+        "frequency": 24,
+        "percentage": 300.0
+      },
+      {
+        "code": "13014",
+        "quantity": 2,
+        "frequency": 20,
+        "percentage": 250.0
+      },
+      {
+        "code": "32036",
+        "quantity": 2,
+        "frequency": 16,
+        "percentage": 200.0
+      },
+      {
+        "code": "32038",
+        "quantity": 2,
+        "frequency": 16,
+        "percentage": 200.0
+      },
+      {
+        "code": "32039",
+        "quantity": 2,
+        "frequency": 16,
+        "percentage": 200.0
+      },
+      {
+        "code": "32040",
+        "quantity": 2,
+        "frequency": 16,
+        "percentage": 200.0
+      },
+      {
+        "code": "28016",
+        "quantity": 2,
+        "frequency": 13,
+        "percentage": 162.5
+      },
+      {
+        "code": "32051",
+        "quantity": 1,
+        "frequency": 11,
+        "percentage": 137.5
+      },
+      {
+        "code": "10015",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 112.5
+      },
+      {
+        "code": "21022",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 112.5
+      },
+      {
+        "code": "01055",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 112.5
+      },
+      {
+        "code": "32032",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 100.0
+      },
+      {
+        "code": "32033",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 100.0
+      },
+      {
+        "code": "32034",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 100.0
+      },
+      {
+        "code": "32035",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 100.0
+      },
+      {
+        "code": "01057",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 100.0
+      },
+      {
+        "code": "32031a",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 100.0
+      },
+      {
+        "code": "10018",
+        "quantity": 1,
+        "frequency": 6,
+        "percentage": 75.0
+      },
+      {
+        "code": "18012",
+        "quantity": 1,
+        "frequency": 6,
+        "percentage": 75.0
+      },
+      {
+        "code": "04043",
+        "quantity": 1,
+        "frequency": 6,
+        "percentage": 75.0
+      },
+      {
+        "code": "38019",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 62.5
+      },
+      {
+        "code": "04044",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 62.5
+      },
+      {
+        "code": "10014",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 62.5
+      },
+      {
+        "code": "01090",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 62.5
+      },
+      {
+        "code": "32047",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 62.5
+      },
+      {
+        "code": "16024",
+        "quantity": 1,
+        "frequency": 4,
+        "percentage": 50.0
+      },
+      {
+        "code": "01089",
+        "quantity": 1,
+        "frequency": 4,
+        "percentage": 50.0
+      },
+      {
+        "code": "32020",
+        "quantity": 1,
+        "frequency": 4,
+        "percentage": 50.0
+      },
+      {
+        "code": "01053",
+        "quantity": 1,
+        "frequency": 4,
+        "percentage": 50.0
+      },
+      {
+        "code": "16045",
+        "quantity": 1,
+        "frequency": 3,
+        "percentage": 37.5
+      }
+    ]
+  },
+  {
+    "cluster_id": 1,
+    "cluster_size": 17,
+    "name": "Archetype 2: Leadership 32030a",
+    "aspect": "Leadership",
+    "hero": "32030a",
+    "description": "Generated from 17 decks in cluster 2",
+    "avg_deck_size": 42.05882352941177,
+    "avg_unique_cards": 30.764705882352942,
+    "cards": [
+      {
+        "code": "32037",
+        "quantity": 3,
+        "frequency": 51,
+        "percentage": 300.0
+      },
+      {
+        "code": "32036",
+        "quantity": 2,
+        "frequency": 34,
+        "percentage": 200.0
+      },
+      {
+        "code": "32038",
+        "quantity": 2,
+        "frequency": 34,
+        "percentage": 200.0
+      },
+      {
+        "code": "32039",
+        "quantity": 2,
+        "frequency": 34,
+        "percentage": 200.0
+      },
+      {
+        "code": "32040",
+        "quantity": 2,
+        "frequency": 34,
+        "percentage": 200.0
+      },
+      {
+        "code": "32032",
+        "quantity": 1,
+        "frequency": 17,
+        "percentage": 100.0
+      },
+      {
+        "code": "32033",
+        "quantity": 1,
+        "frequency": 17,
+        "percentage": 100.0
+      },
+      {
+        "code": "32034",
+        "quantity": 1,
+        "frequency": 17,
+        "percentage": 100.0
+      },
+      {
+        "code": "32035",
+        "quantity": 1,
+        "frequency": 17,
+        "percentage": 100.0
+      },
+      {
+        "code": "33020",
+        "quantity": 1,
+        "frequency": 17,
+        "percentage": 100.0
+      },
+      {
+        "code": "01090",
+        "quantity": 1,
+        "frequency": 17,
+        "percentage": 100.0
+      },
+      {
+        "code": "32031a",
+        "quantity": 1,
+        "frequency": 17,
+        "percentage": 100.0
+      },
+      {
+        "code": "01088",
+        "quantity": 1,
+        "frequency": 16,
+        "percentage": 94.11764705882352
+      },
+      {
+        "code": "01089",
+        "quantity": 1,
+        "frequency": 16,
+        "percentage": 94.11764705882352
+      },
+      {
+        "code": "32020",
+        "quantity": 1,
+        "frequency": 15,
+        "percentage": 88.23529411764706
+      },
+      {
+        "code": "32051",
+        "quantity": 1,
+        "frequency": 15,
+        "percentage": 88.23529411764706
+      },
+      {
+        "code": "12031",
+        "quantity": 1,
+        "frequency": 14,
+        "percentage": 82.35294117647058
+      },
+      {
+        "code": "32019",
+        "quantity": 1,
+        "frequency": 14,
+        "percentage": 82.35294117647058
+      },
+      {
+        "code": "36022",
+        "quantity": 1,
+        "frequency": 13,
+        "percentage": 76.47058823529412
+      },
+      {
+        "code": "16024",
+        "quantity": 1,
+        "frequency": 10,
+        "percentage": 58.82352941176471
+      },
+      {
+        "code": "33019",
+        "quantity": 1,
+        "frequency": 10,
+        "percentage": 58.82352941176471
+      },
+      {
+        "code": "21022",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 52.94117647058824
+      },
+      {
+        "code": "45048",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 52.94117647058824
+      },
+      {
+        "code": "01071",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 52.94117647058824
+      },
+      {
+        "code": "05031",
+        "quantity": 1,
+        "frequency": 7,
+        "percentage": 41.17647058823529
+      },
+      {
+        "code": "22015",
+        "quantity": 1,
+        "frequency": 6,
+        "percentage": 35.294117647058826
+      },
+      {
+        "code": "04049",
+        "quantity": 1,
+        "frequency": 6,
+        "percentage": 35.294117647058826
+      },
+      {
+        "code": "34016",
+        "quantity": 1,
+        "frequency": 6,
+        "percentage": 35.294117647058826
+      },
+      {
+        "code": "33014",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 29.411764705882355
+      },
+      {
+        "code": "01062",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 29.411764705882355
+      }
+    ]
+  },
+  {
+    "cluster_id": 2,
+    "cluster_size": 26,
+    "name": "Archetype 3: Justice 32030a",
+    "aspect": "Justice",
+    "hero": "32030a",
+    "description": "Generated from 26 decks in cluster 3",
+    "avg_deck_size": 42.57692307692308,
+    "avg_unique_cards": 29.423076923076923,
+    "cards": [
+      {
+        "code": "32037",
+        "quantity": 3,
+        "frequency": 78,
+        "percentage": 300.0
+      },
+      {
+        "code": "32036",
+        "quantity": 2,
+        "frequency": 52,
+        "percentage": 200.0
+      },
+      {
+        "code": "32038",
+        "quantity": 2,
+        "frequency": 52,
+        "percentage": 200.0
+      },
+      {
+        "code": "32039",
+        "quantity": 2,
+        "frequency": 52,
+        "percentage": 200.0
+      },
+      {
+        "code": "32040",
+        "quantity": 2,
+        "frequency": 52,
+        "percentage": 200.0
+      },
+      {
+        "code": "32032",
+        "quantity": 1,
+        "frequency": 26,
+        "percentage": 100.0
+      },
+      {
+        "code": "32033",
+        "quantity": 1,
+        "frequency": 26,
+        "percentage": 100.0
+      },
+      {
+        "code": "32034",
+        "quantity": 1,
+        "frequency": 26,
+        "percentage": 100.0
+      },
+      {
+        "code": "32035",
+        "quantity": 1,
+        "frequency": 26,
+        "percentage": 100.0
+      },
+      {
+        "code": "32031a",
+        "quantity": 1,
+        "frequency": 26,
+        "percentage": 100.0
+      },
+      {
+        "code": "01090",
+        "quantity": 1,
+        "frequency": 22,
+        "percentage": 84.61538461538461
+      },
+      {
+        "code": "01088",
+        "quantity": 1,
+        "frequency": 21,
+        "percentage": 80.76923076923077
+      },
+      {
+        "code": "01089",
+        "quantity": 1,
+        "frequency": 21,
+        "percentage": 80.76923076923077
+      },
+      {
+        "code": "32020",
+        "quantity": 1,
+        "frequency": 18,
+        "percentage": 69.23076923076923
+      },
+      {
+        "code": "44054",
+        "quantity": 1,
+        "frequency": 13,
+        "percentage": 50.0
+      },
+      {
+        "code": "01062",
+        "quantity": 1,
+        "frequency": 12,
+        "percentage": 46.15384615384615
+      },
+      {
+        "code": "16024",
+        "quantity": 1,
+        "frequency": 12,
+        "percentage": 46.15384615384615
+      },
+      {
+        "code": "44017",
+        "quantity": 1,
+        "frequency": 12,
+        "percentage": 46.15384615384615
+      },
+      {
+        "code": "44021",
+        "quantity": 1,
+        "frequency": 12,
+        "percentage": 46.15384615384615
+      },
+      {
+        "code": "04047",
+        "quantity": 1,
+        "frequency": 10,
+        "percentage": 38.46153846153847
+      },
+      {
+        "code": "33035",
+        "quantity": 1,
+        "frequency": 10,
+        "percentage": 38.46153846153847
+      },
+      {
+        "code": "12016",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 34.61538461538461
+      },
+      {
+        "code": "22015",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 34.61538461538461
+      },
+      {
+        "code": "48032",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 34.61538461538461
+      },
+      {
+        "code": "21022",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 30.76923076923077
+      },
+      {
+        "code": "01092",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 30.76923076923077
+      },
+      {
+        "code": "01065",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 30.76923076923077
+      },
+      {
+        "code": "04049",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 30.76923076923077
+      },
+      {
+        "code": "29017",
+        "quantity": 1,
+        "frequency": 7,
+        "percentage": 26.923076923076923
+      },
+      {
+        "code": "15015",
+        "quantity": 1,
+        "frequency": 7,
+        "percentage": 26.923076923076923
+      }
+    ]
+  },
+  {
+    "cluster_id": 3,
+    "cluster_size": 5,
+    "name": "Archetype 4: Protection 32030a",
+    "aspect": "Protection",
+    "hero": "32030a",
+    "description": "Generated from 5 decks in cluster 4",
+    "avg_deck_size": 49.6,
+    "avg_unique_cards": 34.0,
+    "cards": [
+      {
+        "code": "32037",
+        "quantity": 3,
+        "frequency": 15,
+        "percentage": 300.0
+      },
+      {
+        "code": "14015",
+        "quantity": 2,
+        "frequency": 12,
+        "percentage": 240.0
+      },
+      {
+        "code": "26018",
+        "quantity": 2,
+        "frequency": 12,
+        "percentage": 240.0
+      },
+      {
+        "code": "05014",
+        "quantity": 2,
+        "frequency": 11,
+        "percentage": 220.00000000000003
+      },
+      {
+        "code": "27014",
+        "quantity": 2,
+        "frequency": 10,
+        "percentage": 200.0
+      },
+      {
+        "code": "32036",
+        "quantity": 2,
+        "frequency": 10,
+        "percentage": 200.0
+      },
+      {
+        "code": "32038",
+        "quantity": 2,
+        "frequency": 10,
+        "percentage": 200.0
+      },
+      {
+        "code": "32039",
+        "quantity": 2,
+        "frequency": 10,
+        "percentage": 200.0
+      },
+      {
+        "code": "32040",
+        "quantity": 2,
+        "frequency": 10,
+        "percentage": 200.0
+      },
+      {
+        "code": "18015",
+        "quantity": 2,
+        "frequency": 9,
+        "percentage": 180.0
+      },
+      {
+        "code": "32014",
+        "quantity": 2,
+        "frequency": 9,
+        "percentage": 180.0
+      },
+      {
+        "code": "53037",
+        "quantity": 2,
+        "frequency": 8,
+        "percentage": 160.0
+      },
+      {
+        "code": "32020",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 100.0
+      },
+      {
+        "code": "32032",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 100.0
+      },
+      {
+        "code": "32033",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 100.0
+      },
+      {
+        "code": "32034",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 100.0
+      },
+      {
+        "code": "32035",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 100.0
+      },
+      {
+        "code": "43021",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 100.0
+      },
+      {
+        "code": "45021",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 100.0
+      },
+      {
+        "code": "01091",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 100.0
+      },
+      {
+        "code": "09020",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 100.0
+      },
+      {
+        "code": "32031a",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 100.0
+      },
+      {
+        "code": "26013",
+        "quantity": 1,
+        "frequency": 4,
+        "percentage": 80.0
+      },
+      {
+        "code": "26016",
+        "quantity": 1,
+        "frequency": 4,
+        "percentage": 80.0
+      },
+      {
+        "code": "01092",
+        "quantity": 1,
+        "frequency": 4,
+        "percentage": 80.0
+      },
+      {
+        "code": "13018",
+        "quantity": 1,
+        "frequency": 4,
+        "percentage": 80.0
+      },
+      {
+        "code": "40027",
+        "quantity": 1,
+        "frequency": 4,
+        "percentage": 80.0
+      },
+      {
+        "code": "45049",
+        "quantity": 1,
+        "frequency": 4,
+        "percentage": 80.0
+      },
+      {
+        "code": "48014",
+        "quantity": 1,
+        "frequency": 4,
+        "percentage": 80.0
+      },
+      {
+        "code": "32021",
+        "quantity": 1,
+        "frequency": 3,
+        "percentage": 60.0
+      }
+    ]
+  },
+  {
+    "cluster_id": 4,
+    "cluster_size": 18,
+    "name": "Archetype 5: Protection 32030a",
+    "aspect": "Protection",
+    "hero": "32030a",
+    "description": "Generated from 18 decks in cluster 5",
+    "avg_deck_size": 42.888888888888886,
+    "avg_unique_cards": 25.944444444444443,
+    "cards": [
+      {
+        "code": "32037",
+        "quantity": 3,
+        "frequency": 54,
+        "percentage": 300.0
+      },
+      {
+        "code": "32014",
+        "quantity": 3,
+        "frequency": 52,
+        "percentage": 288.88888888888886
+      },
+      {
+        "code": "16017",
+        "quantity": 3,
+        "frequency": 48,
+        "percentage": 266.66666666666663
+      },
+      {
+        "code": "26018",
+        "quantity": 2,
+        "frequency": 42,
+        "percentage": 233.33333333333334
+      },
+      {
+        "code": "32036",
+        "quantity": 2,
+        "frequency": 36,
+        "percentage": 200.0
+      },
+      {
+        "code": "32038",
+        "quantity": 2,
+        "frequency": 36,
+        "percentage": 200.0
+      },
+      {
+        "code": "32039",
+        "quantity": 2,
+        "frequency": 36,
+        "percentage": 200.0
+      },
+      {
+        "code": "32040",
+        "quantity": 2,
+        "frequency": 36,
+        "percentage": 200.0
+      },
+      {
+        "code": "05014",
+        "quantity": 2,
+        "frequency": 35,
+        "percentage": 194.44444444444443
+      },
+      {
+        "code": "14015",
+        "quantity": 2,
+        "frequency": 32,
+        "percentage": 177.77777777777777
+      },
+      {
+        "code": "01077",
+        "quantity": 1,
+        "frequency": 26,
+        "percentage": 144.44444444444443
+      },
+      {
+        "code": "27014",
+        "quantity": 1,
+        "frequency": 20,
+        "percentage": 111.11111111111111
+      },
+      {
+        "code": "42016",
+        "quantity": 1,
+        "frequency": 19,
+        "percentage": 105.55555555555556
+      },
+      {
+        "code": "32032",
+        "quantity": 1,
+        "frequency": 18,
+        "percentage": 100.0
+      },
+      {
+        "code": "32033",
+        "quantity": 1,
+        "frequency": 18,
+        "percentage": 100.0
+      },
+      {
+        "code": "32034",
+        "quantity": 1,
+        "frequency": 18,
+        "percentage": 100.0
+      },
+      {
+        "code": "32035",
+        "quantity": 1,
+        "frequency": 18,
+        "percentage": 100.0
+      },
+      {
+        "code": "32031a",
+        "quantity": 1,
+        "frequency": 18,
+        "percentage": 100.0
+      },
+      {
+        "code": "09020",
+        "quantity": 1,
+        "frequency": 17,
+        "percentage": 94.44444444444444
+      },
+      {
+        "code": "10031",
+        "quantity": 1,
+        "frequency": 16,
+        "percentage": 88.88888888888889
+      },
+      {
+        "code": "14017",
+        "quantity": 1,
+        "frequency": 16,
+        "percentage": 88.88888888888889
+      },
+      {
+        "code": "26016",
+        "quantity": 1,
+        "frequency": 16,
+        "percentage": 88.88888888888889
+      },
+      {
+        "code": "32018",
+        "quantity": 1,
+        "frequency": 16,
+        "percentage": 88.88888888888889
+      },
+      {
+        "code": "16024",
+        "quantity": 1,
+        "frequency": 10,
+        "percentage": 55.55555555555556
+      },
+      {
+        "code": "01089",
+        "quantity": 1,
+        "frequency": 10,
+        "percentage": 55.55555555555556
+      },
+      {
+        "code": "01090",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 50.0
+      },
+      {
+        "code": "38015",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 50.0
+      },
+      {
+        "code": "01088",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 44.44444444444444
+      },
+      {
+        "code": "48014",
+        "quantity": 1,
+        "frequency": 7,
+        "percentage": 38.88888888888889
+      },
+      {
+        "code": "42018",
+        "quantity": 1,
+        "frequency": 6,
+        "percentage": 33.33333333333333
+      }
+    ]
+  },
+  {
+    "cluster_id": 5,
+    "cluster_size": 21,
+    "name": "Archetype 6: Aggression 32030a",
+    "aspect": "Aggression",
+    "hero": "32030a",
+    "description": "Generated from 21 decks in cluster 6",
+    "avg_deck_size": 41.904761904761905,
+    "avg_unique_cards": 27.952380952380953,
+    "cards": [
+      {
+        "code": "32037",
+        "quantity": 3,
+        "frequency": 63,
+        "percentage": 300.0
+      },
+      {
+        "code": "32036",
+        "quantity": 2,
+        "frequency": 42,
+        "percentage": 200.0
+      },
+      {
+        "code": "32038",
+        "quantity": 2,
+        "frequency": 42,
+        "percentage": 200.0
+      },
+      {
+        "code": "32039",
+        "quantity": 2,
+        "frequency": 42,
+        "percentage": 200.0
+      },
+      {
+        "code": "32040",
+        "quantity": 2,
+        "frequency": 42,
+        "percentage": 200.0
+      },
+      {
+        "code": "13014",
+        "quantity": 1,
+        "frequency": 30,
+        "percentage": 142.85714285714286
+      },
+      {
+        "code": "32051",
+        "quantity": 1,
+        "frequency": 29,
+        "percentage": 138.0952380952381
+      },
+      {
+        "code": "32032",
+        "quantity": 1,
+        "frequency": 21,
+        "percentage": 100.0
+      },
+      {
+        "code": "32033",
+        "quantity": 1,
+        "frequency": 21,
+        "percentage": 100.0
+      },
+      {
+        "code": "32034",
+        "quantity": 1,
+        "frequency": 21,
+        "percentage": 100.0
+      },
+      {
+        "code": "32035",
+        "quantity": 1,
+        "frequency": 21,
+        "percentage": 100.0
+      },
+      {
+        "code": "01055",
+        "quantity": 1,
+        "frequency": 21,
+        "percentage": 100.0
+      },
+      {
+        "code": "32031a",
+        "quantity": 1,
+        "frequency": 21,
+        "percentage": 100.0
+      },
+      {
+        "code": "32048",
+        "quantity": 1,
+        "frequency": 20,
+        "percentage": 95.23809523809523
+      },
+      {
+        "code": "01088",
+        "quantity": 1,
+        "frequency": 19,
+        "percentage": 90.47619047619048
+      },
+      {
+        "code": "01089",
+        "quantity": 1,
+        "frequency": 19,
+        "percentage": 90.47619047619048
+      },
+      {
+        "code": "01090",
+        "quantity": 1,
+        "frequency": 19,
+        "percentage": 90.47619047619048
+      },
+      {
+        "code": "32043",
+        "quantity": 1,
+        "frequency": 19,
+        "percentage": 90.47619047619048
+      },
+      {
+        "code": "32019",
+        "quantity": 1,
+        "frequency": 17,
+        "percentage": 80.95238095238095
+      },
+      {
+        "code": "32041",
+        "quantity": 1,
+        "frequency": 17,
+        "percentage": 80.95238095238095
+      },
+      {
+        "code": "10014",
+        "quantity": 1,
+        "frequency": 15,
+        "percentage": 71.42857142857143
+      },
+      {
+        "code": "32021",
+        "quantity": 1,
+        "frequency": 15,
+        "percentage": 71.42857142857143
+      },
+      {
+        "code": "32045",
+        "quantity": 1,
+        "frequency": 15,
+        "percentage": 71.42857142857143
+      },
+      {
+        "code": "32046",
+        "quantity": 1,
+        "frequency": 14,
+        "percentage": 66.66666666666666
+      },
+      {
+        "code": "32020",
+        "quantity": 1,
+        "frequency": 13,
+        "percentage": 61.904761904761905
+      },
+      {
+        "code": "32042",
+        "quantity": 1,
+        "frequency": 13,
+        "percentage": 61.904761904761905
+      },
+      {
+        "code": "01086",
+        "quantity": 1,
+        "frequency": 12,
+        "percentage": 57.14285714285714
+      },
+      {
+        "code": "01053",
+        "quantity": 1,
+        "frequency": 12,
+        "percentage": 57.14285714285714
+      },
+      {
+        "code": "10018",
+        "quantity": 1,
+        "frequency": 11,
+        "percentage": 52.38095238095239
+      },
+      {
+        "code": "21022",
+        "quantity": 1,
+        "frequency": 11,
+        "percentage": 52.38095238095239
+      }
+    ]
+  },
+  {
+    "cluster_id": 6,
+    "cluster_size": 9,
+    "name": "Archetype 7: Protection 32030a",
+    "aspect": "Protection",
+    "hero": "32030a",
+    "description": "Generated from 9 decks in cluster 7",
+    "avg_deck_size": 41.77777777777778,
+    "avg_unique_cards": 25.11111111111111,
+    "cards": [
+      {
+        "code": "32037",
+        "quantity": 3,
+        "frequency": 27,
+        "percentage": 300.0
+      },
+      {
+        "code": "01077",
+        "quantity": 3,
+        "frequency": 24,
+        "percentage": 266.66666666666663
+      },
+      {
+        "code": "05014",
+        "quantity": 3,
+        "frequency": 23,
+        "percentage": 255.55555555555554
+      },
+      {
+        "code": "32036",
+        "quantity": 2,
+        "frequency": 18,
+        "percentage": 200.0
+      },
+      {
+        "code": "32038",
+        "quantity": 2,
+        "frequency": 18,
+        "percentage": 200.0
+      },
+      {
+        "code": "32039",
+        "quantity": 2,
+        "frequency": 18,
+        "percentage": 200.0
+      },
+      {
+        "code": "32040",
+        "quantity": 2,
+        "frequency": 18,
+        "percentage": 200.0
+      },
+      {
+        "code": "32014",
+        "quantity": 2,
+        "frequency": 18,
+        "percentage": 200.0
+      },
+      {
+        "code": "14014",
+        "quantity": 2,
+        "frequency": 17,
+        "percentage": 188.88888888888889
+      },
+      {
+        "code": "09015",
+        "quantity": 1,
+        "frequency": 13,
+        "percentage": 144.44444444444443
+      },
+      {
+        "code": "16017",
+        "quantity": 1,
+        "frequency": 12,
+        "percentage": 133.33333333333331
+      },
+      {
+        "code": "32018",
+        "quantity": 1,
+        "frequency": 10,
+        "percentage": 111.11111111111111
+      },
+      {
+        "code": "32032",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 100.0
+      },
+      {
+        "code": "32033",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 100.0
+      },
+      {
+        "code": "32034",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 100.0
+      },
+      {
+        "code": "32035",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 100.0
+      },
+      {
+        "code": "09020",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 100.0
+      },
+      {
+        "code": "32031a",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 100.0
+      },
+      {
+        "code": "10031",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 100.0
+      },
+      {
+        "code": "14015",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 88.88888888888889
+      },
+      {
+        "code": "01088",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 88.88888888888889
+      },
+      {
+        "code": "01089",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 88.88888888888889
+      },
+      {
+        "code": "01090",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 88.88888888888889
+      },
+      {
+        "code": "32051",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 88.88888888888889
+      },
+      {
+        "code": "27014",
+        "quantity": 1,
+        "frequency": 6,
+        "percentage": 66.66666666666666
+      },
+      {
+        "code": "32020",
+        "quantity": 1,
+        "frequency": 6,
+        "percentage": 66.66666666666666
+      },
+      {
+        "code": "14017",
+        "quantity": 1,
+        "frequency": 6,
+        "percentage": 66.66666666666666
+      },
+      {
+        "code": "26013",
+        "quantity": 1,
+        "frequency": 5,
+        "percentage": 55.55555555555556
+      },
+      {
+        "code": "16024",
+        "quantity": 1,
+        "frequency": 3,
+        "percentage": 33.33333333333333
+      },
+      {
+        "code": "26018",
+        "quantity": 1,
+        "frequency": 3,
+        "percentage": 33.33333333333333
+      }
+    ]
+  },
+  {
+    "cluster_id": 7,
+    "cluster_size": 15,
+    "name": "Archetype 8: Protection 32030a",
+    "aspect": "Protection",
+    "hero": "32030a",
+    "description": "Generated from 15 decks in cluster 8",
+    "avg_deck_size": 42.733333333333334,
+    "avg_unique_cards": 28.333333333333332,
+    "cards": [
+      {
+        "code": "32037",
+        "quantity": 3,
+        "frequency": 45,
+        "percentage": 300.0
+      },
+      {
+        "code": "01082",
+        "quantity": 2,
+        "frequency": 36,
+        "percentage": 240.0
+      },
+      {
+        "code": "32036",
+        "quantity": 2,
+        "frequency": 30,
+        "percentage": 200.0
+      },
+      {
+        "code": "32038",
+        "quantity": 2,
+        "frequency": 30,
+        "percentage": 200.0
+      },
+      {
+        "code": "32039",
+        "quantity": 2,
+        "frequency": 30,
+        "percentage": 200.0
+      },
+      {
+        "code": "32040",
+        "quantity": 2,
+        "frequency": 30,
+        "percentage": 200.0
+      },
+      {
+        "code": "32014",
+        "quantity": 2,
+        "frequency": 24,
+        "percentage": 160.0
+      },
+      {
+        "code": "21022",
+        "quantity": 1,
+        "frequency": 16,
+        "percentage": 106.66666666666667
+      },
+      {
+        "code": "32032",
+        "quantity": 1,
+        "frequency": 15,
+        "percentage": 100.0
+      },
+      {
+        "code": "32033",
+        "quantity": 1,
+        "frequency": 15,
+        "percentage": 100.0
+      },
+      {
+        "code": "32034",
+        "quantity": 1,
+        "frequency": 15,
+        "percentage": 100.0
+      },
+      {
+        "code": "32035",
+        "quantity": 1,
+        "frequency": 15,
+        "percentage": 100.0
+      },
+      {
+        "code": "01088",
+        "quantity": 1,
+        "frequency": 15,
+        "percentage": 100.0
+      },
+      {
+        "code": "01089",
+        "quantity": 1,
+        "frequency": 15,
+        "percentage": 100.0
+      },
+      {
+        "code": "01090",
+        "quantity": 1,
+        "frequency": 15,
+        "percentage": 100.0
+      },
+      {
+        "code": "32031a",
+        "quantity": 1,
+        "frequency": 15,
+        "percentage": 100.0
+      },
+      {
+        "code": "32018",
+        "quantity": 1,
+        "frequency": 14,
+        "percentage": 93.33333333333333
+      },
+      {
+        "code": "14014",
+        "quantity": 1,
+        "frequency": 12,
+        "percentage": 80.0
+      },
+      {
+        "code": "32020",
+        "quantity": 1,
+        "frequency": 11,
+        "percentage": 73.33333333333333
+      },
+      {
+        "code": "32051",
+        "quantity": 1,
+        "frequency": 11,
+        "percentage": 73.33333333333333
+      },
+      {
+        "code": "01077",
+        "quantity": 1,
+        "frequency": 11,
+        "percentage": 73.33333333333333
+      },
+      {
+        "code": "16017",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 60.0
+      },
+      {
+        "code": "01079",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 60.0
+      },
+      {
+        "code": "09015",
+        "quantity": 1,
+        "frequency": 9,
+        "percentage": 60.0
+      },
+      {
+        "code": "32048",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 53.333333333333336
+      },
+      {
+        "code": "16014",
+        "quantity": 1,
+        "frequency": 8,
+        "percentage": 53.333333333333336
+      },
+      {
+        "code": "32012",
+        "quantity": 1,
+        "frequency": 7,
+        "percentage": 46.666666666666664
+      },
+      {
+        "code": "01087",
+        "quantity": 1,
+        "frequency": 7,
+        "percentage": 46.666666666666664
+      },
+      {
+        "code": "27016",
+        "quantity": 1,
+        "frequency": 7,
+        "percentage": 46.666666666666664
+      },
+      {
+        "code": "09020",
+        "quantity": 1,
+        "frequency": 7,
+        "percentage": 46.666666666666664
+      }
+    ]
+  }
+]

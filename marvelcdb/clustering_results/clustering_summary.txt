@@ -1,0 +1,70 @@
+Marvel Champions Deck Clustering Analysis
+==================================================
+
+Total clusters: 8
+Total decks analyzed: 119
+
+Cluster 1:
+  Size: 8 decks
+  Most common aspect: Aggression
+  Most common hero: 32030a
+  Avg deck size: 42.8 cards
+  Avg unique cards: 26.4
+  Top 5 cards: 13014, 32051, 21022, 01055, 01057
+
+Cluster 2:
+  Size: 17 decks
+  Most common aspect: Leadership
+  Most common hero: 32030a
+  Avg deck size: 42.1 cards
+  Avg unique cards: 30.8
+  Top 5 cards: 33020, 01088, 01089, 32020, 32051
+
+Cluster 3:
+  Size: 26 decks
+  Most common aspect: Justice
+  Most common hero: 32030a
+  Avg deck size: 42.6 cards
+  Avg unique cards: 29.4
+  Top 5 cards: 01088, 01089, 32020, 16024, 04047
+
+Cluster 4:
+  Size: 5 decks
+  Most common aspect: Protection
+  Most common hero: 32030a
+  Avg deck size: 49.6 cards
+  Avg unique cards: 34.0
+  Top 5 cards: 14015, 26018, 05014, 27014, 32014
+
+Cluster 5:
+  Size: 18 decks
+  Most common aspect: Protection
+  Most common hero: 32030a
+  Avg deck size: 42.9 cards
+  Avg unique cards: 25.9
+  Top 5 cards: 32014, 16017, 26018, 05014, 14015
+
+Cluster 6:
+  Size: 21 decks
+  Most common aspect: Aggression
+  Most common hero: 32030a
+  Avg deck size: 41.9 cards
+  Avg unique cards: 28.0
+  Top 5 cards: 13014, 32051, 01055, 32048, 01088
+
+Cluster 7:
+  Size: 9 decks
+  Most common aspect: Protection
+  Most common hero: 32030a
+  Avg deck size: 41.8 cards
+  Avg unique cards: 25.1
+  Top 5 cards: 01077, 05014, 32014, 14014, 16017
+
+Cluster 8:
+  Size: 15 decks
+  Most common aspect: Protection
+  Most common hero: 32030a
+  Avg deck size: 42.7 cards
+  Avg unique cards: 28.3
+  Top 5 cards: 01082, 32014, 21022, 01088, 01089
+
