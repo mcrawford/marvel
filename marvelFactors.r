@@ -51,7 +51,21 @@ MarvelFactors <- function(extendedGlm) {
     coefs["ScenarioBatroc"],
     coefs["ScenarioM.O.D.O.K."],
     coefs["ScenarioThunderbolts"],
-    coefs["ScenarioBaron Zemo"]
+    coefs["ScenarioBaron Zemo"],
+    coefs["ScenarioEnchantress"],
+    coefs["ScenarioGod of Lies"],
+    coefs["ScenarioCaptain America"],
+    coefs["ScenarioCaptain Marvel"],
+    coefs["ScenarioIron Man"],
+    coefs["ScenarioShe-Hulk"],
+    coefs["ScenarioSpider-Woman"],
+    coefs["ScenarioVision"],
+    coefs["ScenarioArt Museum Heist"],
+    coefs["ScenarioThe Getaway"],
+    coefs["ScenarioProtection Racket"],
+    coefs["ScenarioThe Raft Breakout"],
+    coefs["ScenarioStop the Presses"],
+    coefs["ScenarioKingpin"]
   )
   oneHero <- c(
     0 + coefs["OneHeroTRUE"], # Rhino
@@ -104,7 +118,21 @@ MarvelFactors <- function(extendedGlm) {
     coefs["ScenarioBatroc"] + coefs["OneHeroTRUE"] + coefs["ScenarioBatroc:OneHeroTRUE"],
     coefs["ScenarioM.O.D.O.K."] + coefs["OneHeroTRUE"] + coefs["ScenarioM.O.D.O.K.:OneHeroTRUE"],
     coefs["ScenarioThunderbolts"] + coefs["OneHeroTRUE"] + coefs["ScenarioThunderbolts:OneHeroTRUE"],
-    coefs["ScenarioBaron Zemo"] + coefs["OneHeroTRUE"] + coefs["ScenarioBaron Zemo:OneHeroTRUE"]
+    coefs["ScenarioBaron Zemo"] + coefs["OneHeroTRUE"] + coefs["ScenarioBaron Zemo:OneHeroTRUE"],
+    coefs["ScenarioEnchantress"] + coefs["OneHeroTRUE"] + coefs["ScenarioEnchantress:OneHeroTRUE"],
+    coefs["ScenarioGod of Lies"] + coefs["OneHeroTRUE"] + coefs["ScenarioGod of Lies:OneHeroTRUE"],
+    coefs["ScenarioCaptain America"] + coefs["OneHeroTRUE"] + coefs["ScenarioCaptain America:OneHeroTRUE"],
+    coefs["ScenarioCaptain Marvel"] + coefs["OneHeroTRUE"] + coefs["ScenarioCaptain Marvel:OneHeroTRUE"],
+    coefs["ScenarioIron Man"] + coefs["OneHeroTRUE"] + coefs["ScenarioIron Man:OneHeroTRUE"],
+    coefs["ScenarioShe-Hulk"] + coefs["OneHeroTRUE"] + coefs["ScenarioShe-Hulk:OneHeroTRUE"],
+    coefs["ScenarioSpider-Woman"] + coefs["OneHeroTRUE"] + coefs["ScenarioSpider-Woman:OneHeroTRUE"],
+    coefs["ScenarioVision"] + coefs["OneHeroTRUE"] + coefs["ScenarioVision:OneHeroTRUE"],
+    coefs["ScenarioArt Museum Heist"] + coefs["OneHeroTRUE"] + coefs["ScenarioArt Museum Heist:OneHeroTRUE"],
+    coefs["ScenarioThe Getaway"] + coefs["OneHeroTRUE"] + coefs["ScenarioThe Getaway:OneHeroTRUE"],
+    coefs["ScenarioProtection Racket"] + coefs["OneHeroTRUE"] + coefs["ScenarioProtection Racket:OneHeroTRUE"],
+    coefs["ScenarioThe Raft Breakout"] + coefs["OneHeroTRUE"] + coefs["ScenarioThe Raft Breakout:OneHeroTRUE"],
+    coefs["ScenarioStop the Presses"] + coefs["OneHeroTRUE"] + coefs["ScenarioStop the Presses:OneHeroTRUE"],
+    coefs["ScenarioKingpin"] + coefs["OneHeroTRUE"] + coefs["ScenarioKingpin:OneHeroTRUE"]
   )
 
   return(
@@ -160,7 +188,21 @@ MarvelFactors <- function(extendedGlm) {
         "Batroc",
         "M.O.D.O.K.",
         "Thunderbolts",
-        "Baron Zemo"
+        "Baron Zemo",
+        "Enchantress",
+        "God of Lies",
+        "Captain America",
+        "Captain Marvel",
+        "Iron Man",
+        "She-Hulk",
+        "Spider-Woman",
+        "Vision",
+        "Art Museum Heist",
+        "The Getaway",
+        "Protection Racket",
+        "The Raft Breakout",
+        "Stop the Presses",
+        "Kingpin"
       ),
       Multiplayer = round(multiplayer * 10),
       OneHero = round(oneHero * 10)

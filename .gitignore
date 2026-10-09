@@ -2,3 +2,6 @@
 .idea
 /node_modules/
 snap/snapdecks.csv
+.venv/
+__pycache__/
+*.pyc
