@@ -18,6 +18,18 @@ MarvelEncounterSets(fit)
 MarvelStars(fit)
 ```
 
+For copy-and-paste BGG forum output, run `MarvelOutput(fit)` instead of
+printing the individual rating tables. It produces two independent floated
+columns with preformatted tables, keeps scenario and encounter release groups
+together. Each column reads
+from top to bottom, then continues in the next column. The star scale and prose
+instructions are maintained manually in the forum post.
+
+```r
+MarvelOutput(fit)
+MarvelOutput(fit, file = "outputs/bgg-ratings.txt")
+```
+
 `LoadMarvel()` assigns column names for the current 49-column export. Competitive and Epic
 Multiplayer games are excluded from cooperative ratings, with a warning giving
 the excluded count. Encounter labels are matched exactly, including sets in the
